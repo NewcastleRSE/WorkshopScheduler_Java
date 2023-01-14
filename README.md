@@ -3,41 +3,47 @@ A template repo for the standard RSE project
 
 ## About
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin ante at eleifend eleifend. Sed non vestibulum nisi. Aliquam vel condimentum quam. Donec fringilla et purus at auctor. Praesent euismod vitae metus non consectetur. Sed interdum aliquet nisl at efficitur. Nulla urna quam, gravida eget elementum eget, mattis nec tortor. Fusce ut neque tellus. Integer at magna feugiat lacus porta posuere eget vitae metus.
+When organising a Carpentries workshop a website is created for the workshop using the Carpentries workshop template (https://github.com/carpentries/workshop-template). The workshop template includes a schedule which shows the start and end times of each episode for every day including break times. This program allows a user to capture the start time of a session and the length (in minutes) of all the episodes. The program also allows break and lunch times to be inserted at any point. The program provides for initial keybard input or input from a csv file. Once the user is happy with the schedule it can be exported as an html table which can then be included in the workshop website repository saved as a file called schedule.html.
 
-Curabitur a tempus arcu. Maecenas blandit risus quam, quis convallis justo pretium in. Suspendisse rutrum, elit at venenatis cursus, dolor ligula iaculis dui, ut dignissim enim justo at ligula. Donec interdum dignissim egestas. Nullam nec ultrices enim. Nam quis arcu tincidunt, auctor purus sit amet, aliquam libero. Fusce rhoncus lectus ac imperdiet varius. Sed gravida urna eros, ac luctus justo condimentum nec. Integer ultrices nibh in neque sagittis, at pretium erat pretium. Praesent feugiat purus id iaculis laoreet. Proin in tellus tristique, congue ante in, sodales quam. Sed imperdiet est tortor, eget vestibulum tortor pulvinar volutpat. In et pretium nisl.
 
 ### Project Team
-Dr L. Ipsum, Newcastle University  ([lorem.ipsum@newcastle.ac.uk](mailto:lorem.ipsum@newcastle.ac.uk))  
-Professor D. Sit Amet, XY University  ([d.sit.amet@newcastle.ac.uk](mailto:d.sit.amet@example.com))  
+Dr Jannetta Steyn, jannetta.steyn@newcastle.ac.uk
 
 ### RSE Contact
-C. Adipiscing  
+Jannetta Steyn 
 RSE Team  
 Newcastle University  
-([consectetur.adpiscing@newcastle.ac.uk](mailto:consectetur.adpiscing@newcastle.ac.uk))  
+([jannetta.steyn@newcastle.ac.uk](mailto:jannetta.steyn@newcastle.ac.uk))  
 
 ## Built With
 
-This section is intended to list the frameworks and tools you're using to develop this software. Please link to the home page or documentatation in each case.
+Java
 
-[Framework 1](https://something.com)  
-[Framework 2](https://something.com)  
-[Framework 3](https://something.com)  
+- [SparkJava](https://sparkjava.com/)  
+- [Apache Log4J](https://logging.apache.org/log4j/2.x/)  
+- [Apache Maven](https://maven.apache.org/)  
+- [Gson](https://github.com/google/gson)
+- [Junit](https://junit.org/junit5/)
+- [MigLayout](https://www.miglayout.com/) 
+- MigLayout Core
+- MigLayout Swing
+
 
 ## Getting Started
+- [YouTube MigLayout tutorial](https://www.youtube.com/watch?v=Efjl5uSDrPk)
+- [Maven Repository](https://mvnrepository.com/artifact/com.miglayout/miglayout-swing/11.0)
 
 ### Prerequisites
 
-Any tools or versions of languages needed to run code. For example specific Python or Node versions. Minimum hardware requirements also go here.
+Java 11
 
 ### Installation
 
-How to build or install the applcation.
+`mvn package`
 
 ### Running Locally
 
-How to run the application on your local system.
+`java -cp jws.jar Main`
 
 ### Running Tests
 
