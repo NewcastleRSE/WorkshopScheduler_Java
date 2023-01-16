@@ -1,4 +1,4 @@
-# Standard Project
+# Workshop Scheduler
 A template repo for the standard RSE project
 
 ## About
