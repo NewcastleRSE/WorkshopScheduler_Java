@@ -1,7 +1,7 @@
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
-public class CSVReader {
+public class CSVReaderScanner {
   private void csvReaderMethod1(String filePath){
     try {
       Scanner scanner = new Scanner(new File(filePath));
@@ -19,7 +19,7 @@ public class CSVReader {
 
   public static void main(String[] args) {
     String filePath = new File("").getAbsolutePath() + File.separator + "data/lesson.csv";
-    CSVReader csvObj = new CSVReader();
+    CSVReaderScanner csvObj = new CSVReaderScanner();
 
     csvObj.csvReaderMethod1(filePath);
   }
