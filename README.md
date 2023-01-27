@@ -30,8 +30,25 @@ Java
 
 ## Getting Started
 ### Project directory structure
-
--WorkshopSch
+```
+.
+├── .git
+├── .github
+│        └── *
+├── .gitignore
+│        └── *
+├── .idea
+│        └── *
+├── data
+│        └── lesson.csv
+├── pom.xml
+├── README.md
+├── src
+│        └── main
+│            └── java
+│                ├── CSVReader.java
+│                └── CSVReaderScanner.java
+```
 
 ### Links with tutorials
 - [YouTube MigLayout tutorial](https://www.youtube.com/watch?v=Efjl5uSDrPk)
