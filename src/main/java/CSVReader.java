@@ -18,7 +18,7 @@ public class CSVReader {
   }
 
   public static void main(String[] args) {
-    String filePath = new File("").getAbsolutePath() + File.separator + "/src/main/resources/lesson.csv";
+    String filePath = new File("").getAbsolutePath() + File.separator + "data/lesson.csv";
     CSVReader csvObj = new CSVReader();
 
     csvObj.csvReaderMethod1(filePath);
