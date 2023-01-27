@@ -5,7 +5,8 @@ When organising a Carpentries workshop a website is created for the workshop usi
 
 
 ### Project Team
-Dr Jannetta Steyn, jannetta.steyn@newcastle.ac.uk
+- Dr Jannetta Steyn, jannetta.steyn@newcastle.ac.uk 
+- Ruxandra Neatu
 
 ### RSE Contact
 Jannetta Steyn 
@@ -28,6 +29,11 @@ Java
 
 
 ## Getting Started
+### Project directory structure
+
+-WorkshopSch
+
+### Links with tutorials
 - [YouTube MigLayout tutorial](https://www.youtube.com/watch?v=Efjl5uSDrPk)
 - [Maven Repository](https://mvnrepository.com/artifact/com.miglayout/miglayout-swing/11.0)
 
