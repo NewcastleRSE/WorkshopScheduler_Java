@@ -25,6 +25,7 @@ public class CSVReaderScanner {
           "        <th>Duration</th>" +
           "        <th>Index</th>" +
           "        <th>Episode Name</th>" +
+          "        <th>Summary</th>" +
           "        <th>URL</th>" +
           "    </tr>\n"
       );
@@ -44,10 +45,10 @@ public class CSVReaderScanner {
         {
           test += "<td>";
 
-          if (row[i].contains("url")) {
-            test += "<a href='";
+          if (row[i].contains("https")) {
+            test += "<a target='_blank' href='";
             test += row[i];
-            test += "'>URL</a>";
+            test += "'>click here for more info</a>";
           } else {
             test += row[i];
           }
@@ -63,7 +64,7 @@ public class CSVReaderScanner {
 
       test += "</table>";
       // System.out.println(test);
-      FileWriter myWriter = new FileWriter("table.html");
+      FileWriter myWriter = new FileWriter("lesson2.html");
       myWriter.write(test);
       myWriter.close();
       System.out.println("Successfully wrote to the file.");
@@ -77,7 +78,7 @@ public class CSVReaderScanner {
   }
 
   public static void main(String[] args) {
-    String filePath = new File("").getAbsolutePath() + File.separator + "/data/lesson.csv";
+    String filePath = new File("").getAbsolutePath() + File.separator + "/data/lesson2.csv";
     CSVReaderScanner csvObj = new CSVReaderScanner();
 
     csvObj.csvReaderMethod1(filePath);
