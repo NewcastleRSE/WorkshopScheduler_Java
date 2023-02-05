@@ -28,7 +28,7 @@ public class CSVReaderScanner {
       Scanner scanner = new Scanner(new File(filePath));
       String test = new String("<table>" +
           "    <tr>" +
-          "        <th>Duration (minutes)</th>" +
+          "        <th>Start time</th>" +
           "        <th>Index</th>" +
           "        <th>Episode Name</th>" +
           "        <th>Summary</th>" +
@@ -43,7 +43,7 @@ public class CSVReaderScanner {
       Calendar cal = Calendar.getInstance();
       cal.setTime(d);
 
-
+      String previousData = new String(df.format(cal.getTime()));
 //      System.out.println();
 
       scanner.useDelimiter("\n");
@@ -60,20 +60,19 @@ public class CSVReaderScanner {
             test += "<a target='_blank' href='";
             test += row[i];
             test += "'>click here for more info</a>";
-          } else if (i == 0 && row[i] != "") {
+          } else if (i == 0) {
+              test += previousData;
 
-//            startTime + row[i]
-//            test += row[i];
             String duration = new String(row[i]);
             int number = Integer.parseInt(duration);
 //            System.out.println(number);
 
 
             cal.add(Calendar.MINUTE, number);
-            String newTime = df.format(cal.getTime());
-            test += newTime;
+            previousData = df.format(cal.getTime());
+//            test += newTime;
 
-            System.out.println(newTime);
+//            System.out.println(previousData);
 
 
           } else {
