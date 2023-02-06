@@ -6,27 +6,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;   // Import the FileWriter class
-import java.io.IOException;  // Import the IOException class to handle errors
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class CSVReaderScanner {
 
-  public void csvReaderMethod1(String filePath, String startTime){
-    System.out.println(startTime);
-
-//    try {
-//      FileWriter myWriter = new FileWriter("filename.html");
-//      myWriter.write("This is a file");
-//      myWriter.close();
-//      System.out.println("Successfully wrote to the file.");
-//    } catch (IOException e) {
-//      System.out.println("An error occurred.");
-//      e.printStackTrace();
-//    }
+  private void csvReaderMethod1(String filePath, String startTime){
 
     try {
       Scanner scanner = new Scanner(new File(filePath));
-      String test = new String("<table>" +
+      String htmlOuput = new String("<table>" +
           "    <tr>" +
           "        <th>Start time</th>" +
           "        <th>Index</th>" +
@@ -36,62 +25,48 @@ public class CSVReaderScanner {
           "    </tr>\n"
       );
 
-
-//      startTime
       SimpleDateFormat df = new SimpleDateFormat("HH:mm");
       Date d = df.parse(startTime);
       Calendar cal = Calendar.getInstance();
       cal.setTime(d);
 
       String previousData = new String(df.format(cal.getTime()));
-//      System.out.println();
 
       scanner.useDelimiter("\n");
       while (scanner.hasNext()){
         String[] row = scanner.next().split(",");
 
-        test += "<tr>";
+        htmlOuput += "<tr>";
 
         for(int i=0; i< row.length; i++)
         {
-          test += "<td>";
+          htmlOuput += "<td>";
 
           if (row[i].contains("https")) {
-            test += "<a target='_blank' href='";
-            test += row[i];
-            test += "'>click here for more info</a>";
+            htmlOuput += "<a target='_blank' href='";
+            htmlOuput += row[i];
+            htmlOuput += "'>click here for more info</a>";
           } else if (i == 0) {
-              test += previousData;
+              htmlOuput += previousData;
 
             String duration = new String(row[i]);
             int number = Integer.parseInt(duration);
-//            System.out.println(number);
-
 
             cal.add(Calendar.MINUTE, number);
             previousData = df.format(cal.getTime());
-//            test += newTime;
-
-//            System.out.println(previousData);
-
-
           } else {
-            test += row[i];
+            htmlOuput += row[i];
           }
 
-          test += "</td>";
+          htmlOuput += "</td>";
         }
 
-        test += "</tr>\n";
+        htmlOuput += "</tr>\n";
 
-
-        // System.out.println(scanner.next()+ " ");
       }
-//      startTime
-      test += "</table>";
-      // System.out.println(test);
+      htmlOuput += "</table>";
       FileWriter myWriter = new FileWriter("lesson2.html");
-      myWriter.write(test);
+      myWriter.write(htmlOuput);
       myWriter.close();
       System.out.println("Successfully wrote to the file.");
 
@@ -111,9 +86,7 @@ public class CSVReaderScanner {
     CSVReaderScanner csvObj = new CSVReaderScanner();
 
     csvObj.csvReaderMethod1(filePath, startTime);
-
   }
-
 }
 
 
