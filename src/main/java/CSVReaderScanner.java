@@ -46,10 +46,10 @@ public class CSVReaderScanner {
           "  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);\n" +
           "}" +
           "tr:nth-child(even) {background-color: #f2f2f2;}" +
-          "tr:last-child { " +
-          "font-size: 150%;" +
-          "color: white;\n" +
-          "background:#990000; }" +
+//          "tr:last-child { " +
+//          "font-size: 150%;" +
+//          "color: white;\n" +
+//          "background:#990000; }" +
 //          "tr:hover {background-color: #f2f2f2;}" +
           "</style>" +
           "<body>" +
@@ -87,7 +87,7 @@ public class CSVReaderScanner {
           if (row[i].contains("https")) {
             htmlOuput += "<a target='_blank' href='";
             htmlOuput += row[i];
-            htmlOuput += "'>Click here for more info</a>";
+            htmlOuput += "'>More info</a>";
           } else if (i == 0) {
               htmlOuput += previousData;
               htmlOuput += "<td>";
