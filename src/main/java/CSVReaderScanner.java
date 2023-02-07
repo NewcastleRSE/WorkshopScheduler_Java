@@ -18,7 +18,7 @@ public class CSVReaderScanner {
       String htmlOuput = new String("<style>" +
           "table {" +
           "border-collapse: collapse;" +
-          "border: 1px solid;" +
+//          "border: 1px solid;" +
 //          "border-color: #8533ff;" +
           "width: 100%;" +
           "}" +
@@ -34,7 +34,7 @@ public class CSVReaderScanner {
           "background-color: #8533ff;\n" +
           "border: none;\n" +
           "border-radius: 12px;" +
-          "box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);" +
+//          "box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);" +
           "color: white;\n" +
           "padding: 15px 32px;\n" +
           "text-align: center;\n" +
@@ -42,7 +42,15 @@ public class CSVReaderScanner {
           "display: inline-block;\n" +
           "font-size: 16px;" +
           "}" +
-          "tr:hover {background-color: #f2f2f2;}" +
+          "a:hover {\n" +
+          "  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);\n" +
+          "}" +
+          "tr:nth-child(even) {background-color: #f2f2f2;}" +
+          "tr:last-child { " +
+          "font-size: 150%;" +
+          "color: white;\n" +
+          "background:#990000; }" +
+//          "tr:hover {background-color: #f2f2f2;}" +
           "</style>" +
           "<body>" +
           "<h2>Schedule</h2>" +
