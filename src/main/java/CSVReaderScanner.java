@@ -16,26 +16,36 @@ public class CSVReaderScanner {
     try {
       Scanner scanner = new Scanner(new File(filePath));
       String htmlOuput = new String("<style>" +
-          "table {\n" +
-          "  border-collapse: collapse;\n" +
-          "  width: 100%;\n" +
-          "}\n" +
-          "\n" +
-          "th, td {\n" +
-          "  padding: 8px;\n" +
-          "  text-align: centre;\n" +
+          "table {" +
+          "border-collapse: collapse;" +
+          "border: 1px solid;" +
+//          "border-color: #8533ff;" +
+          "width: 100%;" +
+          "}" +
+          "th, td {" +
+          "  padding: 8px;" +
+          "  text-align: centre;" +
 //          "  border-bottom: 1px solid #ddd;\n" +
-          "}\n" +
+          "}" +
           "th{" +
-          "background-color: #d9d9d9;\n" +
+          "background-color: #d9d9d9;" +
           "padding: 8px;}" +
-          "\n" +
+          "a {\n" +
+          "background-color: #8533ff;\n" +
+          "border: none;\n" +
+          "border-radius: 12px;" +
+          "box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);" +
+          "color: white;\n" +
+          "padding: 15px 32px;\n" +
+          "text-align: center;\n" +
+          "text-decoration: none;\n" +
+          "display: inline-block;\n" +
+          "font-size: 16px;" +
+          "}" +
           "tr:hover {background-color: #f2f2f2;}" +
           "</style>" +
-          "<body>\n" +
-          "\n" +
-          "<h2>Schedule</h2>\n" +
-          "\n" +
+          "<body>" +
+          "<h2>Schedule</h2>" +
           "<table>" +
           "<table>" +
           "    <tr>" +
@@ -45,7 +55,7 @@ public class CSVReaderScanner {
           "        <th>Episode Name</th>" +
           "        <th>Summary</th>" +
           "        <th>URL</th>" +
-          "    </tr>\n"
+          "    </tr>"
       );
 
       SimpleDateFormat df = new SimpleDateFormat("HH:mm");
@@ -69,7 +79,7 @@ public class CSVReaderScanner {
           if (row[i].contains("https")) {
             htmlOuput += "<a target='_blank' href='";
             htmlOuput += row[i];
-            htmlOuput += "'>click here for more info</a>";
+            htmlOuput += "'>Click here for more info</a>";
           } else if (i == 0) {
               htmlOuput += previousData;
               htmlOuput += "<td>";
