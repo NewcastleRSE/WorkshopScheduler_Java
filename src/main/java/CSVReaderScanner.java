@@ -15,7 +15,29 @@ public class CSVReaderScanner {
 
     try {
       Scanner scanner = new Scanner(new File(filePath));
-      String htmlOuput = new String("<table>" +
+      String htmlOuput = new String("<style>" +
+          "table {\n" +
+          "  border-collapse: collapse;\n" +
+          "  width: 100%;\n" +
+          "}\n" +
+          "\n" +
+          "th, td {\n" +
+          "  padding: 8px;\n" +
+          "  text-align: centre;\n" +
+//          "  border-bottom: 1px solid #ddd;\n" +
+          "}\n" +
+          "th{" +
+          "background-color: #d9d9d9;\n" +
+          "padding: 8px;}" +
+          "\n" +
+          "tr:hover {background-color: #f2f2f2;}" +
+          "</style>" +
+          "<body>\n" +
+          "\n" +
+          "<h2>Schedule</h2>\n" +
+          "\n" +
+          "<table>" +
+          "<table>" +
           "    <tr>" +
           "        <th>Start time</th>" +
           "        <th>Duration (minutes)</th>" +
@@ -87,7 +109,7 @@ public class CSVReaderScanner {
 
   public static void main(String[] args) {
     String filePath = new File("").getAbsolutePath() + File.separator + "/data/lesson2.csv";
-    String startTime = new String("09:00");
+    String startTime = new String("10:00");
     CSVReaderScanner csvObj = new CSVReaderScanner();
 
     csvObj.csvReaderMethod1(filePath, startTime);
