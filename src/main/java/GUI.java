@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 //takes input from the user to create a CSV
+//the name of the lesson coincides with the name of the file
 //it appends every line to the same file as long as the title of the lesson/file stays the same
 //work in progress; need to include a construct and create a separate class for the ActionEvent
 public class GUI extends JTextField{
@@ -18,9 +19,8 @@ public class GUI extends JTextField{
     JTextField t0,t1,t2,t3,t4;
     JButton b1;
 
-    t0 = new JTextField();
-    t0.setToolTipText("Insert  name lesson");
-    t0.setName("Insert  name lesson");
+    t0 = new JTextField("Insert name lesson");
+//    t0.setToolTipText();
     t0.setBounds(50, 100, 200, 30);
     t1 = new JTextField("Insert duration (minutes), eg. 30");
     t1.setBounds(50, 150, 200, 30);
