@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 //takes input from the user to create a CSV
-//the name of the lesson coincides with the name of the file
+//the name of the lesson coincides with the name of the output file
 //it appends every line to the same file as long as the title of the lesson/file stays the same
 //work in progress; need to include a construct and create a separate class for the ActionEvent
 public class GUI extends JTextField{
