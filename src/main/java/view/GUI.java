@@ -1,3 +1,8 @@
+package view;
+
+import model.Episode;
+import model.Lesson;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,6 +17,11 @@ import java.awt.event.*;
 //it appends every line to the same file as long as the title of the lesson/file stays the same
 //work in progress; need to include a construct and create a separate class for the ActionEvent
 public class GUI extends JTextField{
+
+
+  Lesson lesson = new Lesson();
+
+  Episode episode = new Episode(10,"episode name", "https:///asdfadsfdasfads.com","");
 
   public static void main(String args[]) {
     JFrame f = new JFrame("Scheduler");
