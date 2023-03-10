@@ -8,17 +8,23 @@ import javax.swing.JTextField;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.event.ActionListener;
 
 //takes input from the user to create a CSV
 //the name of the lesson coincides with the name of the output file
 //it appends every line to the same file as long as the title of the lesson/file stays the same
 //work in progress; need to include a construct and create a separate class for the ActionEvent
-public class GUI extends JTextField{
+public class GUI implements ActionListener{
 
-  public static void main(String args[]) {
-    JFrame f = new JFrame("Scheduler");
+  //private JLabel label;
+  //private JPanel panel;
+  private JFrame f;
+  private JTextField t0,t1,t2,t3,t4;
+
+  public GUI(){
+    f = new JFrame("Scheduler");
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    JTextField t0,t1,t2,t3,t4;
+
     JButton b1;
 
     t0 = new JTextField("Insert name lesson");
@@ -36,7 +42,7 @@ public class GUI extends JTextField{
 
     b1 = new JButton("Enter");
     b1.setBounds(50, 300, 100, 50);
-//    b1.addActionListener(this);
+    b1.addActionListener(this);
 
 
     f.add(t0);
@@ -50,22 +56,29 @@ public class GUI extends JTextField{
     f.setLayout(null);
     f.setVisible(true);
 
-    b1.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        File file = new File(t0.getText());
+    //b1.addActionListener(new ActionListener() {
+    //  @Override
+      //public void actionPerformed(ActionEvent e) {}}
+  }
 
-        try {
-          try (FileWriter writer = new FileWriter(file, true)) {
+  public static void main(String args[]) {
+        new GUI();
+  }
 
-            writer.write(t1.getText()+","+t2.getText()+","+t3.getText()+"\n");
+  @Override
+  public void actionPerformed(ActionEvent e) {
+      File file = new File(t0.getText());
 
-          }
-          System.out.println("Progress saved");
-        } catch (IOException | HeadlessException z) {
-          JOptionPane.showMessageDialog(null, e);
+      try {
+        try (FileWriter writer = new FileWriter(file, true)) {
+
+          writer.write(t1.getText()+","+t2.getText()+","+t3.getText()+"\n");
+
         }
+        System.out.println("Progress saved");
+      } catch (IOException | HeadlessException z) {
+        JOptionPane.showMessageDialog(null, e);
       }
-    });
+
   }
 }
