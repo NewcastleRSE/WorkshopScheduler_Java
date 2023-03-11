@@ -21,7 +21,7 @@ public class GUI implements ActionListener{
   private JFrame f;
   private JTextField t0,t1,t2,t3,t4;
 
-  private JButton b1;
+  private JButton b1,b2;
 
   public GUI(){
     f = new JFrame("Scheduler");
@@ -42,6 +42,8 @@ public class GUI implements ActionListener{
 
     b1 = new JButton("Enter");
     b1.setBounds(50, 300, 100, 50);
+    b2 = new JButton("Upload CSV");
+    b2.setBounds(250, 300, 100, 50);
 //    b1.addActionListener(this);
 
 
@@ -51,6 +53,7 @@ public class GUI implements ActionListener{
     f.add(t3);
     f.add(t4); //do something with t4
     f.add(b1);
+    f.add(b2);
 
     f.setSize(400, 400);
     f.setLayout(null);
@@ -63,7 +66,15 @@ public class GUI implements ActionListener{
       }
     };
 
+    ActionListener buttonListener2 = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise again");
+      }
+    };
+
     b1.addActionListener(buttonListener);
+    b2.addActionListener(buttonListener2);
 
     //b1.addActionListener(new ActionListener() {
     //  @Override
