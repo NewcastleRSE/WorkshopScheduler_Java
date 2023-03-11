@@ -21,11 +21,11 @@ public class GUI implements ActionListener{
   private JFrame f;
   private JTextField t0,t1,t2,t3,t4;
 
+  private JButton b1;
+
   public GUI(){
     f = new JFrame("Scheduler");
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    JButton b1;
 
     t0 = new JTextField("Insert name lesson");
 //    t0.setToolTipText();
@@ -42,7 +42,7 @@ public class GUI implements ActionListener{
 
     b1 = new JButton("Enter");
     b1.setBounds(50, 300, 100, 50);
-    b1.addActionListener(this);
+//    b1.addActionListener(this);
 
 
     f.add(t0);
@@ -56,6 +56,15 @@ public class GUI implements ActionListener{
     f.setLayout(null);
     f.setVisible(true);
 
+    ActionListener buttonListener = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
+      }
+    };
+
+    b1.addActionListener(buttonListener);
+
     //b1.addActionListener(new ActionListener() {
     //  @Override
       //public void actionPerformed(ActionEvent e) {}}
@@ -67,18 +76,20 @@ public class GUI implements ActionListener{
 
   @Override
   public void actionPerformed(ActionEvent e) {
-      File file = new File(t0.getText());
+    JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
 
-      try {
-        try (FileWriter writer = new FileWriter(file, true)) {
-
-          writer.write(t1.getText()+","+t2.getText()+","+t3.getText()+"\n");
-
-        }
-        System.out.println("Progress saved");
-      } catch (IOException | HeadlessException z) {
-        JOptionPane.showMessageDialog(null, e);
-      }
+//    File file = new File(t0.getText());
+//
+//      try {
+//        try (FileWriter writer = new FileWriter(file, true)) {
+//
+//          writer.write(t1.getText()+","+t2.getText()+","+t3.getText()+"\n");
+//
+//        }
+//        System.out.println("Progress saved");
+//      } catch (IOException | HeadlessException z) {
+//        JOptionPane.showMessageDialog(null, e);
+//      }
 
   }
 }
