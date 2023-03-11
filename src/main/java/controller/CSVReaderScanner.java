@@ -1,5 +1,6 @@
 package controller;
 
+import javax.swing.*;
 import java.io.File;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -90,8 +91,9 @@ public class CSVReaderScanner {
     }
   }
 
-  public static void main(String[] args) {
-    String filePath = new File("").getAbsolutePath() + File.separator + "/data/lesson2.csv";
+  public static void main(String filePath) {
+    JOptionPane.showMessageDialog(null, filePath);
+//    String filePath = new File("").getAbsolutePath() + File.separator + "/data/lesson2.csv";
     String startTime = new String("10:00");
     CSVReaderScanner csvObj = new CSVReaderScanner();
 

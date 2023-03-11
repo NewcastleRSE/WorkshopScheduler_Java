@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
 
+import controller.CSVReaderScanner;
+
 //takes input from the user to create a CSV
 //the name of the lesson coincides with the name of the output file
 //it appends every line to the same file as long as the title of the lesson/file stays the same
@@ -85,11 +87,10 @@ public class GUI {
 
         if(e.getSource()==b2){
           JFileChooser file_upload = new JFileChooser();
-          int res_2 = file_upload.showSaveDialog(null);
+//          int res_2 = file_upload.showSaveDialog(null);
+          int res_2 = file_upload.showOpenDialog(null);
           if (res_2 == JFileChooser.APPROVE_OPTION){
-            File file_path = new File(file_upload.getSelectedFile().getAbsolutePath());
-            System.out.println(file_path);
-            JOptionPane.showMessageDialog(null, file_path);
+            CSVReaderScanner.main(file_upload.getSelectedFile().getAbsolutePath());
           }
         }
 
