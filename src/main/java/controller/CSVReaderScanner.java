@@ -91,10 +91,10 @@ public class CSVReaderScanner {
     }
   }
 
-  public static void main(String filePath) {
-    JOptionPane.showMessageDialog(null, filePath);
+  public static void main(String filePath, String startTime) {
+//    JOptionPane.showMessageDialog(null, filePath);
 //    String filePath = new File("").getAbsolutePath() + File.separator + "/data/lesson2.csv";
-    String startTime = new String("10:00");
+//    String startTime = new String("10:00");
     CSVReaderScanner csvObj = new CSVReaderScanner();
 
     csvObj.csvReaderMethod1(filePath, startTime);

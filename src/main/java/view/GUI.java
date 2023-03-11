@@ -42,7 +42,7 @@ public class GUI {
     t4.setBounds(50, 50, 200, 30);
 
 
-    b1 = new JButton("Enter");
+    b1 = new JButton("Create CSV");
     b1.setBounds(50, 300, 100, 50);
     b2 = new JButton("Upload CSV");
     b2.setBounds(250, 300, 100, 50);
@@ -64,7 +64,8 @@ public class GUI {
     ActionListener buttonListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
+
+//        JOptionPane.showMessageDialog(null, "fucking hell");
 
     File file = new File(t0.getText());
 
@@ -87,10 +88,10 @@ public class GUI {
 
         if(e.getSource()==b2){
           JFileChooser file_upload = new JFileChooser();
-//          int res_2 = file_upload.showSaveDialog(null);
           int res_2 = file_upload.showOpenDialog(null);
           if (res_2 == JFileChooser.APPROVE_OPTION){
-            CSVReaderScanner.main(file_upload.getSelectedFile().getAbsolutePath());
+            String startTime = t4.getText();
+            CSVReaderScanner.main(file_upload.getSelectedFile().getAbsolutePath(), startTime);
           }
         }
 
