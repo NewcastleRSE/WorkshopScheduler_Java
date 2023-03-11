@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 //the name of the lesson coincides with the name of the output file
 //it appends every line to the same file as long as the title of the lesson/file stays the same
 //work in progress; need to include a construct and create a separate class for the ActionEvent
-public class GUI implements ActionListener{
+public class GUI {
 
   //private JLabel label;
   //private JPanel panel;
@@ -63,44 +63,45 @@ public class GUI implements ActionListener{
       @Override
       public void actionPerformed(ActionEvent e) {
         JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
+
+    File file = new File(t0.getText());
+
+      try {
+        try (FileWriter writer = new FileWriter(file, true)) {
+
+          writer.write(t1.getText()+","+t2.getText()+","+t3.getText()+"\n");
+
+        }
+        System.out.println("Progress saved");
+      } catch (IOException | HeadlessException z) {
+        JOptionPane.showMessageDialog(null, e);
+      }
       }
     };
 
     ActionListener buttonListener2 = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise again");
+
+        if(e.getSource()==b2){
+          JFileChooser file_upload = new JFileChooser();
+          int res_2 = file_upload.showSaveDialog(null);
+          if (res_2 == JFileChooser.APPROVE_OPTION){
+            File file_path = new File(file_upload.getSelectedFile().getAbsolutePath());
+            System.out.println(file_path);
+            JOptionPane.showMessageDialog(null, file_path);
+          }
+        }
+
       }
     };
 
     b1.addActionListener(buttonListener);
     b2.addActionListener(buttonListener2);
 
-    //b1.addActionListener(new ActionListener() {
-    //  @Override
-      //public void actionPerformed(ActionEvent e) {}}
   }
 
   public static void main(String args[]) {
         new GUI();
-  }
-
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
-
-//    File file = new File(t0.getText());
-//
-//      try {
-//        try (FileWriter writer = new FileWriter(file, true)) {
-//
-//          writer.write(t1.getText()+","+t2.getText()+","+t3.getText()+"\n");
-//
-//        }
-//        System.out.println("Progress saved");
-//      } catch (IOException | HeadlessException z) {
-//        JOptionPane.showMessageDialog(null, e);
-//      }
-
   }
 }
