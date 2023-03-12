@@ -30,33 +30,35 @@ public class GUI {
   private JTextField t4;
 
   private JButton b1,b2,b3;
-  private JLabel l1,l2;
+  private JLabel l1,l2,l3,l4;
+//  JPanel panel = new JPanel();
+
 
   public GUI(){
     f = new JFrame("Scheduler");
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//    panel.setLayout(new FlowLayout());
 
     l1=new JLabel("Welcome to The Scheduler. It converts CSVs into HTMLs. In other words, endless fun!");
     l1.setFont(new Font("Calibri", Font.ITALIC, 18));
-    l1.setBounds(50,50, 750,30);
+    l1.setBounds(50,20, 750,30);
     l2=new JLabel("Write or");
     l2.setBounds(115,165, 190,40);
     l2.setFont(new Font("Calibri", Font.PLAIN, 16));
+    l3=new JLabel("Lesson Name");
+    l3.setBounds(100,70, 190,40);
+    l3.setFont(new Font("Calibri", Font.PLAIN, 12));
+    l4=new JLabel("Start hour");
+    l4.setBounds(430,70, 190,40);
+    l4.setFont(new Font("Calibri", Font.PLAIN, 12));
 
-    t0 = new JTextField("lessonName");
-//    t0.setToolTipText();
+    t0 = new JTextField("Python");
     t0.setBounds(100, 100, 200, 30);
     t1 = new JTextArea("30,1,Python Fundamentals,Summary,https");
     t1.setBounds(115, 230, 500, 300);
-//    t1.setPreferredSize();
-//    t1 = new JTextField("Insert duration (minutes), eg. 30");
-//    t1.setBounds(50, 150, 200, 30);
-//    t2 = new JTextField("Insert name episode");
-//    t2.setBounds(50, 200, 200, 30);
-//    t3 = new JTextField("Insert URL");
-//    t3.setBounds(50, 250, 200, 30);
     t4 = new JTextField("10:00");
     t4.setBounds(430, 100, 200, 30);
+//    JScrollPane scrollPane = new JScrollPane(t1,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 
     b1 = new JButton("Create CSV");
@@ -67,7 +69,8 @@ public class GUI {
     b3.setBounds(240, 550, 100, 50);
 //    b1.addActionListener(this);
 
-
+//    panel.add(scrollPane);
+//    f.setContentPane(panel);
     f.add(t0);
     f.add(t1);
 //    f.add(t2);
@@ -76,7 +79,7 @@ public class GUI {
     f.add(b1);
     f.add(b2);
     f.add(b3);
-    f.add(l1); f.add(l2);
+    f.add(l1); f.add(l2);f.add(l3);f.add(l4);
 
     f.setSize(850, 750);
     f.setLayout(null);
