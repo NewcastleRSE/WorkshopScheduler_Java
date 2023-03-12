@@ -33,14 +33,16 @@ public class GUI {
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     l1=new JLabel("Welcome to The Scheduler. It converts CSVs into HTMLs. In other words, endless fun!");
-    l1.setBounds(50,50, 600,30);
+    l1.setFont(new Font("Calibri", Font.ITALIC, 18));
+    l1.setBounds(50,50, 750,30);
     l2=new JLabel("Write or");
-    l2.setBounds(180,165, 100,40);
+    l2.setBounds(115,165, 190,40);
+    l2.setFont(new Font("Calibri", Font.PLAIN, 16));
 
     t0 = new JTextField("Insert name lesson");
 //    t0.setToolTipText();
     t0.setBounds(100, 100, 200, 30);
-    t1 = new JTextArea("Write or Upload CSV");
+    t1 = new JTextArea("");
     t1.setBounds(115, 230, 500, 300);
 //    t1 = new JTextField("Insert duration (minutes), eg. 30");
 //    t1.setBounds(50, 150, 200, 30);
@@ -55,7 +57,7 @@ public class GUI {
     b1 = new JButton("Create CSV");
     b1.setBounds(115, 550, 100, 50);
     b2 = new JButton("Upload CSV");
-    b2.setBounds(250, 165, 100, 50);
+    b2.setBounds(190, 165, 100, 50);
     b3 = new JButton("Create HTML");
     b3.setBounds(240, 550, 100, 50);
 //    b1.addActionListener(this);
