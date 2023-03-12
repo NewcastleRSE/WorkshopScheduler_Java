@@ -21,43 +21,57 @@ public class GUI {
   //private JLabel label;
   //private JPanel panel;
   private JFrame f;
-  private JTextField t0,t1,t2,t3,t4;
+  private JTextField t0;
+  private JTextArea t1;
+  private JTextField t4;
 
-  private JButton b1,b2;
+  private JButton b1,b2,b3;
+  private JLabel l1,l2;
 
   public GUI(){
     f = new JFrame("Scheduler");
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    l1=new JLabel("Welcome to The Scheduler. It converts CSVs into HTMLs. In other words, endless fun!");
+    l1.setBounds(50,50, 600,30);
+    l2=new JLabel("Write or");
+    l2.setBounds(180,165, 100,40);
+
     t0 = new JTextField("Insert name lesson");
 //    t0.setToolTipText();
-    t0.setBounds(50, 100, 200, 30);
-    t1 = new JTextField("Insert duration (minutes), eg. 30");
-    t1.setBounds(50, 150, 200, 30);
-    t2 = new JTextField("Insert name episode");
-    t2.setBounds(50, 200, 200, 30);
-    t3 = new JTextField("Insert URL");
-    t3.setBounds(50, 250, 200, 30);
+    t0.setBounds(100, 100, 200, 30);
+    t1 = new JTextArea("Write or Upload CSV");
+    t1.setBounds(115, 230, 500, 300);
+//    t1 = new JTextField("Insert duration (minutes), eg. 30");
+//    t1.setBounds(50, 150, 200, 30);
+//    t2 = new JTextField("Insert name episode");
+//    t2.setBounds(50, 200, 200, 30);
+//    t3 = new JTextField("Insert URL");
+//    t3.setBounds(50, 250, 200, 30);
     t4 = new JTextField("Insert start hour");
-    t4.setBounds(50, 50, 200, 30);
+    t4.setBounds(430, 100, 200, 30);
 
 
     b1 = new JButton("Create CSV");
-    b1.setBounds(50, 300, 100, 50);
+    b1.setBounds(115, 550, 100, 50);
     b2 = new JButton("Upload CSV");
-    b2.setBounds(250, 300, 100, 50);
+    b2.setBounds(250, 165, 100, 50);
+    b3 = new JButton("Create HTML");
+    b3.setBounds(240, 550, 100, 50);
 //    b1.addActionListener(this);
 
 
     f.add(t0);
     f.add(t1);
-    f.add(t2);
-    f.add(t3);
+//    f.add(t2);
+//    f.add(t3);
     f.add(t4); //do something with t4
     f.add(b1);
     f.add(b2);
+    f.add(b3);
+    f.add(l1); f.add(l2);
 
-    f.setSize(400, 400);
+    f.setSize(850, 750);
     f.setLayout(null);
     f.setVisible(true);
 
@@ -67,18 +81,20 @@ public class GUI {
 
 //        JOptionPane.showMessageDialog(null, "fucking hell");
 
-    File file = new File(t0.getText());
+    File file = new File(t0.getText()+".csv");
 
       try {
         try (FileWriter writer = new FileWriter(file, true)) {
 
-          writer.write(t1.getText()+","+t2.getText()+","+t3.getText()+"\n");
+          writer.write(t1.getText());
 
         }
-        System.out.println("Progress saved");
+//        System.out.println("Progress saved");
       } catch (IOException | HeadlessException z) {
         JOptionPane.showMessageDialog(null, e);
       }
+//        String startTime = t4.getText();
+//        CSVReaderScanner.main("/tmp/" + t0.getText(), startTime);
       }
     };
 
