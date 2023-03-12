@@ -1,6 +1,7 @@
 package controller;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -11,9 +12,13 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class CSVReaderScanner {
+import view.GUI;
 
-  private void csvReaderMethod1(String filePath, String startTime){
+public class CSVReaderScanner{
+
+
+
+  private void csvReaderMethod1(String filePath, String startTime, String fileName){
 
     try {
       Scanner scanner = new Scanner(new File(filePath));
@@ -76,7 +81,7 @@ public class CSVReaderScanner {
 
       }
       htmlOuput += "</table>";
-      FileWriter myWriter = new FileWriter("lesson2.html");
+      FileWriter myWriter = new FileWriter(fileName+".html");
       myWriter.write(htmlOuput);
       myWriter.close();
       System.out.println("Successfully wrote to the file.");
@@ -91,13 +96,13 @@ public class CSVReaderScanner {
     }
   }
 
-  public static void main(String filePath, String startTime) {
+  public static void main(String filePath, String startTime, String fileName) {
 //    JOptionPane.showMessageDialog(null, filePath);
 //    String filePath = new File("").getAbsolutePath() + File.separator + "/data/lesson2.csv";
 //    String startTime = new String("10:00");
     CSVReaderScanner csvObj = new CSVReaderScanner();
 
-    csvObj.csvReaderMethod1(filePath, startTime);
+    csvObj.csvReaderMethod1(filePath, startTime, fileName);
   }
 }
 

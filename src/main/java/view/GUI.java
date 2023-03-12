@@ -39,10 +39,10 @@ public class GUI {
     l2.setBounds(115,165, 190,40);
     l2.setFont(new Font("Calibri", Font.PLAIN, 16));
 
-    t0 = new JTextField("Insert name lesson");
+    t0 = new JTextField("lessonName");
 //    t0.setToolTipText();
     t0.setBounds(100, 100, 200, 30);
-    t1 = new JTextArea("");
+    t1 = new JTextArea("30,1,Python Fundamentals,Summary,https");
     t1.setBounds(115, 230, 500, 300);
 //    t1 = new JTextField("Insert duration (minutes), eg. 30");
 //    t1.setBounds(50, 150, 200, 30);
@@ -50,7 +50,7 @@ public class GUI {
 //    t2.setBounds(50, 200, 200, 30);
 //    t3 = new JTextField("Insert URL");
 //    t3.setBounds(50, 250, 200, 30);
-    t4 = new JTextField("Insert start hour");
+    t4 = new JTextField("10:00");
     t4.setBounds(430, 100, 200, 30);
 
 
@@ -81,7 +81,7 @@ public class GUI {
       @Override
       public void actionPerformed(ActionEvent e) {
 
-//        JOptionPane.showMessageDialog(null, "fucking hell");
+//        JOptionPane.showMessageDialog(null, "hello");
 
     File file = new File(t0.getText()+".csv");
 
@@ -95,8 +95,6 @@ public class GUI {
       } catch (IOException | HeadlessException z) {
         JOptionPane.showMessageDialog(null, e);
       }
-//        String startTime = t4.getText();
-//        CSVReaderScanner.main("/tmp/" + t0.getText(), startTime);
       }
     };
 
@@ -109,19 +107,43 @@ public class GUI {
           int res_2 = file_upload.showOpenDialog(null);
           if (res_2 == JFileChooser.APPROVE_OPTION){
             String startTime = t4.getText();
-            CSVReaderScanner.main(file_upload.getSelectedFile().getAbsolutePath(), startTime);
+            CSVReaderScanner.main(file_upload.getSelectedFile().getAbsolutePath(), startTime, t0.getText());
           }
         }
 
       }
     };
 
+    ActionListener buttonListener3 = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        File file = new File(t0.getText()+".csv");
+
+        try {
+          try (FileWriter writer = new FileWriter(file, true)) {
+
+            writer.write(t1.getText());
+
+          }
+//        System.out.println("Progress saved");
+        } catch (IOException | HeadlessException z) {
+          JOptionPane.showMessageDialog(null, e);
+        }
+        String startTime = t4.getText();
+        CSVReaderScanner.main(file.getAbsolutePath(), startTime, t0.getText());
+        JOptionPane.showMessageDialog(null,  t0.getText());
+        System.out.println(t0.getText());
+        }
+    };
+
     b1.addActionListener(buttonListener);
     b2.addActionListener(buttonListener2);
+    b3.addActionListener(buttonListener3);
 
   }
 
   public static void main(String args[]) {
         new GUI();
+    System.out.println("Hello");
   }
 }
