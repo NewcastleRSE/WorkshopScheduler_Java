@@ -131,8 +131,8 @@ public class GUI {
         }
         String startTime = t4.getText();
         CSVReaderScanner.main(file.getAbsolutePath(), startTime, t0.getText());
-        JOptionPane.showMessageDialog(null,  t0.getText());
-        System.out.println(t0.getText());
+//        JOptionPane.showMessageDialog(null,  t0.getText());
+//        System.out.println(t0.getText());
         }
     };
 
@@ -144,6 +144,5 @@ public class GUI {
 
   public static void main(String args[]) {
         new GUI();
-    System.out.println("Hello");
   }
 }
