@@ -9,6 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
 
 import controller.CSVReaderScanner;
 
@@ -44,6 +48,7 @@ public class GUI {
     t0.setBounds(100, 100, 200, 30);
     t1 = new JTextArea("30,1,Python Fundamentals,Summary,https");
     t1.setBounds(115, 230, 500, 300);
+//    t1.setPreferredSize();
 //    t1 = new JTextField("Insert duration (minutes), eg. 30");
 //    t1.setBounds(50, 150, 200, 30);
 //    t2 = new JTextField("Insert name episode");
@@ -106,8 +111,18 @@ public class GUI {
           JFileChooser file_upload = new JFileChooser();
           int res_2 = file_upload.showOpenDialog(null);
           if (res_2 == JFileChooser.APPROVE_OPTION){
-            String startTime = t4.getText();
-            CSVReaderScanner.main(file_upload.getSelectedFile().getAbsolutePath(), startTime, t0.getText());
+            File gummy = file_upload.getSelectedFile();
+            try {
+              BufferedReader input = new BufferedReader(new InputStreamReader(
+                  new FileInputStream(gummy)));
+              t1.read(input, "READING FILE :-)");
+            } catch (Exception ae) {
+              ae.printStackTrace();
+            }
+          } else {
+            System.out.println("Operation is CANCELLED :(");
+//            String startTime = t4.getText();
+//            CSVReaderScanner.main(file_upload.getSelectedFile().getAbsolutePath(), startTime, t0.getText());
           }
         }
 
