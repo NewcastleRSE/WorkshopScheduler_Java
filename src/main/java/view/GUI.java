@@ -16,10 +16,8 @@ import java.io.InputStreamReader;
 
 import controller.CSVReaderScanner;
 
-//takes input from the user to create a CSV
+//takes input from the user to create a CSV or/and HTML
 //the name of the lesson coincides with the name of the output file
-//it appends every line to the same file as long as the title of the lesson/file stays the same
-//work in progress; need to include a construct and create a separate class for the ActionEvent
 public class GUI {
 
   //private JLabel label;
