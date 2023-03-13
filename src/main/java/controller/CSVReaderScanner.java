@@ -30,10 +30,10 @@ public class CSVReaderScanner{
           "    <tr>" +
           "        <th>Start time</th>" +
           "        <th>Duration (minutes)</th>" +
-          "        <th>Index</th>" +
-          "        <th>Episode Name</th>" +
-          "        <th>Summary</th>" +
-          "        <th>URL</th>" +
+          "        <th>More episode info</th>" +
+//          "        <th>Episode Name</th>" +
+//          "        <th>Summary</th>" +
+//          "        <th>URL</th>" +
           "    </tr>"
       );
 
@@ -58,7 +58,7 @@ public class CSVReaderScanner{
           if (row[i].contains("https")) {
             htmlOuput += "<a target='_blank' href='";
             htmlOuput += row[i];
-            htmlOuput += "'>More info</a>";
+            htmlOuput += "'>Breakdown</a>";
           } else if (i == 0) {
               htmlOuput += previousData;
               htmlOuput += "<td>";
