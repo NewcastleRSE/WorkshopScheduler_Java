@@ -30,35 +30,43 @@ public class GUI {
   private JTextField t4;
 
   private JButton b1,b2,b3;
-  private JLabel l1,l2,l3,l4;
-//  JPanel panel = new JPanel();
+  private JLabel l1,l2,l3,l4,l5;
+  JPanel panel = new JPanel();
 
 
   public GUI(){
     f = new JFrame("Scheduler");
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//    panel.setLayout(new FlowLayout());
+//    panel.setLayout(new GroupLayout());
+    GroupLayout layout = new GroupLayout(panel);
+    panel.setLayout(layout);
+    layout.setAutoCreateGaps(true);
+    layout.setAutoCreateContainerGaps(true);
 
-    l1=new JLabel("Welcome to The Scheduler. It converts CSVs into HTMLs. In other words, endless fun!");
+
+    l1=new JLabel("Welcome to The Scheduler. Just add the episodes of your lessons and convert it into HTML.");
     l1.setFont(new Font("Calibri", Font.ITALIC, 18));
-    l1.setBounds(50,20, 750,30);
+    l1.setBounds(50,20, 800,30);
     l2=new JLabel("Write or");
     l2.setBounds(115,165, 190,40);
     l2.setFont(new Font("Calibri", Font.PLAIN, 16));
     l3=new JLabel("Lesson Name");
-    l3.setBounds(100,70, 190,40);
+    l3.setBounds(100,80, 190,40);
     l3.setFont(new Font("Calibri", Font.PLAIN, 12));
     l4=new JLabel("Start hour");
-    l4.setBounds(430,70, 190,40);
+    l4.setBounds(430,80, 190,40);
     l4.setFont(new Font("Calibri", Font.PLAIN, 12));
+    l5=new JLabel("<html><p>Type as many columns as you want, separated by commas, but the duration of each episode (in minutes) must be first; the links will be detected by the 'https' motif.</p></html>", SwingConstants.CENTER);
+    l5.setBounds(50,50, 800,30);
+    l5.setFont(new Font("Calibri", Font.PLAIN, 13));
 
     t0 = new JTextField("Python");
-    t0.setBounds(100, 100, 200, 30);
+    t0.setBounds(100, 110, 200, 30);
     t1 = new JTextArea("30,1,Python Fundamentals,Summary,https");
     t1.setBounds(115, 230, 500, 300);
     t4 = new JTextField("10:00");
-    t4.setBounds(430, 100, 200, 30);
-//    JScrollPane scrollPane = new JScrollPane(t1,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    t4.setBounds(430, 110, 200, 30);
+    JScrollPane scrollPane = new JScrollPane(t1,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 
     b1 = new JButton("Create CSV");
@@ -69,8 +77,10 @@ public class GUI {
     b3.setBounds(240, 550, 100, 50);
 //    b1.addActionListener(this);
 
-//    panel.add(scrollPane);
-//    f.setContentPane(panel);
+
+
+    panel.add(scrollPane);
+    f.setContentPane(panel);
     f.add(t0);
     f.add(t1);
 //    f.add(t2);
@@ -79,11 +89,28 @@ public class GUI {
     f.add(b1);
     f.add(b2);
     f.add(b3);
-    f.add(l1); f.add(l2);f.add(l3);f.add(l4);
+    f.add(l1); f.add(l2);f.add(l3);f.add(l4);f.add(l5);
 
-    f.setSize(850, 750);
-    f.setLayout(null);
+    f.setSize(1000, 800);
+//    f.setLayout(null);
     f.setVisible(true);
+
+//    layout.setHorizontalGroup(
+//        layout.createSequentialGroup()
+//            .addComponent(l3)
+//            .addComponent(l4)
+//            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//                .addComponent(t0)
+//                .addComponent(t4))
+//    );
+//    layout.setVerticalGroup(
+//        layout.createSequentialGroup()
+//            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+//                .addComponent(b1)
+//                .addComponent(b2)
+//                .addComponent(b3))
+//            .addComponent(t1)
+//    );
 
     ActionListener buttonListener = new ActionListener() {
       @Override

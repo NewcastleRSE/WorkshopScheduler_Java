@@ -30,7 +30,7 @@ public class CSVReaderScanner{
           "    <tr>" +
           "        <th>Start time</th>" +
           "        <th>Duration (minutes)</th>" +
-          "        <th>More episode info</th>" +
+          "        <th>More episode info ...</th>" +
 //          "        <th>Episode Name</th>" +
 //          "        <th>Summary</th>" +
 //          "        <th>URL</th>" +
