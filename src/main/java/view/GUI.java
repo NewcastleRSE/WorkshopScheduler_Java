@@ -46,7 +46,7 @@ public class GUI {
 
     l1=new JLabel("Welcome to The Scheduler. Just add the episodes of your lessons and convert them into HTML.");
     l1.setFont(new Font("Calibri", Font.ITALIC, 18));
-    l1.setBounds(50,20, 800,30);
+    l1.setBounds(50,20, 850,30);
     l2=new JLabel("Write or");
     l2.setBounds(115,165, 190,40);
     l2.setFont(new Font("Calibri", Font.PLAIN, 16));
