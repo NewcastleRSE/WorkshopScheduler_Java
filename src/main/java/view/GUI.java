@@ -44,7 +44,7 @@ public class GUI {
     layout.setAutoCreateContainerGaps(true);
 
 
-    l1=new JLabel("Welcome to The Scheduler. Just add the episodes of your lessons and convert it into HTML.");
+    l1=new JLabel("Welcome to The Scheduler. Just add the episodes of your lessons and convert them into HTML.");
     l1.setFont(new Font("Calibri", Font.ITALIC, 18));
     l1.setBounds(50,20, 800,30);
     l2=new JLabel("Write or");
