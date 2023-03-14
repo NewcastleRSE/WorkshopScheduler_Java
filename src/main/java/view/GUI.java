@@ -35,10 +35,8 @@ public class GUI {
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagLayout layout = new GridBagLayout();
-
     panel.setLayout(layout);
-//    JScrollBar sp = new JScrollBar(2);
-//    panel.add(sp);
+
 
     t0 = new JTextField("Python");
     gbc.insets = new Insets(4,4,8,4);
@@ -81,14 +79,20 @@ public class GUI {
     gbc.gridheight = 3;
     panel.add(l5,gbc);
 
-    t1 = new JTextArea("30,1,Python Fundamentals,Summary,https",1,10);
+    t1 = new JTextArea("30,1,Python Fundamentals,Summary,https",15,0);
     gbc.insets = new Insets(4,8,12,8);
     gbc.ipady = 400;
     gbc.gridx=0;
     gbc.gridy=3;
     gbc.gridwidth = 2;
     gbc.gridheight = 1;
-    panel.add(t1,gbc);
+    JScrollPane areaScrollPane = new JScrollPane(t1);
+    areaScrollPane.setVerticalScrollBarPolicy(
+        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+    areaScrollPane.setHorizontalScrollBarPolicy(
+        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+//    panel.add(t1,gbc);
+    panel.add(areaScrollPane,gbc);
 
 
 //    panel.setBackground(Color.BLACK);
