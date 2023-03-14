@@ -22,13 +22,10 @@ import controller.CSVReaderScanner;
 //the name of the lesson coincides with the name of the output file
 public class GUI {
 
-  //private JLabel label;
-  //private JPanel panel;
   private JFrame f;
   private JTextField t0;
   private JTextArea t1;
   private JTextField t4;
-
   private JButton b1,b2,b3;
   private JLabel l5;
   JPanel panel = new JPanel();
@@ -38,15 +35,16 @@ public class GUI {
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagLayout layout = new GridBagLayout();
-    panel.setLayout(layout);
 
+    panel.setLayout(layout);
+//    JScrollBar sp = new JScrollBar(2);
+//    panel.add(sp);
 
     t0 = new JTextField("Python");
-    gbc.insets = new Insets(4,4,4,4);
+    gbc.insets = new Insets(4,4,8,4);
     gbc.fill=GridBagConstraints.BOTH;
     gbc.weighty=0.1;
     gbc.weightx=0.1;
-//    gbc.gridwidth=1;
     gbc.gridx=0;
     gbc.gridy=2;//row
     panel.add(t0,gbc);
@@ -55,8 +53,6 @@ public class GUI {
     gbc.gridx=1;
     gbc.gridy=2;//row
     panel.add(t4,gbc);
-
-
 
     b1 = new JButton("Create CSV");
     gbc.gridx=0;
@@ -76,7 +72,7 @@ public class GUI {
     gbc.gridwidth = 1;
     panel.add(b3,gbc);
 
-    l5=new JLabel("<html><p>Userguide:Welcome to The Scheduler. Just add the episodes of your lessons and convert them into HTML.Type as many columns as you want, separated by commas, but the duration of each episode (in minutes) must be first; the links will be detected by the 'https' motif.</p></html>", SwingConstants.CENTER);
+    l5=new JLabel("<html><h2>Userguide</h2><p>Welcome to The Scheduler. Just add the episodes of your lessons and convert them into HTML.Type as many columns as you want, separated by commas, but the duration of each episode (in minutes) must be first; the links will be detected by the 'https' motif.</p></html>", SwingConstants.CENTER);
     l5.setFont(new Font("Calibri", Font.PLAIN, 17));
     Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 3);
     l5.setBorder(border);
@@ -85,13 +81,15 @@ public class GUI {
     gbc.gridheight = 3;
     panel.add(l5,gbc);
 
-    t1 = new JTextArea("30,1,Python Fundamentals,Summary,https");
+    t1 = new JTextArea("30,1,Python Fundamentals,Summary,https",1,10);
+    gbc.insets = new Insets(4,8,12,8);
     gbc.ipady = 400;
     gbc.gridx=0;
     gbc.gridy=3;
     gbc.gridwidth = 2;
     gbc.gridheight = 1;
     panel.add(t1,gbc);
+
 
 //    panel.setBackground(Color.BLACK);
     panel.setPreferredSize(new Dimension(700, 900));
