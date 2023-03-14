@@ -70,9 +70,9 @@ public class GUI {
     gbc.gridwidth = 1;
     panel.add(b3,gbc);
 
-    l5=new JLabel("<html><h2>Userguide</h2><p>Welcome to The Scheduler. Just add the episodes of your lessons and convert them into HTML.Type as many columns as you want, separated by commas, but the duration of each episode (in minutes) must be first; the links will be detected by the 'https' motif.</p></html>", SwingConstants.CENTER);
+    l5=new JLabel("<html><h2>Userguide</h2><p>Welcome to The Scheduler. Just add the episodes of your lessons and convert them into HTML.Type as many columns as you want, separated by commas, but the duration of each episode (in minutes) must be first; the links will be detected by the 'https' motif.</p><p><a href=\"https://github.com/NewcastleRSE/WorkshopScheduler_Java\">More info on GitHub</a></p></html>", SwingConstants.CENTER);
     l5.setFont(new Font("Calibri", Font.PLAIN, 17));
-    Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 3);
+    Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 3,true);
     l5.setBorder(border);
     gbc.gridx=1;
     gbc.gridy=4;
@@ -99,6 +99,7 @@ public class GUI {
     panel.setPreferredSize(new Dimension(700, 900));
     panel.setBorder(new EmptyBorder(50, 50, 50, 50));
     f.add(panel);
+    f.setMinimumSize(new Dimension(700, 900));
     f.setVisible(true);
     f.pack();
 
