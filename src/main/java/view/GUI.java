@@ -39,6 +39,7 @@ public class GUI {
 
 
     t0 = new JTextField("Python");
+    t0.setToolTipText("Lesson name");
     gbc.insets = new Insets(4,4,8,4);
     gbc.fill=GridBagConstraints.BOTH;
     gbc.weighty=0.1;
@@ -48,6 +49,7 @@ public class GUI {
     panel.add(t0,gbc);
 
     t4 = new JTextField("10:00");
+    t4.setToolTipText("Start hour of the lesson");
     gbc.gridx=1;
     gbc.gridy=2;//row
     panel.add(t4,gbc);
@@ -70,7 +72,9 @@ public class GUI {
     gbc.gridwidth = 1;
     panel.add(b3,gbc);
 
-    l5=new JLabel("<html><h2>Userguide</h2><p>Welcome to The Scheduler. Just add the episodes of your lessons and convert them into HTML.Type as many columns as you want, separated by commas, but the duration of each episode (in minutes) must be first; the links will be detected by the 'https' motif.</p><p><a href=\"https://github.com/NewcastleRSE/WorkshopScheduler_Java\">More info on GitHub</a></p></html>", SwingConstants.CENTER);
+    l5=new JLabel("<html><h2>Userguide</h2><p>Welcome to The Scheduler." +
+        "Just add the episodes of your lesson and convert them into HTML. Given the start hour of your lesson, it will calculate the start time of each episode." +
+        "Type as many columns as you want, separated by commas, but the duration of each episode (in minutes) must be first; the links will be detected by the 'https' motif.</p><p><a href=\"https://github.com/NewcastleRSE/WorkshopScheduler_Java\">More info on GitHub</a></p></html>", SwingConstants.CENTER);
     l5.setFont(new Font("Calibri", Font.PLAIN, 17));
     Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 3,true);
     l5.setBorder(border);
@@ -79,7 +83,7 @@ public class GUI {
     gbc.gridheight = 3;
     panel.add(l5,gbc);
 
-    t1 = new JTextArea("30,1,Python Fundamentals,Summary,https",15,0);
+    t1 = new JTextArea("30,1,Python Fundamentals,Summary,https");
     gbc.insets = new Insets(4,8,12,8);
     gbc.ipady = 400;
     gbc.gridx=0;
