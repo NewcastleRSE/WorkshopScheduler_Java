@@ -54,13 +54,13 @@ public class GUI {
     gbc.gridy=2;//row
     panel.add(t4,gbc);
 
-    b1 = new JButton("Create CSV");
+    b1 = new JButton("Save CSV");
     gbc.gridx=0;
     gbc.gridy=5;
     gbc.gridwidth = 1;
     panel.add(b1,gbc);
 
-    b2 = new JButton("Upload CSV");
+    b2 = new JButton("Open CSV");
     gbc.gridx=0;
     gbc.gridy=4;
     gbc.gridwidth = 1;
@@ -74,7 +74,7 @@ public class GUI {
 
     l5=new JLabel("<html><h2>Userguide</h2><p>Welcome to The Scheduler." +
         "Just add the episodes of your lesson and convert them into HTML. Given the start hour of your lesson, it will calculate the start time of each episode." +
-        "Type as many columns as you want, separated by commas, but the duration of each episode (in minutes) must be first; to include an website the URL must start with 'https'.</p><p><a href=\"https://github.com/NewcastleRSE/WorkshopScheduler_Java\">More info on GitHub</a></p></html>", SwingConstants.CENTER);
+        "Type as many columns as you want, separated by commas, but the duration of each episode (in minutes) must be first; to include an website the URL must start with 'https'.</p><p><a href=\"https://github.com/NewcastleRSE/WorkshopScheduler_Java\" target=\"_blank\">More info on GitHub</a></p></html>", SwingConstants.CENTER);
     l5.setFont(new Font("Calibri", Font.PLAIN, 17));
     Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 3,true);
     l5.setBorder(border);
@@ -98,7 +98,6 @@ public class GUI {
 //    panel.add(t1,gbc);
     panel.add(areaScrollPane,gbc);
 
-
 //    panel.setBackground(Color.BLACK);
     panel.setPreferredSize(new Dimension(700, 900));
     panel.setBorder(new EmptyBorder(50, 50, 50, 50));
@@ -106,8 +105,6 @@ public class GUI {
     f.setMinimumSize(new Dimension(700, 900));
     f.setVisible(true);
     f.pack();
-
-
 
     ActionListener buttonListener = new ActionListener() {
       @Override
