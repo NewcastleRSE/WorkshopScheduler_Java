@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.*;
+import javax.swing.JMenuBar;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -28,16 +29,24 @@ public class GUI {
   private JTextField t4;
   private JButton b1,b2,b3;
   private JLabel l5;
-  JPanel panel = new JPanel();
+  private JMenuItem i1, i2;
 
   public GUI(){
     f = new JFrame("Scheduler");
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    JPanel panel = new JPanel();
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagLayout layout = new GridBagLayout();
     panel.setLayout(layout);
 
+    JMenuBar menuBar = new JMenuBar();
+    JMenu viewMenu=new JMenu("View");
+    JMenuItem i1 = new JMenuItem("Dark mode");
+    JMenuItem i2 = new JMenuItem("Light mode");
 
+    viewMenu.add(i1);
+    viewMenu.add(i2);
+    menuBar.add(viewMenu);
     t0 = new JTextField("Python");
     t0.setToolTipText("Lesson name");
     gbc.insets = new Insets(4,4,8,4);
@@ -98,10 +107,11 @@ public class GUI {
 //    panel.add(t1,gbc);
     panel.add(areaScrollPane,gbc);
 
-//    panel.setBackground(Color.BLACK);
+
     panel.setPreferredSize(new Dimension(700, 900));
     panel.setBorder(new EmptyBorder(50, 50, 50, 50));
     f.add(panel);
+    f.setJMenuBar(menuBar);
     f.setMinimumSize(new Dimension(700, 900));
     f.setVisible(true);
     f.pack();
@@ -175,9 +185,40 @@ public class GUI {
         }
     };
 
+    ActionListener menuItemListener1 = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+            panel.setBackground(Color.BLACK);
+            t0.setBackground(Color.GRAY);
+            t1.setBackground(Color.GRAY);
+            t4.setBackground(Color.GRAY);
+            l5.setForeground(Color.WHITE);
+
+//        b1.setOpaque(true);
+//        b1.setContentAreaFilled(true);
+//        b1.setBorderPainted(false);
+//        b1.setFocusPainted(false);
+//        b1.setBackground(Color.CYAN);
+//        b1.setForeground(new java.awt.Color(204, 166, 166)); //letters
+      }
+    };
+
+    ActionListener menuItemListener2 = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        panel.setBackground(new java.awt.Color(238, 238, 238));
+        t0.setBackground(Color.WHITE);
+        t1.setBackground(Color.WHITE);
+        t4.setBackground(Color.WHITE);
+        l5.setForeground(Color.BLACK);
+      }
+    };
+
     b1.addActionListener(buttonListener);
     b2.addActionListener(buttonListener2);
     b3.addActionListener(buttonListener3);
+    i1.addActionListener(menuItemListener1);
+    i2.addActionListener(menuItemListener2);
 
   }
 
