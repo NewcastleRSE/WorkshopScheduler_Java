@@ -20,6 +20,7 @@ import java.util.Vector;
 
 
 import controller.CSVReaderScanner;
+import controller.tableCSV;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -227,54 +228,22 @@ public class GUI {
       @Override
       public void actionPerformed(ActionEvent e) {
           if(e.getSource()==b2){
-            tableGUI table = new tableGUI();
-          }
-//        int start = 0;
-//        File csv_data = new File(t0.getText()+".csv");
-//        try {
-//          try (FileWriter writer = new FileWriter(csv_data, true)) {
-//
-//            writer.write(t1.getText());
-//
-//          }
-////        System.out.println("Progress saved");
-//        } catch (IOException | HeadlessException z) {
-//          JOptionPane.showMessageDialog(null, e);
-//        }
-////        File csv_data = new File(t4.getText());
-//        DefaultTableModel csvData = new DefaultTableModel();
-//        try{
-//          InputStreamReader inputStreamReader=new InputStreamReader(new FileInputStream(csv_data));
-//          CSVParser csvParser = CSVFormat.DEFAULT.parse(inputStreamReader);
-//          for(CSVRecord csvRecord:csvParser){
-//            if(start==0){
-//              start=0;
-//              csvData.addColumn(csvRecord.get(0));
-//              csvData.addColumn(csvRecord.get(1));
-//              csvData.addColumn(csvRecord.get(2));
-//              csvData.addColumn(csvRecord.get(3));
-//              csvData.addColumn(csvRecord.get(4));
-//            }else{
-//              Vector row=new Vector();
-//              row.add(csvRecord.get(0));
-//              row.add(csvRecord.get(1));
-//              row.add(csvRecord.get(2));
-//              row.add(csvRecord.get(3));
-//              row.add(csvRecord.get(4));
-//              csvData.addRow(row);
-//            }
-//          }
-//        }
-//        catch (Exception ae){
-//          JOptionPane.showMessageDialog(null,  "Error in Parsing CSV File");
-//        }
-//        JTable jTable1=new JTable();
-//        jTable1.setModel(csvData);
-//        panel.add(jTable1);
-//        JScrollPane tableScrollPane=new JScrollPane();
-//        tableScrollPane.getViewport().add(jTable1);
-//        panel.add(tableScrollPane);
+//            tableGUI table = new tableGUI();
+            File file = new File(t0.getText()+".csv");
 
+            try {
+              try (FileWriter writer = new FileWriter(file, true)) {
+
+                writer.write(t1.getText());
+
+              }
+//        System.out.println("Progress saved");
+            } catch (IOException | HeadlessException z) {
+              JOptionPane.showMessageDialog(null, e);
+            }
+            tableCSV CSVtable = new tableCSV(t0.getText()+".csv");
+
+          }
       }
     };
 
