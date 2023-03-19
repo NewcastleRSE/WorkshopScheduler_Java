@@ -33,9 +33,9 @@ public class GUI {
   private JTextField t0;
   private JTextArea t1;
   private JTextField t4;
-  private JButton b1,b2,b3;
+  private JButton b2,b3;
   private JLabel l5;
-  private JMenuItem i1, i2, i3;
+  private JMenuItem i1, i2, i3, i4;
 
   public GUI(){
     f = new JFrame("Scheduler");
@@ -51,10 +51,12 @@ public class GUI {
     JMenuItem i2 = new JMenuItem("Light mode");
     JMenu fileMenu= new JMenu("File");
     JMenuItem i3 = new JMenuItem("Load CSV");
+    JMenuItem i4 = new JMenuItem("Save as CSV");
 
     viewMenu.add(i1);
     viewMenu.add(i2);
     fileMenu.add(i3);
+    fileMenu.add(i4);
     menuBar.add(fileMenu);
     menuBar.add(viewMenu);
     t0 = new JTextField("Python");
@@ -73,11 +75,11 @@ public class GUI {
     gbc.gridy=2;//row
     panel.add(t4,gbc);
 
-    b1 = new JButton("Save CSV");
-    gbc.gridx=0;
-    gbc.gridy=5;
-    gbc.gridwidth = 1;
-    panel.add(b1,gbc);
+//    b1 = new JButton("Save as CSV");
+//    gbc.gridx=0;
+//    gbc.gridy=5;
+//    gbc.gridwidth = 1;
+//    panel.add(b1,gbc);
 
     b2 = new JButton("View as table");
     gbc.gridx=0;
@@ -86,8 +88,8 @@ public class GUI {
     panel.add(b2,gbc);
 
     b3 = new JButton("Create HTML");
-    gbc.gridx=0;
-    gbc.gridy=6;
+    gbc.gridx=1;
+    gbc.gridy=4;
     gbc.gridwidth = 1;
     panel.add(b3,gbc);
 
@@ -97,8 +99,9 @@ public class GUI {
     l5.setFont(new Font("Calibri", Font.PLAIN, 17));
     Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 3,true);
     l5.setBorder(border);
-    gbc.gridx=1;
-    gbc.gridy=4;
+    gbc.gridx=0;
+    gbc.gridy=6;
+    gbc.gridwidth = 2;
     gbc.gridheight = 3;
     panel.add(l5,gbc);
 
@@ -247,7 +250,7 @@ public class GUI {
       }
     };
 
-    b1.addActionListener(buttonListener);
+    i4.addActionListener(buttonListener);
     i3.addActionListener(menuItemListener3);
     b3.addActionListener(buttonListener3);
     i1.addActionListener(menuItemListener1);
