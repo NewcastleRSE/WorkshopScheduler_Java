@@ -9,15 +9,20 @@ import javax.swing.*;
 import javax.swing.JMenuBar;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.Vector;
 
 
 import controller.CSVReaderScanner;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 
 //takes input from the user to create a CSV or/and HTML
 //the name of the lesson coincides with the name of the output file
@@ -29,7 +34,7 @@ public class GUI {
   private JTextField t4;
   private JButton b1,b2,b3;
   private JLabel l5;
-  private JMenuItem i1, i2;
+  private JMenuItem i1, i2, i3;
 
   public GUI(){
     f = new JFrame("Scheduler");
@@ -43,9 +48,13 @@ public class GUI {
     JMenu viewMenu=new JMenu("View");
     JMenuItem i1 = new JMenuItem("Dark mode");
     JMenuItem i2 = new JMenuItem("Light mode");
+    JMenu fileMenu= new JMenu("File");
+    JMenuItem i3 = new JMenuItem("Load CSV");
 
     viewMenu.add(i1);
     viewMenu.add(i2);
+    fileMenu.add(i3);
+    menuBar.add(fileMenu);
     menuBar.add(viewMenu);
     t0 = new JTextField("Python");
     t0.setToolTipText("Lesson name");
@@ -69,7 +78,7 @@ public class GUI {
     gbc.gridwidth = 1;
     panel.add(b1,gbc);
 
-    b2 = new JButton("Open CSV");
+    b2 = new JButton("View as table");
     gbc.gridx=0;
     gbc.gridy=4;
     gbc.gridwidth = 1;
@@ -92,7 +101,7 @@ public class GUI {
     gbc.gridheight = 3;
     panel.add(l5,gbc);
 
-    t1 = new JTextArea("30,1,Python Fundamentals,Summary,https");
+    t1 = new JTextArea("30,1,Python Fundamentals,Summary,https\n60,2,Analyzing Data,Summary,https");
     gbc.insets = new Insets(4,8,12,8);
     gbc.ipady = 400;
     gbc.gridx=0;
@@ -137,11 +146,11 @@ public class GUI {
       }
     };
 
-    ActionListener buttonListener2 = new ActionListener() {
+    ActionListener menuItemListener3 = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource()==b2){
+        if(e.getSource()==i3){
           JFileChooser file_upload = new JFileChooser();
           int res_2 = file_upload.showOpenDialog(null);
           if (res_2 == JFileChooser.APPROVE_OPTION){
@@ -214,11 +223,65 @@ public class GUI {
       }
     };
 
+//    ActionListener buttonListener2 = new ActionListener() {
+//      @Override
+//      public void actionPerformed(ActionEvent e) {
+//
+//        int start = 0;
+//        File csv_data = new File(t0.getText()+".csv");
+//        try {
+//          try (FileWriter writer = new FileWriter(csv_data, true)) {
+//
+//            writer.write(t1.getText());
+//
+//          }
+////        System.out.println("Progress saved");
+//        } catch (IOException | HeadlessException z) {
+//          JOptionPane.showMessageDialog(null, e);
+//        }
+////        File csv_data = new File(t4.getText());
+//        DefaultTableModel csvData = new DefaultTableModel();
+//        try{
+//          InputStreamReader inputStreamReader=new InputStreamReader(new FileInputStream(csv_data));
+//          CSVParser csvParser = CSVFormat.DEFAULT.parse(inputStreamReader);
+//          for(CSVRecord csvRecord:csvParser){
+//            if(start==0){
+//              start=0;
+//              csvData.addColumn(csvRecord.get(0));
+//              csvData.addColumn(csvRecord.get(1));
+//              csvData.addColumn(csvRecord.get(2));
+//              csvData.addColumn(csvRecord.get(3));
+//              csvData.addColumn(csvRecord.get(4));
+//            }else{
+//              Vector row=new Vector();
+//              row.add(csvRecord.get(0));
+//              row.add(csvRecord.get(1));
+//              row.add(csvRecord.get(2));
+//              row.add(csvRecord.get(3));
+//              row.add(csvRecord.get(4));
+//              csvData.addRow(row);
+//            }
+//          }
+//        }
+//        catch (Exception ae){
+//          JOptionPane.showMessageDialog(null,  "Error in Parsing CSV File");
+//        }
+//        JTable jTable1=new JTable();
+//        jTable1.setModel(csvData);
+//        panel.add(jTable1);
+//        JScrollPane tableScrollPane=new JScrollPane();
+//        tableScrollPane.getViewport().add(jTable1);
+//        panel.add(tableScrollPane);
+
+//      }
+//    };
+
     b1.addActionListener(buttonListener);
-    b2.addActionListener(buttonListener2);
+    i3.addActionListener(menuItemListener3);
     b3.addActionListener(buttonListener3);
     i1.addActionListener(menuItemListener1);
     i2.addActionListener(menuItemListener2);
+//    b2.addActionListener(buttonListener2);
 
   }
 
