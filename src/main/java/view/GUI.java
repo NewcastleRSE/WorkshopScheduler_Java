@@ -223,10 +223,12 @@ public class GUI {
       }
     };
 
-//    ActionListener buttonListener2 = new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//
+    ActionListener buttonListener2 = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+          if(e.getSource()==b2){
+            tableGUI table = new tableGUI();
+          }
 //        int start = 0;
 //        File csv_data = new File(t0.getText()+".csv");
 //        try {
@@ -273,15 +275,15 @@ public class GUI {
 //        tableScrollPane.getViewport().add(jTable1);
 //        panel.add(tableScrollPane);
 
-//      }
-//    };
+      }
+    };
 
     b1.addActionListener(buttonListener);
     i3.addActionListener(menuItemListener3);
     b3.addActionListener(buttonListener3);
     i1.addActionListener(menuItemListener1);
     i2.addActionListener(menuItemListener2);
-//    b2.addActionListener(buttonListener2);
+    b2.addActionListener(buttonListener2);
 
   }
 
