@@ -138,7 +138,7 @@ public class GUI {
     File file = new File(t0.getText()+".csv");
 
       try {
-        try (FileWriter writer = new FileWriter(file, true)) {
+        try (FileWriter writer = new FileWriter(file, false)) {
 
           writer.write(t1.getText());
 
@@ -182,7 +182,7 @@ public class GUI {
         File file = new File(t0.getText()+".csv");
 
         try {
-          try (FileWriter writer = new FileWriter(file, true)) {
+          try (FileWriter writer = new FileWriter(file, false)) {
 
             writer.write(t1.getText());
 
@@ -235,7 +235,7 @@ public class GUI {
             File file = new File(t0.getText()+".csv");
 
             try {
-              try (FileWriter writer = new FileWriter(file, true)) {
+              try (FileWriter writer = new FileWriter(file, false)) {
 
                 writer.write(t1.getText());
 
