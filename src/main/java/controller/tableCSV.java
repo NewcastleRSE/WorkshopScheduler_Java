@@ -67,7 +67,10 @@ public class tableCSV {
 
     remButt = new JButton("Remove row");
     jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-    remButt.addActionListener(new ActionListener() {
+
+
+    ActionListener remButtListener = new ActionListener() {
+//    remButt.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
         // check for selected row first
@@ -77,8 +80,9 @@ public class tableCSV {
 //          JOptionPane.showMessageDialog(null, "Selected row deleted successfully");
         }
       }
-    });
+    };
 
+    remButt.addActionListener(remButtListener);
 
     JScrollPane sp=new JScrollPane(jt);
     f3.add(sp, BorderLayout.CENTER);
