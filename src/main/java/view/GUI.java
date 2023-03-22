@@ -172,7 +172,6 @@ public class GUI {
 //            CSVReaderScanner.main(file_upload.getSelectedFile().getAbsolutePath(), startTime, t0.getText());
           }
         }
-
       }
     };
 
