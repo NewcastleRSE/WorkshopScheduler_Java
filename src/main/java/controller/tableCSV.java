@@ -17,7 +17,7 @@ public class tableCSV {
 
   private JFrame f3 = new JFrame();
   private JTable jt = new JTable();
-  private JButton remButt, addButt;
+  private JButton remButt, addButt, lunchButt, breakButt;
 
   public tableCSV(String filePath){
 //            parsing CSV
@@ -66,10 +66,20 @@ public class tableCSV {
     gbc2.gridx=1;
     gbc2.gridy=2;//row
     panel2.add(addButt,gbc2);
-    jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    lunchButt = new JButton("Add lunch");
+    gbc2.insets = new Insets(4,4,8,4);
     gbc2.gridx=0;
-    gbc2.gridy=3;
+    gbc2.gridy=3;//row
+    panel2.add(lunchButt,gbc2);
+    breakButt = new JButton("Add break");
+    gbc2.gridx=1;
+    gbc2.gridy=3;//row
+    panel2.add(breakButt,gbc2);
+    jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     JScrollPane sp=new JScrollPane(jt);
+    gbc2.gridx=0;
+    gbc2.gridy=4;
+    gbc2.gridwidth = 2;
     panel2.add(sp, gbc2);
 
     ActionListener remButtListener = new ActionListener() {
@@ -93,8 +103,30 @@ public class tableCSV {
       }
     };
 
+    ActionListener lunchButtListener = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent ae) {
+        int rowIndex = jt.getSelectedRow();
+//        JOptionPane.showMessageDialog(null, rowIndex);
+        // add row from the model
+        csvData.insertRow(rowIndex, new Object[]{"no. min", "LUNCH"});
+      }
+    };
+
+    ActionListener breakButtListener = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent ae) {
+        int rowIndex = jt.getSelectedRow();
+//        JOptionPane.showMessageDialog(null, rowIndex);
+        // add row from the model
+        csvData.insertRow(rowIndex, new Object[]{"no. min", "BREAK"});
+      }
+    };
+
     remButt.addActionListener(remButtListener);
     addButt.addActionListener(addButtListener);
+    lunchButt.addActionListener(lunchButtListener);
+    breakButt.addActionListener(breakButtListener);
 
     f3.add(panel2);
 //    f3.add(sp);
