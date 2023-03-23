@@ -17,9 +17,8 @@ public class tableCSV {
 
   private JFrame f3 = new JFrame();
   private JTable jt = new JTable();
-  private JButton remButt = new JButton();
-//  private JPanel panel = new JPanel();
-//  private JLabel label = new JLabel("Hello");
+  private JButton remButt, addButt;
+
   public tableCSV(String filePath){
 
 //    label.setBounds(0,0,100,500);
@@ -66,27 +65,38 @@ public class tableCSV {
     }
 
     remButt = new JButton("Remove row");
+    addButt = new JButton("Add row");
     jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
 
     ActionListener remButtListener = new ActionListener() {
-//    remButt.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
         // check for selected row first
         if(jt.getSelectedRow() != -1) {
           // remove selected row from the model
           csvData.removeRow(jt.getSelectedRow());
-//          JOptionPane.showMessageDialog(null, "Selected row deleted successfully");
         }
       }
     };
 
+    ActionListener addButtListener = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent ae) {
+        int rowIndex = jt.getSelectedRow();
+//        JOptionPane.showMessageDialog(null, rowIndex);
+          // add row from the model
+          csvData.insertRow(rowIndex, new Object[]{"v1", "v2"});
+      }
+    };
+
     remButt.addActionListener(remButtListener);
+    addButt.addActionListener(addButtListener);
 
     JScrollPane sp=new JScrollPane(jt);
     f3.add(sp, BorderLayout.CENTER);
-    f3.add(remButt, BorderLayout.SOUTH);
+    f3.add(remButt, BorderLayout.WEST);
+    f3.add(addButt, BorderLayout.EAST);
     f3.setSize(700,900);
 //    f3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     sp.getViewport().add(jt);
