@@ -20,18 +20,6 @@ public class tableCSV {
   private JButton remButt, addButt;
 
   public tableCSV(String filePath){
-
-//    label.setBounds(0,0,100,500);
-//    label.setFont(new Font(null,Font.PLAIN,25));
-//    f3.add(label);
-//    String data[][]={ {"101","Amit","670000"},
-//        {"102","Jai","780000"},
-//        {"101","Sachin","700000"}};
-//    String column[]={"ID","NAME","SALARY"};
-//    JTable jt=new JTable(data,column);
-//    jt.setBounds(30,40,200,300);
-//    JScrollPane sp=new JScrollPane(jt);
-
 //            parsing CSV
         File csv_data = new File(filePath);
         DefaultTableModel csvData = new DefaultTableModel();
@@ -64,10 +52,25 @@ public class tableCSV {
       System.out.println("Error in Parsing CSV File");
     }
 
-    remButt = new JButton("Remove row");
-    addButt = new JButton("Add row");
-    jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    JPanel panel2 = new JPanel();
+    GridBagConstraints gbc2 = new GridBagConstraints();
+    GridBagLayout layout = new GridBagLayout();
+    panel2.setLayout(layout);
 
+    remButt = new JButton("Remove row");
+    gbc2.insets = new Insets(4,4,8,4);
+    gbc2.gridx=0;
+    gbc2.gridy=2;//row
+    panel2.add(remButt,gbc2);
+    addButt = new JButton("Add row");
+    gbc2.gridx=1;
+    gbc2.gridy=2;//row
+    panel2.add(addButt,gbc2);
+    jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    gbc2.gridx=0;
+    gbc2.gridy=3;
+    JScrollPane sp=new JScrollPane(jt);
+    panel2.add(sp, gbc2);
 
     ActionListener remButtListener = new ActionListener() {
       @Override
@@ -86,17 +89,15 @@ public class tableCSV {
         int rowIndex = jt.getSelectedRow();
 //        JOptionPane.showMessageDialog(null, rowIndex);
           // add row from the model
-          csvData.insertRow(rowIndex, new Object[]{"v1", "v2"});
+          csvData.insertRow(rowIndex, new Object[]{" ", " ", " ", " ", " "});
       }
     };
 
     remButt.addActionListener(remButtListener);
     addButt.addActionListener(addButtListener);
 
-    JScrollPane sp=new JScrollPane(jt);
-    f3.add(sp, BorderLayout.CENTER);
-    f3.add(remButt, BorderLayout.WEST);
-    f3.add(addButt, BorderLayout.EAST);
+    f3.add(panel2);
+//    f3.add(sp);
     f3.setSize(700,900);
 //    f3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     sp.getViewport().add(jt);

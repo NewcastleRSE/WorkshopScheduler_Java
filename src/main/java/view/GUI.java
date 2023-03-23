@@ -75,12 +75,6 @@ public class GUI {
     gbc.gridy=2;//row
     panel.add(t4,gbc);
 
-//    b1 = new JButton("Save as CSV");
-//    gbc.gridx=0;
-//    gbc.gridy=5;
-//    gbc.gridwidth = 1;
-//    panel.add(b1,gbc);
-
     b2 = new JButton("View as table");
     gbc.gridx=0;
     gbc.gridy=4;
