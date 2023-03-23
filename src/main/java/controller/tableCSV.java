@@ -97,9 +97,13 @@ public class tableCSV {
       @Override
       public void actionPerformed(ActionEvent ae) {
         int rowIndex = jt.getSelectedRow();
+        if(rowIndex != -1) {
 //        JOptionPane.showMessageDialog(null, rowIndex);
           // add row from the model
           csvData.insertRow(rowIndex, new Object[]{" ", " ", " ", " ", " "});
+        } else {
+          csvData.addRow(new Object[]{" ", " ", " ", " ", " "});
+        }
       }
     };
 
@@ -107,9 +111,13 @@ public class tableCSV {
       @Override
       public void actionPerformed(ActionEvent ae) {
         int rowIndex = jt.getSelectedRow();
+        if(rowIndex != -1) {
 //        JOptionPane.showMessageDialog(null, rowIndex);
-        // add row from the model
-        csvData.insertRow(rowIndex, new Object[]{"no. min", "LUNCH"});
+          // add row from the model
+          csvData.insertRow(rowIndex, new Object[]{"60", "LUNCH"});
+        } else {
+          csvData.addRow(new Object[]{"60", "LUNCH"});
+        }
       }
     };
 
@@ -117,9 +125,13 @@ public class tableCSV {
       @Override
       public void actionPerformed(ActionEvent ae) {
         int rowIndex = jt.getSelectedRow();
+        if(rowIndex != -1) {
 //        JOptionPane.showMessageDialog(null, rowIndex);
-        // add row from the model
-        csvData.insertRow(rowIndex, new Object[]{"no. min", "BREAK"});
+          // add row from the model
+          csvData.insertRow(rowIndex, new Object[]{"15", "BREAK"});
+        } else {
+          csvData.addRow(new Object[]{"15", "BREAK"});
+        }
       }
     };
 
