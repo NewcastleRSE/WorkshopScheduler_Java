@@ -75,7 +75,7 @@ public class GUI {
     gbc.gridy=2;//row
     panel.add(t4,gbc);
 
-    b2 = new JButton("View as table");
+    b2 = new JButton("Edit as table");
     gbc.gridx=0;
     gbc.gridy=4;
     gbc.gridwidth = 1;
