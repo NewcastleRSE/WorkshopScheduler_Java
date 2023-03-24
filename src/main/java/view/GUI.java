@@ -31,7 +31,7 @@ public class GUI {
 
   private JFrame f;
   private JTextField t0;
-  public JTextArea t1;
+  public static JTextArea t1;
   private JTextField t4;
   private JButton b2,b3;
   private JLabel l5;
@@ -113,7 +113,6 @@ public class GUI {
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 //    panel.add(t1,gbc);
     panel.add(areaScrollPane,gbc);
-
 
     panel.setPreferredSize(new Dimension(700, 900));
     panel.setBorder(new EmptyBorder(50, 50, 50, 50));
