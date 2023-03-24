@@ -31,7 +31,7 @@ public class GUI {
 
   private JFrame f;
   private JTextField t0;
-  private JTextArea t1;
+  public JTextArea t1;
   private JTextField t4;
   private JButton b2,b3;
   private JLabel l5;
@@ -99,7 +99,7 @@ public class GUI {
     gbc.gridheight = 3;
     panel.add(l5,gbc);
 
-    t1 = new JTextArea("30,1,Python Fundamentals,Summary,https\n60,2,Analyzing Data,Summary,https");
+    t1 = new JTextArea("duration,index,name,summary,web\n30,1,Python Fundamentals,Summary,https\n60,2,Analyzing Data,Summary,https");
     gbc.insets = new Insets(4,8,12,8);
     gbc.ipady = 400;
     gbc.gridx=0;
