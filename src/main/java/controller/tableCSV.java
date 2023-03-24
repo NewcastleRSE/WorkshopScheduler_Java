@@ -25,7 +25,9 @@ public class tableCSV {
   public tableCSV(String filePath){
 
 //            parsing CSV
+//        jt.setTableHeader(null);
         File csv_data = new File(filePath);
+//        String column_names[]= {"duration","index","name","summary","web"};
         DefaultTableModel csvData = new DefaultTableModel();
     try {
 
@@ -85,6 +87,11 @@ public class tableCSV {
     panel2.add(uploadButt,gbc2);
     jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     JScrollPane sp=new JScrollPane(jt);
+    sp.setVerticalScrollBarPolicy(
+        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+    sp.setHorizontalScrollBarPolicy(
+        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    jt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     gbc2.gridx=0;
     gbc2.gridy=4;
     gbc2.gridwidth = 2;

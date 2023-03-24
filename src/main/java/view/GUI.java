@@ -88,8 +88,8 @@ public class GUI {
     panel.add(b3,gbc);
 
     l5=new JLabel("<html><h2>Userguide</h2><p>Welcome to The Scheduler." +
-        "Just add the episodes of your lesson and convert them into HTML. Given the start hour of your lesson, it will calculate the start time of each episode." +
-        "Type as many columns as you want, separated by commas, but the duration of each episode (in minutes) must be first; to include an website the URL must start with 'https'.</p><p><a href=\"https://github.com/NewcastleRSE/WorkshopScheduler_Java\" target=\"_blank\">More info on GitHub</a></p></html>", SwingConstants.CENTER);
+        "Here you can convert your lesson into HTML. Given the start hour of your lesson, it will calculate the start time of each episode." +
+        "It takes as input 5 columns, the duration of each episode (in minutes) must be first; to include an website the URL must start with 'https'.</p><p><a href=\"https://github.com/NewcastleRSE/WorkshopScheduler_Java\" target=\"_blank\">More info on GitHub</a></p></html>", SwingConstants.CENTER);
     l5.setFont(new Font("Calibri", Font.PLAIN, 17));
     Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 3,true);
     l5.setBorder(border);
