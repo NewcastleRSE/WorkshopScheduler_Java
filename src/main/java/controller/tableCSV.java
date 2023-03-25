@@ -17,7 +17,7 @@ public class tableCSV {
 
   private JFrame f3 = new JFrame();
   private JTable jt = new JTable();
-  private JButton remButt, addButt, lunchButt, breakButt, updateButt;
+  private JButton remButt, addButt, lunchButt, breakButt, updateButt, upButt, downButt;
 
 //  GUI gui =new GUI();
   JTextArea mainText = GUI.t1;
@@ -85,6 +85,14 @@ public class tableCSV {
     gbc2.gridx=1;
     gbc2.gridy=0;//row
     panel2.add(updateButt,gbc2);
+    upButt = new JButton("Row UP");
+    gbc2.gridx=0;
+    gbc2.gridy=1;//row
+    panel2.add(upButt,gbc2);
+    downButt = new JButton("Row DOWN");
+    gbc2.gridx=1;
+    gbc2.gridy=1;//row
+    panel2.add(downButt,gbc2);
     jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     JScrollPane sp=new JScrollPane(jt);
     sp.setVerticalScrollBarPolicy(
@@ -92,6 +100,11 @@ public class tableCSV {
     sp.setHorizontalScrollBarPolicy(
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     jt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    jt.getTableHeader().setOpaque(false);
+//    jt.getTableHeader().setBackground(Color.BLUE);
+    jt.setRowHeight(25);
+//    Dimension dim = new Dimension(20,1);
+//    jt.setIntercellSpacing(new Dimension(dim));
     gbc2.gridx=0;
     gbc2.gridy=4;
     gbc2.gridwidth = 2;
@@ -104,6 +117,8 @@ public class tableCSV {
         if(jt.getSelectedRow() != -1) {
           // remove selected row from the model
           csvData.removeRow(jt.getSelectedRow());
+        } else {
+          JOptionPane.showMessageDialog(null, "Row not selected");
         }
       }
     };
@@ -166,11 +181,38 @@ public class tableCSV {
       }
     };
 
+    ActionListener upButtListener = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent ae) {
+        int rowIndex = jt.getSelectedRow();
+        if(jt.getSelectedRow() != -1) {
+          csvData.moveRow(rowIndex, rowIndex, rowIndex - 1);
+        }else {
+          JOptionPane.showMessageDialog(null, "Row not selected");
+        }
+
+      }
+    };
+
+    ActionListener downButtListener = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent ae) {
+        int rowIndex = jt.getSelectedRow();
+        if(jt.getSelectedRow() != -1) {
+          csvData.moveRow(rowIndex, rowIndex, rowIndex + 1);
+        }else {
+          JOptionPane.showMessageDialog(null, "Row not selected");
+        }
+      }
+    };
+
     remButt.addActionListener(remButtListener);
     addButt.addActionListener(addButtListener);
     lunchButt.addActionListener(lunchButtListener);
     breakButt.addActionListener(breakButtListener);
     updateButt.addActionListener(updateButtListener);
+    upButt.addActionListener(upButtListener);
+    downButt.addActionListener(downButtListener);
 
     f3.add(panel2);
 //    f3.add(sp);
