@@ -213,8 +213,6 @@ public class tableCSV {
       @Override
       public void actionPerformed(ActionEvent ae) {
         int rowIndex = jt.getSelectedRow();
-        JOptionPane.showMessageDialog(null, rowIndex);
-        JOptionPane.showMessageDialog(null, jt.getSelectedRow());
         if (rowIndex < csvData.getRowCount() - 1 ){
         if(jt.getSelectedRow() != -1) {
           csvData.moveRow(rowIndex, rowIndex, rowIndex + 1);
