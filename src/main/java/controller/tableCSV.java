@@ -35,13 +35,14 @@ public class tableCSV {
       BufferedReader br = new BufferedReader(new FileReader(csv_data));
       String[] headers = br.readLine().split(",");
       Vector headerRow = new Vector(Arrays.asList(headers));
-      csvData.addRow(headerRow);
 
       InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(csv_data));
       CSVParser csvParser = CSVFormat.DEFAULT.parse(inputStreamReader);
+      csvData.addRow(headerRow);
       for (CSVRecord csvRecord : csvParser) {
         if (start == 0) {
           start = 1;
+//          JOptionPane.showMessageDialog(null, headerRow);
 //          csvData.addColumn(csvRecord.get(0));
 //          csvData.addColumn(csvRecord.get(1));
 //          csvData.addColumn(csvRecord.get(2));
@@ -63,8 +64,10 @@ public class tableCSV {
 //          row.add(csvRecord.get(2));
 //          row.add(csvRecord.get(3));
 //          row.add(csvRecord.get(4));
-        }
 
+
+        }
+//      JOptionPane.showMessageDialog(null, headerRow);
     } catch (Exception ex) {
       System.out.println(ex);
       System.out.println("Error in Parsing CSV File");
@@ -195,13 +198,14 @@ public class tableCSV {
       @Override
       public void actionPerformed(ActionEvent ae) {
         int rowIndex = jt.getSelectedRow();
-        if (rowIndex > 0){
-        if(jt.getSelectedRow() != -1) {
+        if (jt.getSelectedRow() == 0) {
+          JOptionPane.showMessageDialog(null, "You are already at the top");
+        } else if (jt.getSelectedRow() != -1) {
           csvData.moveRow(rowIndex, rowIndex, rowIndex - 1);
           jt.setRowSelectionInterval( rowIndex -1, rowIndex -1);
-        }else {
+        } else {
           JOptionPane.showMessageDialog(null, "Row not selected");
-        }}
+        }
       }
     };
 
@@ -209,6 +213,8 @@ public class tableCSV {
       @Override
       public void actionPerformed(ActionEvent ae) {
         int rowIndex = jt.getSelectedRow();
+        JOptionPane.showMessageDialog(null, rowIndex);
+        JOptionPane.showMessageDialog(null, jt.getSelectedRow());
         if (rowIndex < csvData.getRowCount() - 1 ){
         if(jt.getSelectedRow() != -1) {
           csvData.moveRow(rowIndex, rowIndex, rowIndex + 1);
