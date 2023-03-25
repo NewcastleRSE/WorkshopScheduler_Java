@@ -187,6 +187,7 @@ public class tableCSV {
         int rowIndex = jt.getSelectedRow();
         if(jt.getSelectedRow() != -1) {
           csvData.moveRow(rowIndex, rowIndex, rowIndex - 1);
+          jt.setRowSelectionInterval( rowIndex -1, rowIndex -1);
         }else {
           JOptionPane.showMessageDialog(null, "Row not selected");
         }
@@ -200,6 +201,7 @@ public class tableCSV {
         int rowIndex = jt.getSelectedRow();
         if(jt.getSelectedRow() != -1) {
           csvData.moveRow(rowIndex, rowIndex, rowIndex + 1);
+          jt.setRowSelectionInterval( rowIndex +1, rowIndex +1);
         }else {
           JOptionPane.showMessageDialog(null, "Row not selected");
         }
