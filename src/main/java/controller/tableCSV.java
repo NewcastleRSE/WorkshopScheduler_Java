@@ -38,19 +38,22 @@ public class tableCSV {
 
       InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(csv_data));
       CSVParser csvParser = CSVFormat.DEFAULT.parse(inputStreamReader);
-      csvData.addRow(headerRow);
+
       for (CSVRecord csvRecord : csvParser) {
+
         if (start == 0) {
           start = 1;
-//          JOptionPane.showMessageDialog(null, headerRow);
-//          csvData.addColumn(csvRecord.get(0));
-//          csvData.addColumn(csvRecord.get(1));
-//          csvData.addColumn(csvRecord.get(2));
-//          csvData.addColumn(csvRecord.get(3));
-//          csvData.addColumn(csvRecord.get(4));
+
           for (int i = 0; i < csvRecord.size(); i++) {
             csvData.addColumn("Column " + (i + 1));
           }
+
+          Vector row = new Vector();
+          for (int i = 0; i < csvRecord.size(); i++) {
+            row.add(csvRecord.get(i));
+          }
+          csvData.addRow(row);
+
         } else {
             Vector row = new Vector();
             for (int i = 0; i < csvRecord.size(); i++) {
@@ -64,8 +67,6 @@ public class tableCSV {
 //          row.add(csvRecord.get(2));
 //          row.add(csvRecord.get(3));
 //          row.add(csvRecord.get(4));
-
-
         }
 //      JOptionPane.showMessageDialog(null, headerRow);
     } catch (Exception ex) {
