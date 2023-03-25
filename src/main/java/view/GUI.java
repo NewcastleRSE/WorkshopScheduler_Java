@@ -169,7 +169,9 @@ public class GUI {
 
         try {
           try (FileWriter writer = new FileWriter(file, false)) {
+
             writer.write(t1.getText());
+
           }
 //        System.out.println("Progress saved");
         } catch (IOException | HeadlessException z) {
@@ -190,6 +192,7 @@ public class GUI {
             t1.setBackground(Color.GRAY);
             t4.setBackground(Color.GRAY);
             l5.setForeground(Color.WHITE);
+
 //        b1.setOpaque(true);
 //        b1.setContentAreaFilled(true);
 //        b1.setBorderPainted(false);

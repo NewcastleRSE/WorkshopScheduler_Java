@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.Arrays;
 import java.util.Vector;
 
 public class tableCSV {
@@ -28,30 +29,41 @@ public class tableCSV {
 //        jt.setTableHeader(null);
         File csv_data = new File(filePath);
 //        String column_names[]= {"duration","index","name","summary","web"};
-        DefaultTableModel csvData = new DefaultTableModel();
+        DefaultTableModel csvData = new DefaultTableModel(0,0);
     try {
-
       int start = 0;
+      BufferedReader br = new BufferedReader(new FileReader(csv_data));
+      String[] headers = br.readLine().split(",");
+      Vector headerRow = new Vector(Arrays.asList(headers));
+      csvData.addRow(headerRow);
+
       InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(csv_data));
       CSVParser csvParser = CSVFormat.DEFAULT.parse(inputStreamReader);
       for (CSVRecord csvRecord : csvParser) {
         if (start == 0) {
           start = 1;
-          csvData.addColumn(csvRecord.get(0));
-          csvData.addColumn(csvRecord.get(1));
-          csvData.addColumn(csvRecord.get(2));
-          csvData.addColumn(csvRecord.get(3));
-          csvData.addColumn(csvRecord.get(4));
+//          csvData.addColumn(csvRecord.get(0));
+//          csvData.addColumn(csvRecord.get(1));
+//          csvData.addColumn(csvRecord.get(2));
+//          csvData.addColumn(csvRecord.get(3));
+//          csvData.addColumn(csvRecord.get(4));
+          for (int i = 0; i < csvRecord.size(); i++) {
+            csvData.addColumn("Column " + (i + 1));
+          }
         } else {
-          Vector row = new Vector();
-          row.add(csvRecord.get(0));
-          row.add(csvRecord.get(1));
-          row.add(csvRecord.get(2));
-          row.add(csvRecord.get(3));
-          row.add(csvRecord.get(4));
-          csvData.addRow(row);
+            Vector row = new Vector();
+            for (int i = 0; i < csvRecord.size(); i++) {
+              row.add(csvRecord.get(i));
+            }
+            csvData.addRow(row);
+          }
+//          Vector row = new Vector();
+//          row.add(csvRecord.get(0));
+//          row.add(csvRecord.get(1));
+//          row.add(csvRecord.get(2));
+//          row.add(csvRecord.get(3));
+//          row.add(csvRecord.get(4));
         }
-      }
 
     } catch (Exception ex) {
       System.out.println(ex);
