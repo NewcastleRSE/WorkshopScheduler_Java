@@ -101,10 +101,8 @@ public class tableCSV {
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     jt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     jt.getTableHeader().setOpaque(false);
-//    jt.getTableHeader().setBackground(Color.BLUE);
     jt.setRowHeight(25);
-//    Dimension dim = new Dimension(20,1);
-//    jt.setIntercellSpacing(new Dimension(dim));
+    jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     gbc2.gridx=0;
     gbc2.gridy=4;
     gbc2.gridwidth = 2;
@@ -185,13 +183,13 @@ public class tableCSV {
       @Override
       public void actionPerformed(ActionEvent ae) {
         int rowIndex = jt.getSelectedRow();
+        if (rowIndex > 0){
         if(jt.getSelectedRow() != -1) {
           csvData.moveRow(rowIndex, rowIndex, rowIndex - 1);
           jt.setRowSelectionInterval( rowIndex -1, rowIndex -1);
         }else {
           JOptionPane.showMessageDialog(null, "Row not selected");
-        }
-
+        }}
       }
     };
 
@@ -199,12 +197,13 @@ public class tableCSV {
       @Override
       public void actionPerformed(ActionEvent ae) {
         int rowIndex = jt.getSelectedRow();
+        if (rowIndex < csvData.getRowCount() - 1 ){
         if(jt.getSelectedRow() != -1) {
           csvData.moveRow(rowIndex, rowIndex, rowIndex + 1);
           jt.setRowSelectionInterval( rowIndex +1, rowIndex +1);
         }else {
           JOptionPane.showMessageDialog(null, "Row not selected");
-        }
+        }}
       }
     };
 
