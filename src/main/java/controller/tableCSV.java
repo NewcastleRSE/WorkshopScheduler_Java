@@ -117,6 +117,7 @@ public class tableCSV {
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     jt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     jt.getTableHeader().setOpaque(false);
+    jt.getTableHeader().setFont(new Font("Segue UI", Font.BOLD, 12));
     jt.setRowHeight(25);
     jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     gbc2.gridx=0;
