@@ -200,7 +200,7 @@ public class tableCSV {
       public void actionPerformed(ActionEvent ae) {
         int rowIndex = jt.getSelectedRow();
         if (jt.getSelectedRow() == 0) {
-          JOptionPane.showMessageDialog(null, "You are already at the top");
+//          JOptionPane.showMessageDialog(null, "You are already at the top");
         } else if (jt.getSelectedRow() != -1) {
           csvData.moveRow(rowIndex, rowIndex, rowIndex - 1);
           jt.setRowSelectionInterval( rowIndex -1, rowIndex -1);
