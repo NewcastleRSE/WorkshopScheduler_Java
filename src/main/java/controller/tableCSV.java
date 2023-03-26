@@ -7,6 +7,8 @@ import view.GUI;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -79,51 +81,66 @@ public class tableCSV {
     GridBagLayout layout = new GridBagLayout();
     panel2.setLayout(layout);
 
-    remButt = new JButton("Remove row");
-    gbc2.insets = new Insets(4,4,8,4);
-    gbc2.gridx=0;
-    gbc2.gridy=2;//row
-    panel2.add(remButt,gbc2);
-    addButt = new JButton("Add row");
-    gbc2.gridx=1;
-    gbc2.gridy=2;//row
-    panel2.add(addButt,gbc2);
-    lunchButt = new JButton("Add lunch");
-    gbc2.insets = new Insets(4,4,8,4);
-    gbc2.gridx=0;
-    gbc2.gridy=3;//row
-    panel2.add(lunchButt,gbc2);
-    breakButt = new JButton("Add break");
-    gbc2.gridx=1;
-    gbc2.gridy=3;//row
-    panel2.add(breakButt,gbc2);
-    updateButt = new JButton("Update view");
-    gbc2.gridx=1;
-    gbc2.gridy=0;//row
-    panel2.add(updateButt,gbc2);
-    upButt = new JButton("Row UP");
-    gbc2.gridx=0;
-    gbc2.gridy=1;//row
-    panel2.add(upButt,gbc2);
-    downButt = new JButton("Row DOWN");
-    gbc2.gridx=1;
-    gbc2.gridy=1;//row
-    panel2.add(downButt,gbc2);
     jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     JScrollPane sp=new JScrollPane(jt);
+
     sp.setVerticalScrollBarPolicy(
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     sp.setHorizontalScrollBarPolicy(
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-    jt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+//    jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+//    jt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     jt.getTableHeader().setOpaque(false);
     jt.getTableHeader().setFont(new Font("Segue UI", Font.BOLD, 12));
-    jt.setRowHeight(25);
-    jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+    jt.setRowHeight(30);
+//    gbc2.weighty=0.1;
+//    gbc2.weightx=0.1;
+//    jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     gbc2.gridx=0;
-    gbc2.gridy=4;
-    gbc2.gridwidth = 2;
+    gbc2.gridy=0;
+    gbc2.gridwidth = 3;
     panel2.add(sp, gbc2);
+
+    updateButt = new JButton("Update view");
+    gbc2.insets = new Insets(4,4,8,4);
+    gbc2.gridx=0;
+    gbc2.gridy=3;//row
+    gbc2.gridheight=1;
+    gbc2.fill=GridBagConstraints.BOTH;
+    gbc2.weighty=0.1;
+    gbc2.weightx=0.1;
+    panel2.add(updateButt,gbc2);
+
+    upButt = new JButton("Row UP");
+    gbc2.gridwidth = 1;
+    gbc2.gridx=0;
+    gbc2.gridy=1;//row
+    panel2.add(upButt,gbc2);
+
+    downButt = new JButton("Row DOWN");
+    gbc2.gridx=0;
+    gbc2.gridy=2;//row
+    panel2.add(downButt,gbc2);
+
+    remButt = new JButton("Remove row");
+//    gbc2.ipadx=1;
+//    gbc2.ipady=1;
+    gbc2.gridx=1;
+    gbc2.gridy=1;//row
+    panel2.add(remButt,gbc2);
+    addButt = new JButton("Add row");
+    gbc2.gridx=2;
+    gbc2.gridy=1;//row
+    panel2.add(addButt,gbc2);
+
+    lunchButt = new JButton("Add lunch");
+    gbc2.gridx=1;
+    gbc2.gridy=2;//row
+    panel2.add(lunchButt,gbc2);
+    breakButt = new JButton("Add break");
+    gbc2.gridx=2;
+    gbc2.gridy=2;//row
+    panel2.add(breakButt,gbc2);
 
     ActionListener remButtListener = new ActionListener() {
       @Override

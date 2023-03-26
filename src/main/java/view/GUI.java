@@ -10,6 +10,8 @@ import javax.swing.JMenuBar;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
