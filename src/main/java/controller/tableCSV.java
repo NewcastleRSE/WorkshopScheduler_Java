@@ -6,9 +6,7 @@ import org.apache.commons.csv.CSVRecord;
 import view.GUI;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumnModel;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -81,25 +79,30 @@ public class tableCSV {
     GridBagLayout layout = new GridBagLayout();
     panel2.setLayout(layout);
 
+//    DefaultTableCellRenderer cellRenderer;
+//
+//    jt.getColumnModel().getColumn(0).setPreferredWidth(5);
+//    jt.getColumnModel().getColumn(3).setPreferredWidth(100);
+//    cellRenderer = new DefaultTableCellRenderer();
+//    cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+//    jt.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
+
+
     jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     JScrollPane sp=new JScrollPane(jt);
-
     sp.setVerticalScrollBarPolicy(
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     sp.setHorizontalScrollBarPolicy(
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//    jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-//    jt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    sp.setPreferredSize(new Dimension(700, 400));
+    jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     jt.getTableHeader().setOpaque(false);
     jt.getTableHeader().setFont(new Font("Segue UI", Font.BOLD, 12));
     jt.setRowHeight(30);
-//    gbc2.weighty=0.1;
-//    gbc2.weightx=0.1;
-//    jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     gbc2.gridx=0;
     gbc2.gridy=0;
     gbc2.gridwidth = 3;
-    panel2.add(sp, gbc2);
+    panel2.add(sp,gbc2);
 
     updateButt = new JButton("Update view");
     gbc2.insets = new Insets(4,4,8,4);
