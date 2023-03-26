@@ -6,6 +6,7 @@ import org.apache.commons.csv.CSVRecord;
 import view.GUI;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -79,15 +80,6 @@ public class tableCSV {
     GridBagLayout layout = new GridBagLayout();
     panel2.setLayout(layout);
 
-//    DefaultTableCellRenderer cellRenderer;
-//
-//    jt.getColumnModel().getColumn(0).setPreferredWidth(5);
-//    jt.getColumnModel().getColumn(3).setPreferredWidth(100);
-//    cellRenderer = new DefaultTableCellRenderer();
-//    cellRenderer.setHorizontalAlignment(JLabel.CENTER);
-//    jt.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
-
-
     jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     JScrollPane sp=new JScrollPane(jt);
     sp.setVerticalScrollBarPolicy(
@@ -98,14 +90,36 @@ public class tableCSV {
     jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     jt.getTableHeader().setOpaque(false);
     jt.getTableHeader().setFont(new Font("Segue UI", Font.BOLD, 12));
-    jt.setRowHeight(30);
+//    jt.setRowHeight(30);
+
+//    jt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Turn off automatic resizing
+//    TableColumnModel columnModel = jt.getColumnModel();
+//    for (int i = 0; i < columnModel.getColumnCount(); i++) {
+//      TableColumn column = columnModel.getColumn(i);
+//      int width = (int) jt.getTableHeader().getDefaultRenderer()
+//          .getTableCellRendererComponent(jt, column.getIdentifier(), false, false, -1, i)
+//          .getPreferredSize().getWidth();
+//      for (int j = 0; j < jt.getRowCount(); j++) {
+//        int cellWidth = (int) jt.getCellRenderer(j, i)
+//            .getTableCellRendererComponent(jt, jt.getValueAt(j, i), false, false, j, i)
+//            .getPreferredSize().getWidth();
+//        width = Math.max(width, cellWidth);
+//      }
+//      column.setPreferredWidth(width + 10); // Add some padding
+//    }
+
+
+
     gbc2.gridx=0;
     gbc2.gridy=0;
     gbc2.gridwidth = 3;
     panel2.add(sp,gbc2);
 
     updateButt = new JButton("Update view");
-    gbc2.insets = new Insets(4,4,8,4);
+    gbc2.insets = new Insets(0,0,0,0);
+    gbc2.fill = GridBagConstraints.BOTH;
+    gbc2.ipadx=0;
+    gbc2.ipady=0;
     gbc2.gridx=0;
     gbc2.gridy=3;//row
     gbc2.gridheight=1;
@@ -253,6 +267,10 @@ public class tableCSV {
     upButt.addActionListener(upButtListener);
     downButt.addActionListener(downButtListener);
 
+    panel2.setPreferredSize(new Dimension(710, 550));
+//    panel2.setBorder(new EmptyBorder(50, 50, 50, 50));
+    f3.setMinimumSize(new Dimension(710, 550));
+    f3.setMaximumSize(new Dimension(710, 550));
     f3.add(panel2);
 //    f3.add(sp);
     f3.setSize(700,900);
@@ -261,6 +279,7 @@ public class tableCSV {
 //    f3.setLayout(null);
     jt.setModel(csvData);
     f3.setVisible(true);
+    f3.pack();
   }
   public static void main(String filePath) {
 
