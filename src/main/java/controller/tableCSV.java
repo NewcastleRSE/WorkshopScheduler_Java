@@ -45,9 +45,15 @@ public class tableCSV {
         if (start == 0) {
           start = 1;
 
-          for (int i = 0; i < csvRecord.size(); i++) {
-            csvData.addColumn("Column " + (i + 1));
-          }
+//          for (int i = 0; i < csvRecord.size(); i++) {
+//            csvData.addColumn("Column " + (i + 1));
+//          }
+
+          csvData.addColumn("Duration");
+          csvData.addColumn("Index");
+          csvData.addColumn("Name");
+          csvData.addColumn("Summary");
+          csvData.addColumn("URL");
 
           Vector row = new Vector();
           for (int i = 0; i < csvRecord.size(); i++) {
