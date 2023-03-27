@@ -96,25 +96,6 @@ public class tableCSV {
     jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     jt.getTableHeader().setOpaque(false);
     jt.getTableHeader().setFont(new Font("Segue UI", Font.BOLD, 12));
-//    jt.setRowHeight(30);
-
-//    jt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Turn off automatic resizing
-//    TableColumnModel columnModel = jt.getColumnModel();
-//    for (int i = 0; i < columnModel.getColumnCount(); i++) {
-//      TableColumn column = columnModel.getColumn(i);
-//      int width = (int) jt.getTableHeader().getDefaultRenderer()
-//          .getTableCellRendererComponent(jt, column.getIdentifier(), false, false, -1, i)
-//          .getPreferredSize().getWidth();
-//      for (int j = 0; j < jt.getRowCount(); j++) {
-//        int cellWidth = (int) jt.getCellRenderer(j, i)
-//            .getTableCellRendererComponent(jt, jt.getValueAt(j, i), false, false, j, i)
-//            .getPreferredSize().getWidth();
-//        width = Math.max(width, cellWidth);
-//      }
-//      column.setPreferredWidth(width + 10); // Add some padding
-//    }
-
-
 
     gbc2.gridx=0;
     gbc2.gridy=0;
@@ -227,11 +208,11 @@ public class tableCSV {
         mainText.replaceSelection("");
         for(int i = 0; i < jt.getRowCount(); i++){
           String duration = jt.getValueAt(i, 0).toString();
-          String index = jt.getValueAt(i, 1).toString();
-          String name = jt.getValueAt(i, 2).toString();
-          String summary = jt.getValueAt(i, 3).toString();
-          String web = jt.getValueAt(i, 4).toString();
-          mainText.setText(mainText.getText()+duration+","+index+","+name+","+summary+","+web+"\n");
+//          String index = jt.getValueAt(i, 1).toString();
+          String name = jt.getValueAt(i, 1).toString();
+          String summary = jt.getValueAt(i, 2).toString();
+          String web = jt.getValueAt(i, 3).toString();
+          mainText.setText(mainText.getText()+duration+","+name+","+summary+","+web+"\n");
         }
       }
     };
