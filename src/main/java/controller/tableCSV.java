@@ -49,7 +49,7 @@ public class tableCSV {
 //            csvData.addColumn("Column " + (i + 1));
 //          }
 
-          csvData.addColumn("Duration");
+          csvData.addColumn("Duration(min.)");
 //          csvData.addColumn("Index");
           csvData.addColumn("Name");
           csvData.addColumn("Summary");
