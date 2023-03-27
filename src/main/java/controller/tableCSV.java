@@ -50,7 +50,7 @@ public class tableCSV {
 //          }
 
           csvData.addColumn("Duration");
-          csvData.addColumn("Index");
+//          csvData.addColumn("Index");
           csvData.addColumn("Name");
           csvData.addColumn("Summary");
           csvData.addColumn("URL");

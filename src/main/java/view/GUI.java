@@ -91,7 +91,7 @@ public class GUI {
 
     l5=new JLabel("<html><h2>Userguide</h2><p>Welcome to The Scheduler." +
         "Here you can convert your lesson into HTML. Given the start hour of your lesson, it will calculate the start time of each episode." +
-        "It takes as input 5 columns, the duration of each episode (in minutes) must be first; to include an website the URL must start with 'https'.</p><p><a href=\"https://github.com/NewcastleRSE/WorkshopScheduler_Java\" target=\"_blank\">More info on GitHub</a></p></html>", SwingConstants.CENTER);
+        "It takes as input 4 columns, the duration of each episode (in minutes) must be first; to include an website the URL must start with 'https'.</p><p><a href=\"https://github.com/NewcastleRSE/WorkshopScheduler_Java\" target=\"_blank\">More info on GitHub</a></p></html>", SwingConstants.CENTER);
     l5.setFont(new Font("Calibri", Font.PLAIN, 17));
     Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 3,true);
     l5.setBorder(border);
@@ -101,7 +101,7 @@ public class GUI {
     gbc.gridheight = 3;
     panel.add(l5,gbc);
 
-    t1 = new JTextArea("30,1,Python Fundamentals,Summary,https\n60,2,Analyzing Data,Summary,https");
+    t1 = new JTextArea("30,Python Fundamentals,Summary,https\n60,Analyzing Data,Summary,https");
     gbc.insets = new Insets(4,8,12,8);
     gbc.ipady = 400;
     gbc.gridx=0;
