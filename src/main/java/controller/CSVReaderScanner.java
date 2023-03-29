@@ -46,6 +46,8 @@ public class CSVReaderScanner{
 
 
       scanner.useDelimiter("\n");
+
+      boolean hasError = false;
       while (scanner.hasNext()){
         String[] row = scanner.next().split(",");
 
@@ -59,16 +61,28 @@ public class CSVReaderScanner{
             htmlOuput += "<a target='_blank' href='";
             htmlOuput += row[i];
             htmlOuput += "'>Breakdown</a>";
-          } else if (i == 0) {
+          }
+//          else if (row[i] != (int)row[i]) {
+//            JOptionPane.showMessageDialog(null, "The first column must be an integer");
+//          }
+          else if (i == 0) {
               htmlOuput += previousData;
               htmlOuput += "<td>";
               htmlOuput += row[i];
               htmlOuput += "</td>";
 
-                String duration = new String(row[i]);
-            int number = Integer.parseInt(duration);
+//            String duration = new String(row[i]);
+//            int number = Integer.parseInt(duration);
+//            String numberString = "12345";
+            try {
+              int number = Integer.parseInt(row[i]);
+//              System.out.println("The number is valid: " + number);
+//              JOptionPane.showMessageDialog(null, number.getClass().getName());
+              cal.add(Calendar.MINUTE, number);
+            } catch (NumberFormatException e) {
+              hasError = true;
+            }
 
-            cal.add(Calendar.MINUTE, number);
             previousData = df.format(cal.getTime());
           } else {
             htmlOuput += row[i];
@@ -79,6 +93,9 @@ public class CSVReaderScanner{
 
         htmlOuput += "</tr>";
 
+      }
+      if (hasError == true){
+        JOptionPane.showMessageDialog(null, "The first column must be an integer");
       }
       htmlOuput += "</table>";
       FileWriter myWriter = new FileWriter(fileName+".html");
