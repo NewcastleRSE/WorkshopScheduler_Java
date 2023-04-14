@@ -95,7 +95,7 @@ public class CSVReaderScanner{
 
       }
       if (hasError == true){
-        JOptionPane.showMessageDialog(null, "The first column must be an integer");
+        JOptionPane.showMessageDialog(null, "Attention: You have episodes in your lesson without duration. The start time cannot be calculated. Click OK to continue.");
       }
       htmlOuput += "</table>";
       FileWriter myWriter = new FileWriter(fileName+".html");

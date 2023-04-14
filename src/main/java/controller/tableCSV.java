@@ -7,6 +7,7 @@ import view.GUI;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.BorderUIResource;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -154,7 +155,7 @@ public class tableCSV {
           // remove selected row from the model
           csvData.removeRow(jt.getSelectedRow());
         } else {
-          JOptionPane.showMessageDialog(null, "Row not selected");
+          JOptionPane.showMessageDialog(null, "Please select row to remove.");
         }
       }
     };
@@ -227,7 +228,7 @@ public class tableCSV {
           csvData.moveRow(rowIndex, rowIndex, rowIndex - 1);
           jt.setRowSelectionInterval( rowIndex -1, rowIndex -1);
         } else {
-          JOptionPane.showMessageDialog(null, "Row not selected");
+          JOptionPane.showMessageDialog(null, "Please select row to move.");
         }
       }
     };
@@ -241,7 +242,7 @@ public class tableCSV {
           csvData.moveRow(rowIndex, rowIndex, rowIndex + 1);
           jt.setRowSelectionInterval( rowIndex +1, rowIndex +1);
         }else {
-          JOptionPane.showMessageDialog(null, "Row not selected");
+          JOptionPane.showMessageDialog(null, "Please select row to move.");
         }}
       }
     };
@@ -253,6 +254,7 @@ public class tableCSV {
     updateButt.addActionListener(updateButtListener);
     upButt.addActionListener(upButtListener);
     downButt.addActionListener(downButtListener);
+
 
     panel2.setPreferredSize(new Dimension(710, 550));
 //    panel2.setBorder(new EmptyBorder(50, 50, 50, 50));
