@@ -15,13 +15,26 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
 
 
 import controller.CSVReaderScanner;
 import controller.tableCSV;
 
- //takes input from the user to create a CSV or/and HTML
-//the name of the lesson coincides with the name of the output file
+/**
+ * takes input from the user to create a CSV or/and HTML
+ * the name of the lesson coincides with the name of the output file
+ * variable name conventions:
+ * fr - frame
+ * tf - textfield
+ * mi - menu item
+ * ta - text area
+ * bl - button listener
+ * btn - button
+ * tbl - table
+ * lbl - label
+ * mil - menu item listener
+ */
 public class GUI {
 
   private JFrame fr_MainFrame;
@@ -31,8 +44,11 @@ public class GUI {
   private JButton btn_EditTable, btn_CreateHTML;
   private JLabel lbl_WelcomeText;
   private JMenuItem mi_SelectDark, mi_SelectLight, mi_LoadCSV, mi_SaveCSV;
+  private String currentPath = Path.of("").toAbsolutePath().toString() + "/";
+  private String currentCSVFile = "";
 
-  public GUI(){
+  public GUI() {
+    System.out.println("Current path: " + currentPath);
     fr_MainFrame = new JFrame("Scheduler");
     fr_MainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     JPanel panel = new JPanel();
@@ -117,52 +133,17 @@ public class GUI {
     fr_MainFrame.setVisible(true);
     fr_MainFrame.pack();
 
-//    ActionListener buttonListener = new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//    File file = new File(t0.getText()+".csv");
-//      try {
-//        try (FileWriter writer = new FileWriter(file, false)) {
-//          writer.write(t1.getText());
-//        }
-//      } catch (IOException | HeadlessException z) {
-//        JOptionPane.showMessageDialog(null, e);
-//      }
-//      }
-//    };
-
-//    ActionListener buttonListener = new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        JFileChooser fileChooser = new JFileChooser();
-//        fileChooser.setDialogTitle("Save CSV File");
-//
-//        int userSelection = fileChooser.showSaveDialog(null);
-//        if (userSelection == JFileChooser.APPROVE_OPTION) {
-//          File fileToSave = fileChooser.getSelectedFile();
-//
-//          try {
-//            try (FileWriter writer = new FileWriter(fileToSave, false)) {
-//              writer.write(t1.getText());
-//            }
-//            // System.out.println("Progress saved");
-//          } catch (IOException | HeadlessException z) {
-//            JOptionPane.showMessageDialog(null, e);
-//          }
-//        }
-//      }
-//    };
-
-    ActionListener buttonListener = new ActionListener() {
+    ActionListener bl_SaveCSV = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser(currentPath);
         fileChooser.setDialogTitle("Save CSV File");
 
         int userSelection = fileChooser.showSaveDialog(null);
         if (userSelection == JFileChooser.APPROVE_OPTION) {
           File fileToSave = fileChooser.getSelectedFile();
-
+          currentCSVFile = fileToSave.getName();
+          System.out.println("Save to file: " + currentCSVFile);
           if (fileToSave.exists()) {
             int overwriteConfirmation = JOptionPane.showConfirmDialog(null,
                 "The file already exists. Do you want to overwrite it?",
@@ -184,32 +165,33 @@ public class GUI {
     };
 
 
-    ActionListener menuItemListener3 = new ActionListener() {
+    ActionListener mil_LoadCSV = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
 
         if(e.getSource()== mi_LoadCSV){
-          JFileChooser file_upload = new JFileChooser();
+          JFileChooser file_upload = new JFileChooser(currentPath);
           int res_2 = file_upload.showOpenDialog(null);
           if (res_2 == JFileChooser.APPROVE_OPTION){
-            File gummy = file_upload.getSelectedFile();
+            File file_to_load = file_upload.getSelectedFile();
+            currentCSVFile = file_to_load.getName();
+            System.out.println("Loading file: " + currentCSVFile);
             try {
               BufferedReader input = new BufferedReader(new InputStreamReader(
-                  new FileInputStream(gummy)));
+                  new FileInputStream(file_to_load)));
               ta_ViewCSV.read(input, "READING FILE :-)");
             } catch (Exception ae) {
               ae.printStackTrace();
             }
           } else {
             System.out.println("Operation is CANCELLED :(");
-//            String startTime = t4.getText();
-//            CSVReaderScanner.main(file_upload.getSelectedFile().getAbsolutePath(), startTime, t0.getText());
+
           }
         }
       }
     };
 
-    ActionListener buttonListener3 = new ActionListener() {
+    ActionListener bl_CreateHTML = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         File file = new File(tf_LessonName.getText()+".csv");
@@ -230,15 +212,15 @@ public class GUI {
           JOptionPane.showMessageDialog(null, "Invalid start time. Please enter a valid value to match the format \"hh:mm\". Example: 10:00");
           return; // Exit the ActionListener if the start time is invalid
         }
-
-        CSVReaderScanner.main(file.getAbsolutePath(), startTime, tf_LessonName.getText());
+        System.out.println("Filename: " + currentPath + currentCSVFile);
+        CSVReaderScanner.main(currentPath + currentCSVFile, startTime, currentCSVFile.substring(0,currentCSVFile.length()-4));
       }
       private boolean isValidStartTime(String startTime) {
         return startTime.matches("\\d{2}:\\d{2}");
       }
     };
 
-    ActionListener menuItemListener1 = new ActionListener() {
+    ActionListener mil_SelectDark = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
             panel.setBackground(Color.BLACK);
@@ -247,16 +229,10 @@ public class GUI {
             tf_StartingTime.setBackground(Color.GRAY);
             lbl_WelcomeText.setForeground(Color.WHITE);
 
-//        b1.setOpaque(true);
-//        b1.setContentAreaFilled(true);
-//        b1.setBorderPainted(false);
-//        b1.setFocusPainted(false);
-//        b1.setBackground(Color.CYAN);
-//        b1.setForeground(new java.awt.Color(204, 166, 166)); //letters
       }
     };
 
-    ActionListener menuItemListener2 = new ActionListener() {
+    ActionListener mil_SelectLight = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         panel.setBackground(new java.awt.Color(238, 238, 238));
@@ -267,7 +243,7 @@ public class GUI {
       }
     };
 
-    ActionListener buttonListener2 = new ActionListener() {
+    ActionListener bl_EditTable = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
           if(e.getSource()== btn_EditTable){
@@ -290,16 +266,16 @@ public class GUI {
       }
     };
 
-    mi_SaveCSV.addActionListener(buttonListener);
-    mi_LoadCSV.addActionListener(menuItemListener3);
-    btn_CreateHTML.addActionListener(buttonListener3);
-    mi_SelectDark.addActionListener(menuItemListener1);
-    mi_SelectLight.addActionListener(menuItemListener2);
-    btn_EditTable.addActionListener(buttonListener2);
+    mi_SaveCSV.addActionListener(bl_SaveCSV);
+    mi_LoadCSV.addActionListener(mil_LoadCSV);
+    btn_CreateHTML.addActionListener(bl_CreateHTML);
+    mi_SelectDark.addActionListener(mil_SelectDark);
+    mi_SelectLight.addActionListener(mil_SelectLight);
+    btn_EditTable.addActionListener(bl_EditTable);
 
   }
 
-  public static void main(String args[]) {
+  public static void main(String[] args) {
         new GUI();
   }
 }
