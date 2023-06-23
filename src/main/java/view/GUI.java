@@ -227,15 +227,22 @@ public class GUI {
             writer.write(t1.getText());
 
           }
-//        System.out.println("Progress saved");
         } catch (IOException | HeadlessException z) {
           JOptionPane.showMessageDialog(null, e);
         }
         String startTime = t4.getText();
-        CSVReaderScanner.main(file.getAbsolutePath(), startTime, t0.getText());
-//        JOptionPane.showMessageDialog(null,  t0.getText());
-//        System.out.println(t0.getText());
+
+        // Check if startTime is a valid value
+        if (!isValidStartTime(startTime)) {
+          JOptionPane.showMessageDialog(null, "Invalid start time. Please enter a valid value to match the format \"hh:mm\". Example: 10:00");
+          return; // Exit the ActionListener if the start time is invalid
         }
+
+        CSVReaderScanner.main(file.getAbsolutePath(), startTime, t0.getText());
+      }
+      private boolean isValidStartTime(String startTime) {
+        return startTime.matches("\\d{2}:\\d{2}");
+      }
     };
 
     ActionListener menuItemListener1 = new ActionListener() {
