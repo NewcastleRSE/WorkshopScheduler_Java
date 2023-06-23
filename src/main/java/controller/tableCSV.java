@@ -88,15 +88,21 @@ public class tableCSV {
     panel2.setLayout(layout);
 
     jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+    jt.getTableHeader().setOpaque(false);
+    jt.getTableHeader().setFont(new Font("Segue UI", Font.BOLD, 12));
+//    TableColumn column = jt.getColumnModel().getColumn(1);
+//    column.setCellRenderer(new WrapCellRenderer());
+    for (int i = 0; i < jt.getColumnCount(); i++) {
+      TableColumn column = jt.getColumnModel().getColumn(i);
+      column.setCellRenderer(new WrapCellRenderer());
+    }
     JScrollPane sp=new JScrollPane(jt);
     sp.setVerticalScrollBarPolicy(
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     sp.setHorizontalScrollBarPolicy(
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     sp.setPreferredSize(new Dimension(700, 400));
-    jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-    jt.getTableHeader().setOpaque(false);
-    jt.getTableHeader().setFont(new Font("Segue UI", Font.BOLD, 12));
 
     gbc2.gridx=0;
     gbc2.gridy=0;
@@ -147,6 +153,7 @@ public class tableCSV {
     gbc2.gridy=2;//row
     panel2.add(breakButt,gbc2);
 
+
     ActionListener remButtListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
@@ -156,6 +163,9 @@ public class tableCSV {
           csvData.removeRow(jt.getSelectedRow());
         } else {
           JOptionPane.showMessageDialog(null, "Please select row to remove.");
+          JOptionPane.showMessageDialog(null, jt.getColumnModel().getColumn(1));
+          JOptionPane.showMessageDialog(null, jt.getColumnModel().getColumnCount());
+
         }
       }
     };
@@ -167,7 +177,7 @@ public class tableCSV {
         if(rowIndex != -1) {
 //        JOptionPane.showMessageDialog(null, rowIndex);
           // add row from the model
-          csvData.insertRow(rowIndex, new Object[]{"-", "-", "-", "-", "-"});
+          csvData.insertRow(rowIndex + 1, new Object[]{"-", "-", "-", "-", "-"});
         } else {
           csvData.addRow(new Object[]{"-", "-", "-", "-", "-"});
         }
@@ -255,7 +265,6 @@ public class tableCSV {
     upButt.addActionListener(upButtListener);
     downButt.addActionListener(downButtListener);
 
-
     panel2.setPreferredSize(new Dimension(710, 550));
 //    panel2.setBorder(new EmptyBorder(50, 50, 50, 50));
     f3.setMinimumSize(new Dimension(710, 550));
@@ -270,6 +279,9 @@ public class tableCSV {
     f3.setVisible(true);
     f3.pack();
   }
+
+
+
   public static void main(String filePath) {
 
     new tableCSV(filePath);
