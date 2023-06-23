@@ -2,8 +2,5 @@
 .idea/
 out/
 target/
-
-lesson2.html
-lesson.html
-Python.csv
-Python.html
+*.html
+*.csv

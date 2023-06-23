@@ -18,10 +18,10 @@ public class CSVReaderScanner{
 
 
 
-  private void csvReaderMethod1(String filePath, String startTime, String fileName){
+  private void csvReaderMethod1(String csvFile, String startTime, String htmlFile){
 
     try {
-      Scanner scanner = new Scanner(new File(filePath));
+      Scanner scanner = new Scanner(new File(csvFile));
       String htmlOuput = new String("<head>" +
  "<link href=\"style.css\" rel=\"stylesheet\" type=\"text/css\">" +
 "</head><body>" +
@@ -98,10 +98,10 @@ public class CSVReaderScanner{
         JOptionPane.showMessageDialog(null, "Attention: You have episodes in your lesson without duration. The start time cannot be calculated. Click OK to continue.");
       }
       htmlOuput += "</table>";
-      FileWriter myWriter = new FileWriter(fileName+".html");
+      FileWriter myWriter = new FileWriter(htmlFile+".html");
       myWriter.write(htmlOuput);
       myWriter.close();
-      System.out.println("Successfully wrote to the file.");
+      System.out.println("Successfully wrote to file: " + htmlFile + ".html");
 
       scanner.close();
     } catch (FileNotFoundException e) {
