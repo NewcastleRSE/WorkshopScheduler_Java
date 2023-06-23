@@ -124,20 +124,72 @@ public class GUI {
     f.setVisible(true);
     f.pack();
 
+//    ActionListener buttonListener = new ActionListener() {
+//      @Override
+//      public void actionPerformed(ActionEvent e) {
+//    File file = new File(t0.getText()+".csv");
+//      try {
+//        try (FileWriter writer = new FileWriter(file, false)) {
+//          writer.write(t1.getText());
+//        }
+//      } catch (IOException | HeadlessException z) {
+//        JOptionPane.showMessageDialog(null, e);
+//      }
+//      }
+//    };
+
+//    ActionListener buttonListener = new ActionListener() {
+//      @Override
+//      public void actionPerformed(ActionEvent e) {
+//        JFileChooser fileChooser = new JFileChooser();
+//        fileChooser.setDialogTitle("Save CSV File");
+//
+//        int userSelection = fileChooser.showSaveDialog(null);
+//        if (userSelection == JFileChooser.APPROVE_OPTION) {
+//          File fileToSave = fileChooser.getSelectedFile();
+//
+//          try {
+//            try (FileWriter writer = new FileWriter(fileToSave, false)) {
+//              writer.write(t1.getText());
+//            }
+//            // System.out.println("Progress saved");
+//          } catch (IOException | HeadlessException z) {
+//            JOptionPane.showMessageDialog(null, e);
+//          }
+//        }
+//      }
+//    };
+
     ActionListener buttonListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-    File file = new File(t0.getText()+".csv");
-      try {
-        try (FileWriter writer = new FileWriter(file, false)) {
-          writer.write(t1.getText());
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Save CSV File");
+
+        int userSelection = fileChooser.showSaveDialog(null);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+          File fileToSave = fileChooser.getSelectedFile();
+
+          if (fileToSave.exists()) {
+            int overwriteConfirmation = JOptionPane.showConfirmDialog(null,
+                "The file already exists. Do you want to overwrite it?",
+                "File Exists", JOptionPane.YES_NO_OPTION);
+            if (overwriteConfirmation == JOptionPane.NO_OPTION) {
+              return; // User chose not to overwrite, so exit the ActionListener
+            }
+          }
+
+          try {
+            try (FileWriter writer = new FileWriter(fileToSave, false)) {
+              writer.write(t1.getText());
+            }
+          } catch (IOException | HeadlessException z) {
+            JOptionPane.showMessageDialog(null, e);
+          }
         }
-//        System.out.println("Progress saved");
-      } catch (IOException | HeadlessException z) {
-        JOptionPane.showMessageDialog(null, e);
-      }
       }
     };
+
 
     ActionListener menuItemListener3 = new ActionListener() {
       @Override
