@@ -6,8 +6,6 @@ import org.apache.commons.csv.CSVRecord;
 import view.GUI;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.BorderUIResource;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,24 +16,22 @@ import java.util.Vector;
 
 public class tableCSV {
 
-  private JFrame f3 = new JFrame();
-  private JTable jt = new JTable();
-  private JButton remButt, addButt, lunchButt, breakButt, updateButt, upButt, downButt;
+  private JFrame fr_MainFrame = new JFrame();
+  private JTable tbl_Schedule = new JTable();
+  private JButton btn_remove, btn_add, btn_lunch, btn_break, btn_update, btn_up, btn_down;
 
 //  GUI gui =new GUI();
-  JTextArea mainText = GUI.t1;
+  JTextArea mainText = GUI.ta_ViewCSV;
 
   public tableCSV(String filePath){
 
-//            parsing CSV
-//        jt.setTableHeader(null);
         File csv_data = new File(filePath);
 //        String column_names[]= {"duration","index","name","summary","web"};
         DefaultTableModel csvData = new DefaultTableModel(0,0);
     try {
       int start = 0;
-      BufferedReader br = new BufferedReader(new FileReader(csv_data));
-      String[] headers = br.readLine().split(",");
+      BufferedReader bufferedReader = new BufferedReader(new FileReader(csv_data));
+      String[] headers = bufferedReader.readLine().split(",");
       Vector headerRow = new Vector(Arrays.asList(headers));
 
       InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(csv_data));
@@ -69,102 +65,93 @@ public class tableCSV {
             }
             csvData.addRow(row);
           }
-//          Vector row = new Vector();
-//          row.add(csvRecord.get(0));
-//          row.add(csvRecord.get(1));
-//          row.add(csvRecord.get(2));
-//          row.add(csvRecord.get(3));
-//          row.add(csvRecord.get(4));
         }
-//      JOptionPane.showMessageDialog(null, headerRow);
     } catch (Exception ex) {
       System.out.println(ex);
       System.out.println("Error in Parsing CSV File");
     }
 
     JPanel panel2 = new JPanel();
-    GridBagConstraints gbc2 = new GridBagConstraints();
+    GridBagConstraints gridBagConstraints = new GridBagConstraints();
     GridBagLayout layout = new GridBagLayout();
     panel2.setLayout(layout);
 
-    jt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-    jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-    jt.getTableHeader().setOpaque(false);
-    jt.getTableHeader().setFont(new Font("Segue UI", Font.BOLD, 12));
-//    TableColumn column = jt.getColumnModel().getColumn(1);
-//    column.setCellRenderer(new WrapCellRenderer());
-    for (int i = 0; i < jt.getColumnCount(); i++) {
-      TableColumn column = jt.getColumnModel().getColumn(i);
+    tbl_Schedule.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    tbl_Schedule.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+    tbl_Schedule.getTableHeader().setOpaque(false);
+    tbl_Schedule.getTableHeader().setFont(new Font("Segue UI", Font.BOLD, 12));
+    for (int i = 0; i < tbl_Schedule.getColumnCount(); i++) {
+      TableColumn column = tbl_Schedule.getColumnModel().getColumn(i);
       column.setCellRenderer(new WrapCellRenderer());
     }
-    JScrollPane sp=new JScrollPane(jt);
+    JScrollPane sp=new JScrollPane(tbl_Schedule);
     sp.setVerticalScrollBarPolicy(
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     sp.setHorizontalScrollBarPolicy(
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     sp.setPreferredSize(new Dimension(700, 400));
 
-    gbc2.gridx=0;
-    gbc2.gridy=0;
-    gbc2.gridwidth = 3;
-    panel2.add(sp,gbc2);
+    gridBagConstraints.gridx=0;
+    gridBagConstraints.gridy=0;
+    gridBagConstraints.gridwidth = 3;
+    panel2.add(sp,gridBagConstraints);
 
-    updateButt = new JButton("Update view");
-    gbc2.insets = new Insets(0,0,0,0);
-    gbc2.fill = GridBagConstraints.BOTH;
-    gbc2.ipadx=0;
-    gbc2.ipady=0;
-    gbc2.gridx=0;
-    gbc2.gridy=3;//row
-    gbc2.gridheight=1;
-    gbc2.fill=GridBagConstraints.BOTH;
-    gbc2.weighty=0.1;
-    gbc2.weightx=0.1;
-    panel2.add(updateButt,gbc2);
+    btn_update = new JButton("Update view");
+    gridBagConstraints.insets = new Insets(0,0,0,0);
+    gridBagConstraints.fill = GridBagConstraints.BOTH;
+    gridBagConstraints.ipadx=0;
+    gridBagConstraints.ipady=0;
+    gridBagConstraints.gridx=0;
+    gridBagConstraints.gridy=3;//row
+    gridBagConstraints.gridheight=1;
+    gridBagConstraints.fill=GridBagConstraints.BOTH;
+    gridBagConstraints.weighty=0.1;
+    gridBagConstraints.weightx=0.1;
+    panel2.add(btn_update,gridBagConstraints);
 
-    upButt = new JButton("Row UP");
-    gbc2.gridwidth = 1;
-    gbc2.gridx=0;
-    gbc2.gridy=1;//row
-    panel2.add(upButt,gbc2);
+    btn_up = new JButton("Row UP");
+    gridBagConstraints.gridwidth = 1;
+    gridBagConstraints.gridx=0;
+    gridBagConstraints.gridy=1;//row
+    panel2.add(btn_up,gridBagConstraints);
 
-    downButt = new JButton("Row DOWN");
-    gbc2.gridx=0;
-    gbc2.gridy=2;//row
-    panel2.add(downButt,gbc2);
+    btn_down = new JButton("Row DOWN");
+    gridBagConstraints.gridx=0;
+    gridBagConstraints.gridy=2;//row
+    panel2.add(btn_down,gridBagConstraints);
 
-    remButt = new JButton("Remove row");
-//    gbc2.ipadx=1;
-//    gbc2.ipady=1;
-    gbc2.gridx=1;
-    gbc2.gridy=1;//row
-    panel2.add(remButt,gbc2);
-    addButt = new JButton("Add row");
-    gbc2.gridx=2;
-    gbc2.gridy=1;//row
-    panel2.add(addButt,gbc2);
+    btn_remove = new JButton("Remove row");
+//    gridBagConstraints.ipadx=1;
+//    gridBagConstraints.ipady=1;
+    gridBagConstraints.gridx=1;
+    gridBagConstraints.gridy=1;//row
+    panel2.add(btn_remove,gridBagConstraints);
+    btn_add = new JButton("Add row");
+    gridBagConstraints.gridx=2;
+    gridBagConstraints.gridy=1;//row
+    panel2.add(btn_add,gridBagConstraints);
 
-    lunchButt = new JButton("Add lunch");
-    gbc2.gridx=1;
-    gbc2.gridy=2;//row
-    panel2.add(lunchButt,gbc2);
-    breakButt = new JButton("Add break");
-    gbc2.gridx=2;
-    gbc2.gridy=2;//row
-    panel2.add(breakButt,gbc2);
+    btn_lunch = new JButton("Add lunch");
+    gridBagConstraints.gridx=1;
+    gridBagConstraints.gridy=2;//row
+    panel2.add(btn_lunch,gridBagConstraints);
+    btn_break = new JButton("Add break");
+    gridBagConstraints.gridx=2;
+    gridBagConstraints.gridy=2;//row
+    panel2.add(btn_break,gridBagConstraints);
 
 
     ActionListener remButtListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
         // check for selected row first
-        if(jt.getSelectedRow() != -1) {
+        if(tbl_Schedule.getSelectedRow() != -1) {
           // remove selected row from the model
-          csvData.removeRow(jt.getSelectedRow());
+          csvData.removeRow(tbl_Schedule.getSelectedRow());
         } else {
           JOptionPane.showMessageDialog(null, "Please select row to remove.");
-          JOptionPane.showMessageDialog(null, jt.getColumnModel().getColumn(1));
-          JOptionPane.showMessageDialog(null, jt.getColumnModel().getColumnCount());
+          JOptionPane.showMessageDialog(null, tbl_Schedule.getColumnModel().getColumn(1));
+          JOptionPane.showMessageDialog(null, tbl_Schedule.getColumnModel().getColumnCount());
 
         }
       }
@@ -173,7 +160,7 @@ public class tableCSV {
     ActionListener addButtListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
-        int rowIndex = jt.getSelectedRow();
+        int rowIndex = tbl_Schedule.getSelectedRow();
         if(rowIndex != -1) {
 //        JOptionPane.showMessageDialog(null, rowIndex);
           // add row from the model
@@ -187,7 +174,7 @@ public class tableCSV {
     ActionListener lunchButtListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
-        int rowIndex = jt.getSelectedRow();
+        int rowIndex = tbl_Schedule.getSelectedRow();
         if(rowIndex != -1) {
 //        JOptionPane.showMessageDialog(null, rowIndex);
           // add row from the model
@@ -201,7 +188,7 @@ public class tableCSV {
     ActionListener breakButtListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
-        int rowIndex = jt.getSelectedRow();
+        int rowIndex = tbl_Schedule.getSelectedRow();
         if(rowIndex != -1) {
 //        JOptionPane.showMessageDialog(null, rowIndex);
           // add row from the model
@@ -217,12 +204,12 @@ public class tableCSV {
       public void actionPerformed(ActionEvent ae) {
         mainText.selectAll();
         mainText.replaceSelection("");
-        for(int i = 0; i < jt.getRowCount(); i++){
-          String duration = jt.getValueAt(i, 0).toString();
+        for(int i = 0; i < tbl_Schedule.getRowCount(); i++){
+          String duration = tbl_Schedule.getValueAt(i, 0).toString();
 //          String index = jt.getValueAt(i, 1).toString();
-          String name = jt.getValueAt(i, 1).toString();
-          String summary = jt.getValueAt(i, 2).toString();
-          String web = jt.getValueAt(i, 3).toString();
+          String name = tbl_Schedule.getValueAt(i, 1).toString();
+          String summary = tbl_Schedule.getValueAt(i, 2).toString();
+          String web = tbl_Schedule.getValueAt(i, 3).toString();
           mainText.setText(mainText.getText()+duration+","+name+","+summary+","+web+"\n");
         }
       }
@@ -231,12 +218,12 @@ public class tableCSV {
     ActionListener upButtListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
-        int rowIndex = jt.getSelectedRow();
-        if (jt.getSelectedRow() == 0) {
+        int rowIndex = tbl_Schedule.getSelectedRow();
+        if (tbl_Schedule.getSelectedRow() == 0) {
 //          JOptionPane.showMessageDialog(null, "You are already at the top");
-        } else if (jt.getSelectedRow() != -1) {
+        } else if (tbl_Schedule.getSelectedRow() != -1) {
           csvData.moveRow(rowIndex, rowIndex, rowIndex - 1);
-          jt.setRowSelectionInterval( rowIndex -1, rowIndex -1);
+          tbl_Schedule.setRowSelectionInterval( rowIndex -1, rowIndex -1);
         } else {
           JOptionPane.showMessageDialog(null, "Please select row to move.");
         }
@@ -246,38 +233,38 @@ public class tableCSV {
     ActionListener downButtListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
-        int rowIndex = jt.getSelectedRow();
+        int rowIndex = tbl_Schedule.getSelectedRow();
         if (rowIndex < csvData.getRowCount() - 1 ){
-        if(jt.getSelectedRow() != -1) {
+        if(tbl_Schedule.getSelectedRow() != -1) {
           csvData.moveRow(rowIndex, rowIndex, rowIndex + 1);
-          jt.setRowSelectionInterval( rowIndex +1, rowIndex +1);
+          tbl_Schedule.setRowSelectionInterval( rowIndex +1, rowIndex +1);
         }else {
           JOptionPane.showMessageDialog(null, "Please select row to move.");
         }}
       }
     };
 
-    remButt.addActionListener(remButtListener);
-    addButt.addActionListener(addButtListener);
-    lunchButt.addActionListener(lunchButtListener);
-    breakButt.addActionListener(breakButtListener);
-    updateButt.addActionListener(updateButtListener);
-    upButt.addActionListener(upButtListener);
-    downButt.addActionListener(downButtListener);
+    btn_remove.addActionListener(remButtListener);
+    btn_add.addActionListener(addButtListener);
+    btn_lunch.addActionListener(lunchButtListener);
+    btn_break.addActionListener(breakButtListener);
+    btn_update.addActionListener(updateButtListener);
+    btn_up.addActionListener(upButtListener);
+    btn_down.addActionListener(downButtListener);
 
     panel2.setPreferredSize(new Dimension(710, 550));
 //    panel2.setBorder(new EmptyBorder(50, 50, 50, 50));
-    f3.setMinimumSize(new Dimension(710, 550));
-    f3.setMaximumSize(new Dimension(710, 550));
-    f3.add(panel2);
+    fr_MainFrame.setMinimumSize(new Dimension(710, 550));
+    fr_MainFrame.setMaximumSize(new Dimension(710, 550));
+    fr_MainFrame.add(panel2);
 //    f3.add(sp);
-    f3.setSize(700,900);
+    fr_MainFrame.setSize(700,900);
 //    f3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    sp.getViewport().add(jt);
+    sp.getViewport().add(tbl_Schedule);
 //    f3.setLayout(null);
-    jt.setModel(csvData);
-    f3.setVisible(true);
-    f3.pack();
+    tbl_Schedule.setModel(csvData);
+    fr_MainFrame.setVisible(true);
+    fr_MainFrame.pack();
   }
 
 

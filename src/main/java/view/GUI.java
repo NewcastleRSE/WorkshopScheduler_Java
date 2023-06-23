@@ -1,4 +1,4 @@
-package view;
+ package view;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,120 +9,113 @@ import javax.swing.*;
 import javax.swing.JMenuBar;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.Vector;
 
 
 import controller.CSVReaderScanner;
 import controller.tableCSV;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 
-//takes input from the user to create a CSV or/and HTML
+ //takes input from the user to create a CSV or/and HTML
 //the name of the lesson coincides with the name of the output file
 public class GUI {
 
-  private JFrame f;
-  private JTextField t0;
-  public static JTextArea t1;
-  private JTextField t4;
-  private JButton b2,b3;
-  private JLabel l5;
-  private JMenuItem i1, i2, i3, i4;
+  private JFrame fr_MainFrame;
+  private JTextField tf_LessonName;
+  public static JTextArea ta_ViewCSV;
+  private JTextField tf_StartingTime;
+  private JButton btn_EditTable, btn_CreateHTML;
+  private JLabel lbl_WelcomeText;
+  private JMenuItem mi_SelectDark, mi_SelectLight, mi_LoadCSV, mi_SaveCSV;
 
   public GUI(){
-    f = new JFrame("Scheduler");
-    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    fr_MainFrame = new JFrame("Scheduler");
+    fr_MainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     JPanel panel = new JPanel();
-    GridBagConstraints gbc = new GridBagConstraints();
+    GridBagConstraints gridBagConstraints = new GridBagConstraints();
     GridBagLayout layout = new GridBagLayout();
     panel.setLayout(layout);
 
     JMenuBar menuBar = new JMenuBar();
     JMenu viewMenu=new JMenu("View");
-    JMenuItem i1 = new JMenuItem("Dark mode");
-    JMenuItem i2 = new JMenuItem("Light mode");
+    mi_SelectDark = new JMenuItem("Dark mode");
+    mi_SelectLight = new JMenuItem("Light mode");
     JMenu fileMenu= new JMenu("File");
-    JMenuItem i3 = new JMenuItem("Load CSV");
-    JMenuItem i4 = new JMenuItem("Save as CSV");
+    mi_LoadCSV = new JMenuItem("Load CSV");
+    mi_SaveCSV = new JMenuItem("Save as CSV");
 
-    viewMenu.add(i1);
-    viewMenu.add(i2);
-    fileMenu.add(i3);
-    fileMenu.add(i4);
+    viewMenu.add(mi_SelectDark);
+    viewMenu.add(mi_SelectLight);
+    fileMenu.add(mi_LoadCSV);
+    fileMenu.add(mi_SaveCSV);
     menuBar.add(fileMenu);
     menuBar.add(viewMenu);
-    t0 = new JTextField("Python");
-    t0.setToolTipText("Lesson name");
-    gbc.insets = new Insets(4,4,8,4);
-    gbc.fill=GridBagConstraints.BOTH;
-    gbc.weighty=0.1;
-    gbc.weightx=0.1;
-    gbc.gridx=0;
-    gbc.gridy=2;//row
-    panel.add(t0,gbc);
+    tf_LessonName = new JTextField("Python");
+    tf_LessonName.setToolTipText("Lesson name");
+    gridBagConstraints.insets = new Insets(4,4,8,4);
+    gridBagConstraints.fill=GridBagConstraints.BOTH;
+    gridBagConstraints.weighty=0.1;
+    gridBagConstraints.weightx=0.1;
+    gridBagConstraints.gridx=0;
+    gridBagConstraints.gridy=2;//row
+    panel.add(tf_LessonName,gridBagConstraints);
 
-    t4 = new JTextField("10:00");
-    t4.setToolTipText("Start hour of the lesson");
-    gbc.gridx=1;
-    gbc.gridy=2;//row
-    panel.add(t4,gbc);
+    tf_StartingTime = new JTextField("10:00");
+    tf_StartingTime.setToolTipText("Start hour of the lesson");
+    gridBagConstraints.gridx=1;
+    gridBagConstraints.gridy=2;//row
+    panel.add(tf_StartingTime,gridBagConstraints);
 
-    b2 = new JButton("Edit as table");
-    gbc.gridx=0;
-    gbc.gridy=4;
-    gbc.gridwidth = 1;
-    panel.add(b2,gbc);
+    btn_EditTable = new JButton("Edit as table");
+    gridBagConstraints.gridx=0;
+    gridBagConstraints.gridy=4;
+    gridBagConstraints.gridwidth = 1;
+    panel.add(btn_EditTable,gridBagConstraints);
 
-    b3 = new JButton("Create HTML");
-    gbc.gridx=1;
-    gbc.gridy=4;
-    gbc.gridwidth = 1;
-    panel.add(b3,gbc);
+    btn_CreateHTML = new JButton("Create HTML");
+    gridBagConstraints.gridx=1;
+    gridBagConstraints.gridy=4;
+    gridBagConstraints.gridwidth = 1;
+    panel.add(btn_CreateHTML,gridBagConstraints);
 
-    l5=new JLabel("<html><h2>Userguide</h2><p>Welcome to The Scheduler." +
+    lbl_WelcomeText =new JLabel("<html><h2>Userguide</h2><p>Welcome to The Scheduler." +
         "Here you can convert your lesson into HTML. Given the start hour of your lesson, it will calculate the start time of each episode." +
         "It takes as input 4 columns, the duration of each episode (in minutes) must be first; to include an website the URL must start with 'https'.</p><p><a href=\"https://github.com/NewcastleRSE/WorkshopScheduler_Java\" target=\"_blank\">More info on GitHub</a></p></html>", SwingConstants.CENTER);
-    l5.setFont(new Font("Calibri", Font.PLAIN, 17));
+    lbl_WelcomeText.setFont(new Font("Calibri", Font.PLAIN, 17));
     Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY, 3,true);
-    l5.setBorder(border);
-    gbc.gridx=0;
-    gbc.gridy=6;
-    gbc.gridwidth = 2;
-    gbc.gridheight = 3;
-    panel.add(l5,gbc);
+    lbl_WelcomeText.setBorder(border);
+    gridBagConstraints.gridx=0;
+    gridBagConstraints.gridy=6;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.gridheight = 3;
+    panel.add(lbl_WelcomeText,gridBagConstraints);
 
-    t1 = new JTextArea("30,Python Fundamentals,Summary,https\n60,Analyzing Data,Summary,https");
-    gbc.insets = new Insets(4,8,12,8);
-    gbc.ipady = 400;
-    gbc.gridx=0;
-    gbc.gridy=3;
-    gbc.gridwidth = 2;
-    gbc.gridheight = 1;
-    JScrollPane areaScrollPane = new JScrollPane(t1);
+    ta_ViewCSV = new JTextArea("30,Python Fundamentals,Summary,https\n60,Analyzing Data,Summary,https");
+    gridBagConstraints.insets = new Insets(4,8,12,8);
+    gridBagConstraints.ipady = 400;
+    gridBagConstraints.gridx=0;
+    gridBagConstraints.gridy=3;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.gridheight = 1;
+    JScrollPane areaScrollPane = new JScrollPane(ta_ViewCSV);
     areaScrollPane.setVerticalScrollBarPolicy(
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     areaScrollPane.setHorizontalScrollBarPolicy(
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//    panel.add(t1,gbc);
-    panel.add(areaScrollPane,gbc);
+//    panel.add(t1,gridBagConstraints);
+    panel.add(areaScrollPane,gridBagConstraints);
 
     panel.setPreferredSize(new Dimension(700, 900));
     panel.setBorder(new EmptyBorder(50, 50, 50, 50));
-    f.add(panel);
-    f.setJMenuBar(menuBar);
-    f.setMinimumSize(new Dimension(700, 900));
-    f.setVisible(true);
-    f.pack();
+    fr_MainFrame.add(panel);
+    fr_MainFrame.setJMenuBar(menuBar);
+    fr_MainFrame.setMinimumSize(new Dimension(700, 900));
+    fr_MainFrame.setVisible(true);
+    fr_MainFrame.pack();
 
 //    ActionListener buttonListener = new ActionListener() {
 //      @Override
@@ -181,7 +174,7 @@ public class GUI {
 
           try {
             try (FileWriter writer = new FileWriter(fileToSave, false)) {
-              writer.write(t1.getText());
+              writer.write(ta_ViewCSV.getText());
             }
           } catch (IOException | HeadlessException z) {
             JOptionPane.showMessageDialog(null, e);
@@ -195,7 +188,7 @@ public class GUI {
       @Override
       public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource()==i3){
+        if(e.getSource()== mi_LoadCSV){
           JFileChooser file_upload = new JFileChooser();
           int res_2 = file_upload.showOpenDialog(null);
           if (res_2 == JFileChooser.APPROVE_OPTION){
@@ -203,7 +196,7 @@ public class GUI {
             try {
               BufferedReader input = new BufferedReader(new InputStreamReader(
                   new FileInputStream(gummy)));
-              t1.read(input, "READING FILE :-)");
+              ta_ViewCSV.read(input, "READING FILE :-)");
             } catch (Exception ae) {
               ae.printStackTrace();
             }
@@ -219,18 +212,18 @@ public class GUI {
     ActionListener buttonListener3 = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        File file = new File(t0.getText()+".csv");
+        File file = new File(tf_LessonName.getText()+".csv");
 
         try {
           try (FileWriter writer = new FileWriter(file, false)) {
 
-            writer.write(t1.getText());
+            writer.write(ta_ViewCSV.getText());
 
           }
         } catch (IOException | HeadlessException z) {
           JOptionPane.showMessageDialog(null, e);
         }
-        String startTime = t4.getText();
+        String startTime = tf_StartingTime.getText();
 
         // Check if startTime is a valid value
         if (!isValidStartTime(startTime)) {
@@ -238,7 +231,7 @@ public class GUI {
           return; // Exit the ActionListener if the start time is invalid
         }
 
-        CSVReaderScanner.main(file.getAbsolutePath(), startTime, t0.getText());
+        CSVReaderScanner.main(file.getAbsolutePath(), startTime, tf_LessonName.getText());
       }
       private boolean isValidStartTime(String startTime) {
         return startTime.matches("\\d{2}:\\d{2}");
@@ -249,10 +242,10 @@ public class GUI {
       @Override
       public void actionPerformed(ActionEvent e) {
             panel.setBackground(Color.BLACK);
-            t0.setBackground(Color.GRAY);
-            t1.setBackground(Color.GRAY);
-            t4.setBackground(Color.GRAY);
-            l5.setForeground(Color.WHITE);
+            tf_LessonName.setBackground(Color.GRAY);
+            ta_ViewCSV.setBackground(Color.GRAY);
+            tf_StartingTime.setBackground(Color.GRAY);
+            lbl_WelcomeText.setForeground(Color.WHITE);
 
 //        b1.setOpaque(true);
 //        b1.setContentAreaFilled(true);
@@ -267,42 +260,42 @@ public class GUI {
       @Override
       public void actionPerformed(ActionEvent e) {
         panel.setBackground(new java.awt.Color(238, 238, 238));
-        t0.setBackground(Color.WHITE);
-        t1.setBackground(Color.WHITE);
-        t4.setBackground(Color.WHITE);
-        l5.setForeground(Color.BLACK);
+        tf_LessonName.setBackground(Color.WHITE);
+        ta_ViewCSV.setBackground(Color.WHITE);
+        tf_StartingTime.setBackground(Color.WHITE);
+        lbl_WelcomeText.setForeground(Color.BLACK);
       }
     };
 
     ActionListener buttonListener2 = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-          if(e.getSource()==b2){
+          if(e.getSource()== btn_EditTable){
 //            tableGUI table = new tableGUI();
-            File file = new File(t0.getText()+".csv");
+            File file = new File(tf_LessonName.getText()+".csv");
 
             try {
               try (FileWriter writer = new FileWriter(file, false)) {
 
-                writer.write(t1.getText());
+                writer.write(ta_ViewCSV.getText());
 
               }
 //        System.out.println("Progress saved");
             } catch (IOException | HeadlessException z) {
               JOptionPane.showMessageDialog(null, e);
             }
-            tableCSV CSVtable = new tableCSV(t0.getText()+".csv");
+            tableCSV csvTable = new tableCSV(tf_LessonName.getText()+".csv");
 
           }
       }
     };
 
-    i4.addActionListener(buttonListener);
-    i3.addActionListener(menuItemListener3);
-    b3.addActionListener(buttonListener3);
-    i1.addActionListener(menuItemListener1);
-    i2.addActionListener(menuItemListener2);
-    b2.addActionListener(buttonListener2);
+    mi_SaveCSV.addActionListener(buttonListener);
+    mi_LoadCSV.addActionListener(menuItemListener3);
+    btn_CreateHTML.addActionListener(buttonListener3);
+    mi_SelectDark.addActionListener(menuItemListener1);
+    mi_SelectLight.addActionListener(menuItemListener2);
+    btn_EditTable.addActionListener(buttonListener2);
 
   }
 
