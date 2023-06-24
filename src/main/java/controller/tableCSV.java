@@ -206,7 +206,6 @@ public class tableCSV {
         mainText.replaceSelection("");
         for(int i = 0; i < tbl_Schedule.getRowCount(); i++){
           String duration = tbl_Schedule.getValueAt(i, 0).toString();
-//          String index = jt.getValueAt(i, 1).toString();
           String name = tbl_Schedule.getValueAt(i, 1).toString();
           String summary = tbl_Schedule.getValueAt(i, 2).toString();
           String web = tbl_Schedule.getValueAt(i, 3).toString();
