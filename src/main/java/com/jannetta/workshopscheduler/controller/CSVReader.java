@@ -1,4 +1,4 @@
-package controller;
+package com.jannetta.workshopscheduler.controller;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

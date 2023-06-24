@@ -1,17 +1,7 @@
-package view;
-
-import controller.tableCSV;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
+package com.jannetta.workshopscheduler.view;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.util.Vector;
 
 public class tableGUI {
 

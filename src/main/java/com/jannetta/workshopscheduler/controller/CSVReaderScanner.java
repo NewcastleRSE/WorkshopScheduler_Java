@@ -1,4 +1,4 @@
-package controller;
+package com.jannetta.workshopscheduler.controller;
 
 import javax.swing.*;
 import java.io.File;

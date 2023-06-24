@@ -69,7 +69,7 @@ Java 11
 
 ### Running Locally
 
-`java -cp jws.jar Main`
+`java -cp jws.jar com.jannetta.workshopscheduler.Main`
 
 ### Running Tests
 
@@ -98,7 +98,7 @@ Any links to production environment, video demos and screenshots.
 
 ## Contributing
 
-### Main Branch
+### com.jannetta.workshopscheduler.Main Branch
 Protected and can only be pushed to via pull requests. Should be considered stable and a representation of production code.
 
 ### Dev Branch

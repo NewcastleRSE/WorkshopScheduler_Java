@@ -1,4 +1,6 @@
-import view.GUI;
+package com.jannetta.workshopscheduler;
+
+import com.jannetta.workshopscheduler.view.GUI;
 
 public class Main {
 

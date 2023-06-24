@@ -1,9 +1,9 @@
-package controller;
+package com.jannetta.workshopscheduler.controller;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import view.GUI;
+import com.jannetta.workshopscheduler.view.GUI;
 
 import javax.swing.*;
 import javax.swing.table.*;
@@ -96,7 +96,7 @@ public class tableCSV {
     gridBagConstraints.gridwidth = 3;
     panel2.add(sp,gridBagConstraints);
 
-    btn_update = new JButton("Update view");
+    btn_update = new JButton("Update com.jannetta.workshopscheduler.view");
     gridBagConstraints.insets = new Insets(0,0,0,0);
     gridBagConstraints.fill = GridBagConstraints.BOTH;
     gridBagConstraints.ipadx=0;
@@ -146,7 +146,7 @@ public class tableCSV {
       public void actionPerformed(ActionEvent ae) {
         // check for selected row first
         if(tbl_Schedule.getSelectedRow() != -1) {
-          // remove selected row from the model
+          // remove selected row from the com.jannetta.workshopscheduler.model
           csvData.removeRow(tbl_Schedule.getSelectedRow());
         } else {
           JOptionPane.showMessageDialog(null, "Please select row to remove.");
@@ -163,7 +163,7 @@ public class tableCSV {
         int rowIndex = tbl_Schedule.getSelectedRow();
         if(rowIndex != -1) {
 //        JOptionPane.showMessageDialog(null, rowIndex);
-          // add row from the model
+          // add row from the com.jannetta.workshopscheduler.model
           csvData.insertRow(rowIndex + 1, new Object[]{"-", "-", "-", "-", "-"});
         } else {
           csvData.addRow(new Object[]{"-", "-", "-", "-", "-"});
@@ -177,7 +177,7 @@ public class tableCSV {
         int rowIndex = tbl_Schedule.getSelectedRow();
         if(rowIndex != -1) {
 //        JOptionPane.showMessageDialog(null, rowIndex);
-          // add row from the model
+          // add row from the com.jannetta.workshopscheduler.model
           csvData.insertRow(rowIndex, new Object[]{"60", "LUNCH", "-", "-", "-"});
         } else {
           csvData.addRow(new Object[]{"60", "LUNCH", "-", "-", "-"});
@@ -191,7 +191,7 @@ public class tableCSV {
         int rowIndex = tbl_Schedule.getSelectedRow();
         if(rowIndex != -1) {
 //        JOptionPane.showMessageDialog(null, rowIndex);
-          // add row from the model
+          // add row from the com.jannetta.workshopscheduler.model
           csvData.insertRow(rowIndex, new Object[]{"15", "BREAK", "-", "-", "-"});
         } else {
           csvData.addRow(new Object[]{"15", "BREAK", "-", "-", "-"});

@@ -1,4 +1,4 @@
-package view;
+package com.jannetta.workshopscheduler.view;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -18,8 +18,8 @@ import java.io.InputStreamReader;
 import java.nio.file.Path;
 
 
-import controller.CSVReaderScanner;
-import controller.tableCSV;
+import com.jannetta.workshopscheduler.controller.CSVReaderScanner;
+import com.jannetta.workshopscheduler.controller.tableCSV;
 
 /**
  * takes input from the user to create a CSV or/and HTML
