@@ -4,3 +4,4 @@ out/
 target/
 *.html
 *.csv
+META-INF/
