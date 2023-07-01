@@ -35,9 +35,8 @@ import com.jannetta.workshopscheduler.controller.tableCSV;
  * lbl - label
  * mil - menu item listener
  */
-public class GUI {
+public class GUI extends JFrame{
 
-    private JFrame fr_MainFrame;
     private JTextField tf_LessonName;
     public static JTextArea ta_ViewCSV;
     private JTextField tf_StartingTime;
@@ -48,9 +47,9 @@ public class GUI {
     private String currentCSVFile = "";
 
     public GUI() {
+        super("Scheduler");
         System.out.println("Current path: " + currentPath);
-        fr_MainFrame = new JFrame("Scheduler");
-        fr_MainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         GridBagLayout layout = new GridBagLayout();
@@ -127,11 +126,11 @@ public class GUI {
 
         panel.setPreferredSize(new Dimension(700, 900));
         panel.setBorder(new EmptyBorder(50, 50, 50, 50));
-        fr_MainFrame.add(panel);
-        fr_MainFrame.setJMenuBar(menuBar);
-        fr_MainFrame.setMinimumSize(new Dimension(700, 900));
-        fr_MainFrame.setVisible(true);
-        fr_MainFrame.pack();
+        add(panel);
+        setJMenuBar(menuBar);
+        setMinimumSize(new Dimension(700, 900));
+        setVisible(true);
+        pack();
 
         ActionListener bl_SaveCSV = new ActionListener() {
             @Override
