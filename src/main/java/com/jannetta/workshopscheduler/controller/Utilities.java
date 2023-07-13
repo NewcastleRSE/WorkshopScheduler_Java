@@ -1,8 +1,8 @@
 package com.jannetta.workshopscheduler.controller;
 
 import com.jannetta.workshopscheduler.view.TableGUI;
-import com.jannetta.workshopscheduler.view.TablePanel;
 
+import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -12,13 +12,13 @@ import java.util.Vector;
 public class Utilities {
 
     public static void updateTimes(TableGUI gui) {
-        System.out.println("Update times.");
         Vector<Vector> data = gui.getTablePanel().getModel().getDataVector();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm");
         Date d = null;
         String startTime = gui.getTextFieldPanel().getStartTimeTextField().getText();
         try {
             d = df.parse(startTime);
+
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(d);
             String previousData = "0";
@@ -36,12 +36,13 @@ public class Utilities {
                 System.out.println();
                 //calendar.add(Calendar.MINUTE, Integer.parseInt(previousData));
                 startTime = df.format(calendar.getTime());
-                previousData = (String)data.get(row).get(1);
+                previousData = (String) data.get(row).get(1);
             }
             gui.getTablePanel().updateUI();
             System.out.println("Update UI");
         } catch (ParseException e) {
-            throw new RuntimeException(e);
+            String input = JOptionPane.showInputDialog(null, "The start time you entered is not in the correct format.");
+            gui.getTextFieldPanel().getStartTimeTextField().setText(input);
         }
     }
 }
