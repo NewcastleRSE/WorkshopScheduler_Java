@@ -1,10 +1,9 @@
 package com.jannetta.workshopscheduler.controller;
 
+import com.jannetta.workshopscheduler.view.TableGUI;
+
 import javax.swing.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,7 +23,7 @@ public class FileUtilities {
             int start = 0;
             Scanner fileScanner = new Scanner(csv_data);
             while (fileScanner.hasNext()) {
-                calendar.add(Calendar.MINUTE, Integer.valueOf(previousData));
+                calendar.add(Calendar.MINUTE, Integer.parseInt(previousData));
                 startTime = df.format(calendar.getTime());
                 String line = startTime + "," + fileScanner.nextLine();
                 System.out.println(line);
@@ -36,7 +35,7 @@ public class FileUtilities {
 
             return data;
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("File " + csv_data + " not found");
             throw new RuntimeException(e);
         } catch (ParseException e) {
             System.out.println("Error in Parsing CSV File");
@@ -111,5 +110,29 @@ public class FileUtilities {
             throw new RuntimeException(e);
         }
     }
+
+    public void loadCSV(String currentCSVFile, String startTime) {
+        final String currentPath = Path.of("").toAbsolutePath().toString() + "/";
+
+        JFileChooser file_upload = new JFileChooser(currentPath);
+        int res_2 = file_upload.showOpenDialog(null);
+        if (res_2 == JFileChooser.APPROVE_OPTION) {
+            File file_to_load = file_upload.getSelectedFile();
+            currentCSVFile = file_to_load.getName();
+            System.out.println("Loading file: " + currentCSVFile);
+            try {
+                BufferedReader input = new BufferedReader(new InputStreamReader(
+                        new FileInputStream(file_to_load)));
+                new TableGUI(currentCSVFile);
+
+            } catch (Exception ae) {
+                ae.printStackTrace();
+            }
+        } else {
+            System.out.println("Operation is CANCELLED :(");
+
+        }
+    }
+
 }
 
