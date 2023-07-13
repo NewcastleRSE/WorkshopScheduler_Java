@@ -32,15 +32,7 @@ public class TableGUI extends JFrame {
         tablePanel = new TablePanel(filePath, this);
         buttonPanel = new ButtonPanel(this);
 
-        JMenuBar menuBar = new JMenuBar();
-        JMenu viewMenu = new JMenu("View");
-        JMenuItem selectDarkMenuItem = new JMenuItem("Dark mode");
-        JMenuItem selectLightMenuItem = new JMenuItem("Light mode");
-        JMenu fileMenu = new JMenu("File");
-        JMenuItem loadCsvMenuItem = new JMenuItem("Load CSV");
-        loadCsvMenuItem.addActionListener(e -> {loadCSV();});
-        fileMenu.add(loadCsvMenuItem);
-        menuBar.add(fileMenu);
+        MainMenuBar menuBar = new MainMenuBar();
 
         setJMenuBar(menuBar);
         add(textFieldPanel, "span, grow");
@@ -48,16 +40,6 @@ public class TableGUI extends JFrame {
         add(buttonPanel, "span, grow");
         setVisible(true);
         pack();
-    }
-
-    private void loadCSV() {
-        JFileChooser file_upload = new JFileChooser(currentPath);
-        int res_2 = file_upload.showOpenDialog(null);
-        if (res_2 == JFileChooser.APPROVE_OPTION) {
-            File file_to_load = file_upload.getSelectedFile();
-            currentCSVFile = file_to_load.getName();
-            TableGUI tableGUI = new TableGUI(currentCSVFile);
-        }
     }
 
     public TablePanel getTablePanel() {

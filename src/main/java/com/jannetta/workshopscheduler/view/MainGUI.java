@@ -18,13 +18,23 @@ public class MainGUI extends JFrame {
     JPanel panel = new JPanel();
 
     public MainGUI() {
+        setTitle("Workshop Scheduler");
         JFileChooser file_upload = new JFileChooser(currentPath);
         int res_2 = file_upload.showOpenDialog(null);
         if (res_2 == JFileChooser.APPROVE_OPTION) {
             File file_to_load = file_upload.getSelectedFile();
             currentCSVFile = file_to_load.getName();
             TableGUI tableGUI = new TableGUI(currentCSVFile);
+            tableGUI.setTitle(currentCSVFile);
         }
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        setJMenuBar(new MainMenuBar());
+        add(panel);
+        pack();
+        setVisible(true);
+        setSize(1024, 50);
+
     }
 }
 
