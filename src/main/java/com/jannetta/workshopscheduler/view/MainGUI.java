@@ -15,7 +15,9 @@ public class MainGUI extends JFrame {
     public static JTextArea viewCsvTextArea;
     private final String currentPath = Path.of("").toAbsolutePath().toString() + "/";
     private String currentCSVFile = "Python.csv";
-    MainPanel panel = new MainPanel();
+    LogoPanel logoPanel = new LogoPanel();
+    JPanel textPanel = new JPanel();
+
 
     public MainGUI() {
         setTitle("Workshop Scheduler");
@@ -28,11 +30,26 @@ public class MainGUI extends JFrame {
         } catch (NullPointerException e) {
             System.out.println("favicon.png not found.");
         }
+
+        JTextArea aboutLabel = new JTextArea("Version: 1.0\nAuthors:\nJannetta S. Steyn (GitHub: @jsteyn)\nRuxandra Neatu (GitHub: @NeatuR)\n" +
+                "\nWorkshopScheduler takes a CSV file \n" +
+                "which consists of four columns,\n" +
+                "duration, Episode name, a summary \n" +
+                "and a URL and creates an HTML file\n" +
+                "that can be included as schedule.html\n" +
+                "in the _include directory of a\n" +
+                "workshop website, created with the \n" +
+                "Carpentries template.");
+
         setJMenuBar(new MainMenuBar());
-        add(panel);
+        setLayout(new FlowLayout());
+
+        textPanel.add(aboutLabel);
+        add(logoPanel);
+        add(textPanel);
         pack();
         setVisible(true);
-        setSize(512, 512);
+        setSize(512, 800);
     }
 
 

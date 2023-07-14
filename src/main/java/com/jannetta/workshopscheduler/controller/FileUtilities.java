@@ -46,9 +46,7 @@ public class FileUtilities {
 
     public static void createHTML(Vector<Vector> data, String startTime, File htmlFile) {
         try {
-            StringBuilder htmlOuput = new StringBuilder("<head>" +
-                    "<link href=\"style.css\" rel=\"stylesheet\" type=\"text/css\">" +
-                    "</head><body>" +
+            StringBuilder htmlOuput = new StringBuilder(
                     "<table class=\"styled_table\">" +
                     "    <tr>" +
                     "        <th>Start</th>" +
@@ -73,8 +71,7 @@ public class FileUtilities {
                 calendar.add(Calendar.MINUTE, Integer.valueOf(tokens[1]));
                 previousData = df.format(calendar.getTime());
                 htmlOuput.append("<td class=\"colend\">" + previousData + "</td><td class=\"colepisode\"><a href=\"" + tokens[4] + "\">" + tokens[2] + "</a></td>");
-                htmlOuput.append("</tr>");
-                htmlOuput.append("</tr>");
+                htmlOuput.append("</tr>" + "\n");
             }
             htmlOuput.append("<tr><td>" + previousData + "</td><td>Finish</td><td></td><td></td></tr>");
             if (hasError) {

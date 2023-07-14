@@ -41,7 +41,7 @@ public class Utilities {
             gui.getTablePanel().updateUI();
             System.out.println("Update UI");
         } catch (ParseException e) {
-            String input = JOptionPane.showInputDialog(null, "The start time you entered is not in the correct format.");
+            String input = JOptionPane.showInputDialog(null, "The start time you entered is not in the correct format. Please enter it as HH:MM using a 24 hour clock.");
             gui.getTextFieldPanel().getStartTimeTextField().setText(input);
         }
     }
