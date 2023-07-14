@@ -20,13 +20,11 @@ public class FileUtilities {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(d);
             String previousData = "0";
-            int start = 0;
             Scanner fileScanner = new Scanner(csv_data);
             while (fileScanner.hasNext()) {
                 calendar.add(Calendar.MINUTE, Integer.parseInt(previousData));
                 startTime = df.format(calendar.getTime());
                 String line = startTime + "," + fileScanner.nextLine();
-                System.out.println(line);
                 String[] tokens = (line).split(",");
                 Vector<String> row = new Vector<>(List.of(tokens));
                 previousData = tokens[1];
@@ -61,14 +59,14 @@ public class FileUtilities {
             String previousData = df.format(calendar.getTime());
 
             boolean hasError = false;
-            for (int row = 0; row < data.size(); row++) {
+            for (Vector datum : data) {
                 String breakStyle = "";
-                String[] tokens = (String[]) data.get(row).toArray(new String[data.get(row).size()]);
+                String[] tokens = (String[]) datum.toArray(new String[datum.size()]);
                 if (tokens[2].trim().equals("BREAK") || tokens[2].trim().equals("LUNCH"))
                     breakStyle = " class=\"break\" ";
                 htmlOuput.append("<tr" + breakStyle + ">");
                 htmlOuput.append("<td class=\"colstart\" >" + previousData + "</td><td class=\"colduration\">" + tokens[1] + "</td>");
-                calendar.add(Calendar.MINUTE, Integer.valueOf(tokens[1]));
+                calendar.add(Calendar.MINUTE, Integer.parseInt(tokens[1]));
                 previousData = df.format(calendar.getTime());
                 htmlOuput.append("<td class=\"colend\">" + previousData + "</td><td class=\"colepisode\"><a href=\"" + tokens[4] + "\">" + tokens[2] + "</a></td>");
                 htmlOuput.append("</tr>" + "\n");
@@ -95,8 +93,7 @@ public class FileUtilities {
                 filename += ".csv";
             }
             FileWriter fileWriter = new FileWriter(filename);
-            for (int row = 0; row < data.size(); row++) {
-                Vector<String> columns = data.get(row);
+            for (Vector<String> columns : data) {
                 String line = String.join(",", columns);
                 // remove first column which holds the start time and is calculated on each load
                 line = line.substring(line.indexOf(",") + 1);
@@ -115,7 +112,7 @@ public class FileUtilities {
         int res_2 = file_upload.showOpenDialog(null);
         if (res_2 == JFileChooser.APPROVE_OPTION) {
             File file_to_load = file_upload.getSelectedFile();
-            currentCSVFile = file_to_load.getName();
+            currentCSVFile = file_to_load.getAbsolutePath();
             System.out.println("Loading file: " + currentCSVFile);
             try {
                 BufferedReader input = new BufferedReader(new InputStreamReader(

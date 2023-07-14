@@ -1,5 +1,18 @@
-10,1,Introduction,url
-30,2,First Section,url
-10,3,Break,url
-30,4,Second Section,url
-10,5,Conclusion,url
+60,Markdown,-,null
+10,Automated Version Control,,https://nclrse-training.github.io/git-ultra-novice/01-basics/index.html
+10,Setting Up Git,-,https://nclrse-training.github.io/git-ultra-novice/02-setup/index.html
+15,BREAK,-,-
+20,Creating a Repository,-,https://nclrse-training.github.io/git-ultra-novice/#:~:text=Creating%20a%20Repository
+40,Tracking Changes,-,https://nclrse-training.github.io/git-ultra-novice/04-changes/index.html
+45,Remotes in GitHub,-,https://nclrse-training.github.io/git-ultra-novice/05-github/index.html
+10,Ignoring Things,-,-
+60,LUNCH,-,-
+20,Branches,-,-
+15,Conflicts,-,-
+25,Exploring History,-,-
+15,Pull Requests,-,-
+5,Open Science,-,-
+5,Licensing,-,-
+15,BREAK,-,-
+2,Citation,-,-
+10,Hosting,-,-

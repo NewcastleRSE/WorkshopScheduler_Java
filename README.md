@@ -8,6 +8,7 @@
 
 When organising a Carpentries workshop a website is created for the workshop using the Carpentries workshop template (https://github.com/carpentries/workshop-template). The workshop template includes a schedule which shows the start and end times of each episode for every day including break times. This program allows a user to capture the start time of a session and the length (in minutes) of all the episodes. The program also allows break and lunch times to be inserted at any point. The program provides for initial keybard input or input from a csv file. Once the user is happy with the schedule it can be exported as an html table which can then be included in the workshop website repository saved as a file called schedule.html.
 
+### Click for [USER MANUAL](UserManual.md)
 
 ### Project Team
 - Dr Jannetta Steyn, jannetta.steyn@newcastle.ac.uk 
@@ -21,39 +22,15 @@ Newcastle University
 
 ## Built With
 
-Java
-
+- Java 17
 - [SparkJava](https://sparkjava.com/)  
 - [Apache Log4J](https://logging.apache.org/log4j/2.x/)  
 - [Apache Maven](https://maven.apache.org/)  
 - [Gson](https://github.com/google/gson)
 - [Junit](https://junit.org/junit5/)
 - [MigLayout](https://www.miglayout.com/) 
-- MigLayout Core
-- MigLayout Swing
-
 
 ## Getting Started
-### Project directory structure
-```
-.
-├── .git
-├── .github
-│        └── *
-├── .gitignore
-│        └── *
-├── .idea
-│        └── *
-├── data
-│        └── lesson.csv
-├── pom.xml
-├── README.md
-├── src
-│        └── main
-│            └── java
-│                ├── CSVReader.java
-│                └── CSVReaderScanner.java
-```
 
 ### Links with tutorials
 - [YouTube MigLayout tutorial](https://www.youtube.com/watch?v=Efjl5uSDrPk)
@@ -69,7 +46,7 @@ Java 11
 
 ### Running Locally
 
-`java -cp jws.jar com.jannetta.workshopscheduler.Main`
+`java -cp <path-to>jws.jar com.jannetta.workshopscheduler.Main`
 
 ### Running Tests
 
