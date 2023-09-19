@@ -40,9 +40,17 @@ public class TablePanel extends JPanel {
             TableColumn column = scheduleTable.getColumnModel().getColumn(i);
             column.setCellRenderer(new WrapCellRenderer());
         }
+        Vector<Vector<String>> data;
+        if (!filePath.equals("")) {
+            File csv_data = new File(filePath);
+            data = FileUtilities.readData(csv_data, gui.getTextFieldPanel().getStartTimeTextField().getText());
+        } else {
+            data = new Vector<Vector<String>>();
+            String[] row = {"-", "-", "-", "-"};
+            Vector<String> vector = new Vector<String>(Arrays.asList(row));
+            data.add(vector);
+        }
 
-        File csv_data = new File(filePath);
-        Vector<Vector<String>> data = FileUtilities.readData(csv_data, gui.getTextFieldPanel().getStartTimeTextField().getText());
         scheduleTableModel = new ScheduleTableModel(data, new Vector<String>(Arrays.asList(column_names)));
         scheduleTable.setModel(scheduleTableModel);
         add(scrollPane);

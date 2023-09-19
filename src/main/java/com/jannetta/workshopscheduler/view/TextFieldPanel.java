@@ -9,7 +9,9 @@ public class TextFieldPanel extends JPanel {
     JTextField startTimeTextField = new JTextField("10:00");
 
     public TextFieldPanel(TableGUI gui) {
+        titleTextField.setToolTipText("This field should contain the lesson name");
         startTimeTextField.addActionListener(e -> updateTimes(gui));
+        startTimeTextField.setToolTipText("This field should contain the start time of the\nworkshop in the format: HH:MM using a 24 hour clock");
         MigLayout migLayout = new MigLayout("fillx", "[]rel[]", "[]10[]");
         setLayout(migLayout);
         add(titleTextField, "grow");

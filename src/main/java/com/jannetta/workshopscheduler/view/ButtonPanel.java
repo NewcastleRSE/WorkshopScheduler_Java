@@ -15,6 +15,21 @@ public class ButtonPanel extends JPanel {
     JTable scheduleTable;
     ScheduleTableModel scheduleTableModel;
     public ButtonPanel(TableGUI gui) {
+        try {
+//            UIManager.put("Button.background", new Color(255, 205,210));
+//            UIManager.put("Button.foreground", new Color(255, 205,210));
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+
+                        UIManager.setLookAndFeel(info.getClassName());
+
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException e) {
+            throw new RuntimeException(e);
+        }
         // Button panel
         scheduleTableModel = gui.getTablePanel().scheduleTableModel;
         scheduleTable = gui.getTablePanel().getTable();
