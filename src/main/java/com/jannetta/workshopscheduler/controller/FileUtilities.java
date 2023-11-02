@@ -1,5 +1,6 @@
 package com.jannetta.workshopscheduler.controller;
 
+import com.jannetta.workshopscheduler.model.Schedule;
 import com.jannetta.workshopscheduler.view.TableGUI;
 
 import javax.swing.*;
@@ -11,27 +12,31 @@ import java.util.*;
 
 public class FileUtilities {
 
-    public static Vector<Vector<String>> readData(File csv_data, String startTime) {
+    public static Schedule readData(File csv_data) {
         try {
             Vector<Vector<String>> data = new Vector<>();
             System.out.println(csv_data);
-            SimpleDateFormat df = new SimpleDateFormat("HH:mm");
-            Date d = df.parse(startTime);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(d);
+
             String previousData = "0";
             Scanner fileScanner = new Scanner(csv_data);
+            String title = fileScanner.nextLine().split(",")[1];
+            String calcTime = fileScanner.nextLine().split(",")[1];
+            String startTime = calcTime;
+            SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+            Date d = df.parse(calcTime);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(d);
             while (fileScanner.hasNext()) {
                 calendar.add(Calendar.MINUTE, Integer.parseInt(previousData));
-                startTime = df.format(calendar.getTime());
-                String line = startTime + "," + fileScanner.nextLine();
+                calcTime = df.format(calendar.getTime());
+                String line = calcTime + "," + fileScanner.nextLine();
                 String[] tokens = (line).split(",");
                 Vector<String> row = new Vector<>(List.of(tokens));
                 previousData = tokens[1];
                 data.add(row);
             }
-
-            return data;
+            Schedule schedule = new Schedule(title, startTime, data);
+            return schedule;
         } catch (FileNotFoundException e) {
             System.out.println("File " + csv_data + " not found");
             throw new RuntimeException(e);
@@ -87,12 +92,14 @@ public class FileUtilities {
         }
     }
 
-    public static void saveCsvFile(String filename, Vector<Vector> data) {
+    public static void saveCsvFile(String filename, String startTime, String title, Vector<Vector> data) {
         try {
             if (!(filename.endsWith(".csv"))) {
                 filename += ".csv";
             }
             FileWriter fileWriter = new FileWriter(filename);
+            fileWriter.write("title," + title + "\n");
+            fileWriter.write("time," + startTime + "\n");
             for (Vector<String> columns : data) {
                 String line = String.join(",", columns);
                 // remove first column which holds the start time and is calculated on each load

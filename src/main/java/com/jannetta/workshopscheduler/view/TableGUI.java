@@ -3,10 +3,6 @@ package com.jannetta.workshopscheduler.view;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.nio.file.Path;
 
 /**
@@ -14,15 +10,11 @@ import java.nio.file.Path;
  */
 public class TableGUI extends JFrame {
 
-
-
-    private JTextArea mainText = MainGUI.viewCsvTextArea;
     private String startTime;
-    private String currentCSVFile = "";
     private final String currentPath = Path.of("").toAbsolutePath().toString() + "/";
-    private TablePanel tablePanel;
-    private TextFieldPanel textFieldPanel;
-    private ButtonPanel buttonPanel;
+    private final TablePanel tablePanel;
+    private final TextFieldPanel textFieldPanel;
+    private final ButtonPanel buttonPanel;
 
     public TableGUI(String filePath) {
         this.startTime = startTime;

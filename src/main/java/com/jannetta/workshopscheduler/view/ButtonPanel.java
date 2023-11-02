@@ -51,7 +51,9 @@ public class ButtonPanel extends JPanel {
         btn_break.addActionListener(e -> breakButtListener());
         btn_up.addActionListener(e -> upButtListener());
         btn_down.addActionListener(e -> downButtListener());
-        btn_saveChanges.addActionListener(e -> saveChangesButtListener(scheduleTableModel.getDataVector()));
+        btn_saveChanges.addActionListener(e -> saveChangesButtListener(scheduleTableModel.getDataVector(),
+                gui.getTextFieldPanel().getStartTimeTextField().getText(),
+                gui.getTextFieldPanel().getTitleTextField().getText()));
         btn_createHTML.addActionListener(e -> createHtmlButtListener(gui.getTextFieldPanel().getStartTimeTextField().getText()));
         btn_updateTimes.addActionListener(e -> updateTimes(gui));
 
@@ -138,7 +140,7 @@ public class ButtonPanel extends JPanel {
         }
     }
 
-    public void saveChangesButtListener(Vector<Vector> data) {
+    public void saveChangesButtListener(Vector<Vector> data, String time, String title) {
         String currentPath = Path.of("").toAbsolutePath().toString() + "/";
         JFileChooser fileChooser = new JFileChooser(currentPath);
         fileChooser.setDialogTitle("HTML file to save to.");
@@ -147,7 +149,7 @@ public class ButtonPanel extends JPanel {
             String filename = fileChooser.getSelectedFile().getAbsolutePath();
             if (!(filename.endsWith(".csv")))
                 filename += ".csv";
-            FileUtilities.saveCsvFile(filename, data);
+            FileUtilities.saveCsvFile(filename, time, title, data);
         }
     }
 

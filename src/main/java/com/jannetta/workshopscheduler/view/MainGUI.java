@@ -31,7 +31,7 @@ public class MainGUI extends JFrame {
             System.out.println("favicon.png not found.");
         }
 
-        JTextArea aboutLabel = new JTextArea("Version: 1.0\nAuthors:\nJannetta S. Steyn (GitHub: @jsteyn)\nRuxandra Neatu (GitHub: @NeatuR)\n" +
+        JTextArea aboutLabel = new JTextArea("Version: 1.1\nAuthors:\nJannetta S. Steyn (GitHub: @jsteyn)\nRuxandra Neatu (GitHub: @NeatuR)\n" +
                 "\nWorkshopScheduler takes a CSV file \n" +
                 "which consists of four columns,\n" +
                 "duration, Episode name, a summary \n" +

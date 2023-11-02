@@ -2,6 +2,7 @@ package com.jannetta.workshopscheduler.view;
 
 import com.jannetta.workshopscheduler.controller.FileUtilities;
 import com.jannetta.workshopscheduler.controller.WrapCellRenderer;
+import com.jannetta.workshopscheduler.model.Schedule;
 import com.jannetta.workshopscheduler.model.ScheduleTableModel;
 
 import javax.swing.*;
@@ -43,14 +44,16 @@ public class TablePanel extends JPanel {
         Vector<Vector<String>> data;
         if (!filePath.equals("")) {
             File csv_data = new File(filePath);
-            data = FileUtilities.readData(csv_data, gui.getTextFieldPanel().getStartTimeTextField().getText());
+            Schedule schedule = FileUtilities.readData(csv_data);
+            data = schedule.getSchedule();
+            gui.getTextFieldPanel().startTimeTextField.setText(schedule.getTime());
+            gui.getTextFieldPanel().titleTextField.setText(schedule.getTitle());
         } else {
             data = new Vector<Vector<String>>();
             String[] row = {"-", "-", "-", "-"};
             Vector<String> vector = new Vector<String>(Arrays.asList(row));
             data.add(vector);
         }
-
         scheduleTableModel = new ScheduleTableModel(data, new Vector<String>(Arrays.asList(column_names)));
         scheduleTable.setModel(scheduleTableModel);
         add(scrollPane);
