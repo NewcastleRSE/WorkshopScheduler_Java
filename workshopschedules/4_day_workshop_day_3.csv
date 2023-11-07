@@ -1,9 +1,15 @@
-title,Version Control With Git
+title,Version Control With Git / Python
 time,09:00
+5,Start day,-,-
 45,Remotes in GitHub,-,https://nclrse-training.github.io/git-ultra-novice/04-changes/index.html
 10,Ignoring Things,-,https://nclrse-training.github.io/git-ultra-novice/06-ignore/index.html
 20,Branches,-,https://nclrse-training.github.io/git-ultra-novice/07-branching/index.html
 15,Conflicts,-,https://nclrse-training.github.io/git-ultra-novice/08-conflict/index.html
 25,Exploring History,-,https://nclrse-training.github.io/git-ultra-novice/09-history/index.html
 15,BREAK,-,-
-0,-,-,-
+30,1.Python Fundamentals,-,carpentries-incubator.github.io
+20,2.Analyzing Data,-,https:///python-novice-programming-gapminder/02-pandas/index.html
+10,BREAK,-,-
+40,2.Analyzing Data,-,https:///python-novice-programming-gapminder/02-pandas/index.html
+5,Wrap Up,-,-
+0,Finish,-,-

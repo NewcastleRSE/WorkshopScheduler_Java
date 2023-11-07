@@ -1,0 +1,16 @@
+title, Python
+time, 09:00
+30,1.Python Fundamentals,What basic data types can I work with in Python?How can I create a new variable in Python?How do I use a function?Can I change the value associated with a variable after I create it?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/01-intro/index.html
+60,2.Analyzing Data,What dataset are we using today?How can I process tabular data files in Python?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/02-pandas/index.html
+15,BREAK,-,-
+30,3.Visualizing Data,How can I plot my data?How can I save my plot for publishing?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/03-matplotlib/index.html
+45,4.Storing Multiple Values in Lists,How can I store many values together?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/04-lists/index.html
+60,LUNCH,-,-
+40,5.Repeating Actions with Loops,How can I do the same operations on many different values?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/05-loop/index.html
+30,6.Analyzing Data From Mutliple Files,How can I do the same operations on many different files?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/06-files/index.html
+40,7.Making Choices,How can my programs do different things based on data values?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/07-cond/index.html
+15,BREAK,-,-
+40,8.Creating Functions,How can I define new functions?What’s the difference between defining and calling a function?What happens when I call a function?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/08-func/index.html
+40,9.Errors and Exceptions,How does Python report errors?How can I handle errors in Python programs?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/09-errors/index.html
+
+
