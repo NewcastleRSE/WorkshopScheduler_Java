@@ -1,0 +1,13 @@
+title,The Unix Shell
+time,09:00
+10,Good Morning,-,https://swcarpentry.github.io/shell-novice/instructor/01-intro.html
+25,Shell Scripts,-,https://swcarpentry.github.io/shell-novice/instructor/06-script.html
+50,Finding Things,-,https://swcarpentry.github.io/shell-novice/instructor/07-find.html
+10,BREAK,-,-
+60,Markdown,-, carpentries-incubator.github.io
+5,BREAK,-,-
+10,Automated Version Control,-,nclrse-training.github.io
+10,Setting Up Git,-,nclrse-training.github.io
+20,Creating a Repository,-,https://nclrse-training.github.io/git-ultra-novice/#:~:text=Creating%20a%20Repository
+40,Tracking Changes,-,https://nclrse-training.github.io/git-ultra-novice/04-changes/index.html
+0,Finsh,-,-

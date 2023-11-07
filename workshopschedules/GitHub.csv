@@ -1,0 +1,20 @@
+title,Version Control With Git
+time,09:30
+60,Markdown,-,https://carpentries-incubator.github.io/markdown-intro/
+10,Automated Version Control,,https://nclrse-training.github.io/git-ultra-novice/01-basics/index.html
+10,Setting Up Git,-,https://nclrse-training.github.io/git-ultra-novice/02-setup/index.html
+15,BREAK,-,-
+20,Creating a Repository,-,https://nclrse-training.github.io/git-ultra-novice/#:~:text=Creating%20a%20Repository
+40,Tracking Changes,-,https://nclrse-training.github.io/git-ultra-novice/04-changes/index.html
+45,Remotes in GitHub,-,https://nclrse-training.github.io/git-ultra-novice/05-github/index.html
+10,Ignoring Things,-,https://nclrse-training.github.io/git-ultra-novice/06-ignore/index.html
+60,LUNCH,-,-
+20,Branches,-,https://nclrse-training.github.io/git-ultra-novice/07-branching/index.html
+15,Conflicts,-,https://nclrse-training.github.io/git-ultra-novice/08-conflict/index.html
+25,Exploring History,-,https://nclrse-training.github.io/git-ultra-novice/09-history/index.html
+15,Pull Requests,-,https://nclrse-training.github.io/git-ultra-novice/10-pull-requests/index.html
+5,Open Science,-,https://nclrse-training.github.io/git-ultra-novice/11-open/index.html
+5,Licensing,-,https://nclrse-training.github.io/git-ultra-novice/12-licensing/index.html
+15,BREAK,-,-
+2,Citation,-,https://nclrse-training.github.io/git-ultra-novice/13-citation/index.html
+10,Hosting,-,https://nclrse-training.github.io/git-ultra-novice/14-hosting/index.html

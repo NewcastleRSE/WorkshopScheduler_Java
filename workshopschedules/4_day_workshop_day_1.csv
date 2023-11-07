@@ -1,0 +1,13 @@
+title,The Unix Shell
+time,09:00
+15,Welcome,-,-
+5,Introducing the Shell,-,https://swcarpentry.github.io/shell-novice/instructor/01-intro.html
+40,Navigating Files and Directories,-,https://swcarpentry.github.io/shell-novice/instructor/02-filedir.html
+50,Working With Files and Directories,-,https://swcarpentry.github.io/shell-novice/instructor/03-create.html
+15,BREAK,-,-
+40,Pipes and Filters,-,https://swcarpentry.github.io/shell-novice/instructor/04-pipefilter.html
+15,Loops,-,https://swcarpentry.github.io/shell-novice/instructor/05-loop.html
+5,BREAK,-,-
+35,Loops,-,https://swcarpentry.github.io/shell-novice/instructor/05-loop.html
+20,Shell Scripts,-,https://swcarpentry.github.io/shell-novice/instructor/06-script.html
+0,Finish,-,-
