@@ -1,6 +1,8 @@
 title, Python
 time,09:00
 5,Start day,-,-
-40,9.Errors and Exceptions,,https://carpentries-incubator.github.io/python-novice-programming-gapminder/09-errors/index.html
-15,Post workshop survey,-,-
-0,-,-,-
+45,Data Types and Structures ,,https://swcarpentry.github.io/r-novice-inflammation/instructor/13-supp-data-structures.html
+15,The Call Stack ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/14-supp-call-stack.html
+30,Loops in R ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/15-supp-loops-in-depth.html
+15,Post-workshop survey,-,-
+0,Finish,-,-

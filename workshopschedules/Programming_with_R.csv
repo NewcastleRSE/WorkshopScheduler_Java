@@ -1,0 +1,18 @@
+title,R
+time,09:00
+45,Analyzing Patient Data,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/01-starting-with-data.html
+30,Creating Functions ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/02-func-R.html
+30,Analyzing Multiple Data Sets ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/03-loops-R.html
+30,Making Choices ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/04-cond.html
+30,Command-Line Programs ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/05-cmdline.html
+10,Best Practices for Writing R Code ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/06-best-practices-R.html
+20,Dynamic Reports with knitr ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/07-knitr-R.html
+30,Making Packages in R ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/08-making-packages-R.html
+15,Introduction to RStudio ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/09-supp-intro-rstudio.html
+20,Addressing Data ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/10-supp-addressing-data.html
+30,Reading and Writing CSV Files ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/11-supp-read-write-csv.html
+20,Understanding Factors ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/12-supp-factors.html
+45,Data Types and Structures ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/13-supp-data-structures.html
+15,The Call Stack ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/14-supp-call-stack.html
+30,Loops in R ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/15-supp-loops-in-depth.html
+0,-,-,-

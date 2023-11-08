@@ -1,15 +1,15 @@
 title, Python
 time,09:00
 5,Start day,-,-
-30,3.Visualizing Data,,https://carpentries-incubator.github.io/python-novice-programming-gapminder/03-matplotlib/index.html
-45,4.Storing Multiple Values in Lists,,https://carpentries-incubator.github.io/python-novice-programming-gapminder/04-lists/index.html
+30,Making Choices ,,https://swcarpentry.github.io/r-novice-inflammation/instructor/04-cond.html
+30,Command-Line Programs ,,https://swcarpentry.github.io/r-novice-inflammation/instructor/05-cmdline.html/python-novice-programming-gapminder/04-lists/index.html
+10,Best Practices for Writing R Code ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/06-best-practices-R.html
+20,Dynamic Reports with knitr ,,https://swcarpentry.github.io/r-novice-inflammation/instructor/07-knitr-R.html
 10,BREAK,-,-
-40,5.Repeating Actions with Loops,,https://carpentries-incubator.github.io/python-novice-programming-gapminder/05-loop/index.html
-30,6.Analyzing Data From Mutliple Files,,https://carpentries-incubator.github.io/python-novice-programming-gapminder/06-files/index.html
-20,7.Making Choices,,https://carpentries-incubator.github.io/python-novice-programming-gapminder/07-cond/index.html
+20,Making Packages in R ,,swcarpentry.github.io
+15,Introduction to RStudio ,-,swcarpentry.github.io
+20,Addressing Data ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/10-supp-addressing-data.html
+30,Reading and Writing CSV Files ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/11-supp-read-write-csv.html
 10,BREAK,-,-
-20,7.Making Choices,-,https://carpentries-incubator.github.io/python-novice-programming-gapminder/07-cond/index.html
-40,8.Creating Functions,How can I define new functions?What’s the difference between defining and calling a function?What happens when I call a function?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/08-func/index.html
-40,9.Errors and Exceptions,How does Python report errors?How can I handle errors in Python programs?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/09-errors/index.html
+20,Understanding Factors ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/12-supp-factors.html
 5,Wrap up,-,-
-0,Finish,-,-
