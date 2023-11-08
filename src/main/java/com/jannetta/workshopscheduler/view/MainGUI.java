@@ -1,9 +1,14 @@
 // See the end of the class for comments on changes
 package com.jannetta.workshopscheduler.view;
 
+import com.jannetta.workshopscheduler.controller.Globals;
+
 import javax.swing.*;
 import java.awt.*;
 import java.nio.file.Path;
+import java.util.Properties;
+
+import static com.jannetta.workshopscheduler.controller.Utilities.loadProperties;
 
 
 /**
@@ -12,18 +17,23 @@ import java.nio.file.Path;
  */
 public class MainGUI extends JFrame {
 
+    private static Properties properties;
     public static JTextArea viewCsvTextArea;
     private final String currentPath = Path.of("").toAbsolutePath().toString() + "/";
     private String currentCSVFile = "Python.csv";
     LogoPanel logoPanel = new LogoPanel();
     JPanel textPanel = new JPanel();
+    private static String configDirectory = "";
 
 
     public MainGUI() {
+        configDirectory = System.getProperty("user.home").concat("/.workshopscheduler/");
+        Globals globals = new Globals(loadProperties(configDirectory), configDirectory);
+
         setTitle("Workshop Scheduler");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         Toolkit toolkit = Toolkit.getDefaultToolkit();
+        // properties file will be created in the user directory if it doesn't exist
         try {
             Image icon = toolkit.getImage(ClassLoader.getSystemResource("favicon.png"));
             setIconImage(icon);
@@ -41,7 +51,7 @@ public class MainGUI extends JFrame {
                 "workshop website, created with the \n" +
                 "Carpentries template.");
 
-        setJMenuBar(new MainMenuBar());
+        setJMenuBar(new MainMenuBar(globals));
         setLayout(new FlowLayout());
 
         textPanel.add(aboutLabel);

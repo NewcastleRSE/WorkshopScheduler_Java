@@ -1,5 +1,6 @@
 package com.jannetta.workshopscheduler.view;
 
+import com.jannetta.workshopscheduler.controller.Globals;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -16,15 +17,15 @@ public class TableGUI extends JFrame {
     private final TextFieldPanel textFieldPanel;
     private final ButtonPanel buttonPanel;
 
-    public TableGUI(String filePath) {
+    public TableGUI(String filePath, Globals globals) {
         this.startTime = startTime;
         MigLayout migLayout = new MigLayout("fillx", "[]rel[]", "[]10[]");
         setLayout(migLayout);
         textFieldPanel = new TextFieldPanel(this);
         tablePanel = new TablePanel(filePath, this);
-        buttonPanel = new ButtonPanel(this);
+        buttonPanel = new ButtonPanel(this, globals);
 
-        MainMenuBar menuBar = new MainMenuBar();
+        MainMenuBar menuBar = new MainMenuBar(globals);
 
         setJMenuBar(menuBar);
         add(textFieldPanel, "span, grow");
@@ -44,6 +45,10 @@ public class TableGUI extends JFrame {
 
     public ButtonPanel getButtonPanel() {
         return buttonPanel;
+    }
+
+    public String getCurrentPath() {
+        return currentPath;
     }
 }
 

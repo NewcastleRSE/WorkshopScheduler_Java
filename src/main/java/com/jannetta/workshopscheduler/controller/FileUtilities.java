@@ -112,7 +112,7 @@ public class FileUtilities {
         }
     }
 
-    public void loadCSV(String currentCSVFile, String startTime) {
+    public void loadCSV(String currentCSVFile, String startTime, Globals globals) {
         final String currentPath = Path.of("").toAbsolutePath().toString() + "/";
 
         JFileChooser file_upload = new JFileChooser(currentPath);
@@ -120,17 +120,17 @@ public class FileUtilities {
         if (res_2 == JFileChooser.APPROVE_OPTION) {
             File file_to_load = file_upload.getSelectedFile();
             currentCSVFile = file_to_load.getAbsolutePath();
-            System.out.println("Loading file: " + currentCSVFile);
             try {
                 BufferedReader input = new BufferedReader(new InputStreamReader(
                         new FileInputStream(file_to_load)));
-                new TableGUI(currentCSVFile);
+                new TableGUI(currentCSVFile, globals);
 
             } catch (Exception ae) {
                 ae.printStackTrace();
             }
         } else {
-            System.out.println("Operation is CANCELLED :(");
+            System.out.println();
+            JOptionPane.showMessageDialog(null, "Operation is CANCELLED :(");
 
         }
     }

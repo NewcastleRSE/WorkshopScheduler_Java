@@ -1,6 +1,8 @@
 package com.jannetta.workshopscheduler.view;
 
 import com.jannetta.workshopscheduler.controller.FileUtilities;
+import com.jannetta.workshopscheduler.controller.Globals;
+import com.jannetta.workshopscheduler.controller.Utilities;
 import com.jannetta.workshopscheduler.model.ScheduleTableModel;
 import net.miginfocom.swing.MigLayout;
 
@@ -14,10 +16,12 @@ import static com.jannetta.workshopscheduler.controller.Utilities.updateTimes;
 public class ButtonPanel extends JPanel {
     JTable scheduleTable;
     ScheduleTableModel scheduleTableModel;
-    public ButtonPanel(TableGUI gui) {
+    TableGUI gui;
+    Globals globals;
+    public ButtonPanel(TableGUI gui, Globals globals) {
+        this.gui = gui;
+        this.globals = globals;
         try {
-//            UIManager.put("Button.background", new Color(255, 205,210));
-//            UIManager.put("Button.foreground", new Color(255, 205,210));
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
 
@@ -141,15 +145,18 @@ public class ButtonPanel extends JPanel {
     }
 
     public void saveChangesButtListener(Vector<Vector> data, String time, String title) {
-        String currentPath = Path.of("").toAbsolutePath().toString() + "/";
+        String currentPath = globals.getProperties().getProperty("workingDirectory");
         JFileChooser fileChooser = new JFileChooser(currentPath);
         fileChooser.setDialogTitle("HTML file to save to.");
+        fileChooser.setSelectedFile(new File(gui.getTitle()));
         int userSelection = fileChooser.showSaveDialog(null);
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             String filename = fileChooser.getSelectedFile().getAbsolutePath();
             if (!(filename.endsWith(".csv")))
                 filename += ".csv";
             FileUtilities.saveCsvFile(filename, time, title, data);
+            globals.getProperties().setProperty("workingDirectory", (new File(filename).getPath()));
+            Utilities.savePropertyFile(globals.getProperties(), globals.getConfigDirectory());
         }
     }
 
@@ -164,6 +171,8 @@ public class ButtonPanel extends JPanel {
         }
         JFileChooser fileChooser = new JFileChooser(currentPath);
         fileChooser.setDialogTitle("HTML file to save to.");
+        String filename = gui.getTitle().substring(0,gui.getTitle().lastIndexOf('.'));
+        fileChooser.setSelectedFile(new File(filename));
         int userSelection = fileChooser.showSaveDialog(null);
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             String htmlFile = fileChooser.getSelectedFile().getAbsolutePath();
