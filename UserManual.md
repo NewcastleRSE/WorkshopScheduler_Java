@@ -5,11 +5,11 @@ You will also need to download jws.jar or build it from this repository.
 
 You can run the program from the command line or, if your file associations are set 
 correctly, you should be able to run it from a File Explorer by double clicking on
-the jwc.jar file.
+the jws.jar file.
 
 To run the program from the command line:
 - Navigate to the directory where your save jws.jar and type: 
-- `java -cp jwc.jar com.jannetta.workshopscheduler.Main`
+- `java -cp jws.jar com.jannetta.workshopscheduler.Main`
 - The first time the program is executed, it will create a sub-directory called `.workshopscheduler` in the user's home directory. A file called `system.properties` will be created in the `.workshopscheduler` directory.
 
 A splash screen should open:
