@@ -2,11 +2,17 @@ package com.jannetta.workshopscheduler.controller;
 
 import java.util.Properties;
 
+/**
+ * A class to hold variables of global interest
+ */
 public class Globals {
 
     Properties properties;
     String configDirectory;
 
+    /**
+     * Default constructor
+     */
     public Globals() {
         this.properties = new Properties();
         configDirectory = System.getProperty("User.home");

@@ -1,11 +1,12 @@
 package com.jannetta.workshopscheduler.controller;
 
 import com.jannetta.workshopscheduler.model.Schedule;
-import com.jannetta.workshopscheduler.view.TableGUI;
 
 import javax.swing.*;
-import java.io.*;
-import java.nio.file.Path;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -47,6 +48,12 @@ public class FileUtilities {
     }
 
 
+    /**
+     * Export the schedule to HTML for inclusion in the website
+     * @param data the schedule as a Vector of Vectors
+     * @param startTime the start time of the workshop
+     * @param htmlFile the file to which the HTML should be written to
+     */
     public static void createHTML(Vector<Vector> data, String startTime, File htmlFile) {
         try {
             StringBuilder htmlOuput = new StringBuilder(
@@ -92,6 +99,13 @@ public class FileUtilities {
         }
     }
 
+    /**
+     * Save the schedule to a CSV file
+     * @param filename the name of the file to which the data should be written
+     * @param startTime the start time of the workshop
+     * @param title the title of the workshop
+     * @param data the data, as a Vector of Vectors, to be written, in CSV format, to the file
+     */
     public static void saveCsvFile(String filename, String startTime, String title, Vector<Vector> data) {
         try {
             if (!(filename.endsWith(".csv"))) {
@@ -109,29 +123,6 @@ public class FileUtilities {
             fileWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public void loadCSV(String currentCSVFile, String startTime, Globals globals) {
-        final String currentPath = Path.of("").toAbsolutePath().toString() + "/";
-
-        JFileChooser file_upload = new JFileChooser(currentPath);
-        int res_2 = file_upload.showOpenDialog(null);
-        if (res_2 == JFileChooser.APPROVE_OPTION) {
-            File file_to_load = file_upload.getSelectedFile();
-            currentCSVFile = file_to_load.getAbsolutePath();
-            try {
-                BufferedReader input = new BufferedReader(new InputStreamReader(
-                        new FileInputStream(file_to_load)));
-                new TableGUI(currentCSVFile, globals);
-
-            } catch (Exception ae) {
-                ae.printStackTrace();
-            }
-        } else {
-            System.out.println();
-            JOptionPane.showMessageDialog(null, "Operation is CANCELLED :(");
-
         }
     }
 
