@@ -15,7 +15,7 @@
     </properties>
 
     <build>
-        <finalName>jws_v1.1</finalName>
+        <finalName>jws_v1.2</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -37,7 +37,7 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <finalName>jws_v1.1</finalName>
+                    <finalName>jws_v1.2</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
