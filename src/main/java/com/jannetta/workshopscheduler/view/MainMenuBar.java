@@ -19,15 +19,15 @@ public class MainMenuBar extends JMenuBar{
         JMenuItem selectDarkMenuItem = new JMenuItem("Dark mode");
         JMenuItem selectLightMenuItem = new JMenuItem("Light mode");
         JMenu fileMenu = new JMenu("File");
-        JMenuItem loadCsvMenuItem = new JMenuItem("Load CSV");
-        JMenuItem newFile = new JMenuItem("New schedule");
+        JMenuItem loadCsvMenuItem = new JMenuItem("Load CSV (creates a new schedule)");
+        JMenuItem newFile = new JMenuItem("New schedule (creates empty schedule");
         loadCsvMenuItem.addActionListener(e -> {loadCSV();});
         newFile.addActionListener(e -> {newSchedule();});
         fileMenu.add(loadCsvMenuItem);
-
         fileMenu.add(newFile);
         add(fileMenu);
     }
+
 
     private void loadCSV() {
         currentPath = globals.getProperties().getProperty("workingDirectory");

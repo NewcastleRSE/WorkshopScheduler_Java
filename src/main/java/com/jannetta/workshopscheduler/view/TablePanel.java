@@ -6,6 +6,7 @@ import com.jannetta.workshopscheduler.model.Schedule;
 import com.jannetta.workshopscheduler.model.ScheduleTableModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.io.File;
@@ -13,9 +14,34 @@ import java.util.Arrays;
 import java.util.Vector;
 
 public class TablePanel extends JPanel {
-    ScheduleTableModel scheduleTableModel;
+    private ScheduleTableModel scheduleTableModel;
     final JTable scheduleTable = new JTable();
+    private Vector<Vector<String>> data;
 
+    // Create a custom cell renderer
+    DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                                                       boolean isSelected, boolean hasFocus,
+                                                       int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value,
+                    isSelected, hasFocus, row, column);
+            // Check if the cell contains "Snowboarding" and set the background color to green
+            if ("DAY BREAK".equals(value)) {
+                c.setBackground(Color.RED);
+            } else if ("BREAK".equals(value)) {
+                c.setBackground(Color.green);
+            } else {
+                c.setBackground(table.getBackground());
+            }
+            return c;
+        }
+    };
+
+    /**
+     * Constructor
+     * @param filePath The file to be loaded into the table contained in this panel
+     * @param gui A back reference to TableGUI which holds this TablePanel
+     */
     public TablePanel(String filePath, TableGUI gui) {
         String[] column_names = {"Start", "Duration(min.)", "Name", "Summary", "URL"};
 
@@ -25,9 +51,7 @@ public class TablePanel extends JPanel {
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new
-
-        Dimension(700, 400));
+        scrollPane.setPreferredSize(new Dimension(700, 400));
         JPanel tablePanel = new JPanel();
         tablePanel.add(scrollPane);
         scheduleTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -41,7 +65,6 @@ public class TablePanel extends JPanel {
             TableColumn column = scheduleTable.getColumnModel().getColumn(i);
             column.setCellRenderer(new WrapCellRenderer());
         }
-        Vector<Vector<String>> data;
         if (!filePath.equals("")) {
             File csv_data = new File(filePath);
             Schedule schedule = FileUtilities.readData(csv_data);
@@ -54,16 +77,30 @@ public class TablePanel extends JPanel {
             Vector<String> vector = new Vector<String>(Arrays.asList(row));
             data.add(vector);
         }
+
         scheduleTableModel = new ScheduleTableModel(data, new Vector<String>(Arrays.asList(column_names)));
         scheduleTable.setModel(scheduleTableModel);
+        // Set the cell renderer that will display BREAK in green and DAY BREAK in red
+        scheduleTable.getColumnModel().getColumn(2).setCellRenderer(renderer);
         add(scrollPane);
     }
 
+    /**
+     * Returns the model of the table
+     * @return
+     */
     public ScheduleTableModel getModel() {
         return scheduleTableModel;
     }
 
+    /**
+     * Returns the table contained in the panel
+     * @return
+     */
     public JTable getTable() {
         return scheduleTable;
     }
+
+
+
 }

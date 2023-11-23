@@ -8,7 +8,6 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.io.File;
-import java.nio.file.Path;
 import java.util.Vector;
 
 import static com.jannetta.workshopscheduler.controller.Utilities.updateTimes;
@@ -35,7 +34,7 @@ public class ButtonPanel extends JPanel {
             throw new RuntimeException(e);
         }
         // Button panel
-        scheduleTableModel = gui.getTablePanel().scheduleTableModel;
+        scheduleTableModel = gui.getTablePanel().getModel();
         scheduleTable = gui.getTablePanel().getTable();
         MigLayout migLayout = new MigLayout("fillx", "[grow]rel[grow]rel[grow]", "[]10[]10[]");
         setLayout(migLayout);
@@ -48,6 +47,7 @@ public class ButtonPanel extends JPanel {
         JButton btn_remove = new JButton("Remove row");
         JButton btn_saveChanges = new JButton("Save changes");
         JButton btn_updateTimes = new JButton("Update times");
+        JButton btn_dayBreak = new JButton("Day Break");
 
         btn_remove.addActionListener(e -> remButtListener());
         btn_add.addActionListener(e -> addButtListener());
@@ -60,6 +60,7 @@ public class ButtonPanel extends JPanel {
                 gui.getTextFieldPanel().getTitleTextField().getText()));
         btn_createHTML.addActionListener(e -> createHtmlButtListener(gui.getTextFieldPanel().getStartTimeTextField().getText()));
         btn_updateTimes.addActionListener(e -> updateTimes(gui));
+        btn_dayBreak.addActionListener(e -> dayBreakListener());
 
         add(btn_up, "growx");
         add(btn_down, "growx");
@@ -70,8 +71,18 @@ public class ButtonPanel extends JPanel {
         add(btn_lunch, "growx");
         add(btn_saveChanges, "growx");
         add(btn_break, "growx, wrap");
+        add(btn_dayBreak, "growx");
     }
 
+    public void dayBreakListener() {
+        int rowIndex = scheduleTable.getSelectedRow();
+        if (rowIndex != -1) {
+            scheduleTableModel.insertRow(rowIndex, new Object[]{"","15", "DAY BREAK", "-", "-", "-"});
+
+        } else {
+            scheduleTableModel.addRow(new Object[]{"","", "DAY BREAK", "", "", ""});
+        }
+    }
     public void remButtListener() {
         // check for selected row first
         if (scheduleTable.getSelectedRow() != -1) {
@@ -79,9 +90,6 @@ public class ButtonPanel extends JPanel {
             scheduleTableModel.removeRow(scheduleTable.getSelectedRow());
         } else {
             JOptionPane.showMessageDialog(null, "Please select row to remove.");
-            JOptionPane.showMessageDialog(null, scheduleTable.getColumnModel().getColumn(1));
-            JOptionPane.showMessageDialog(null, scheduleTable.getColumnModel().getColumnCount());
-
         }
     }
 
@@ -162,7 +170,7 @@ public class ButtonPanel extends JPanel {
 
     public void createHtmlButtListener(String startTime) {
         System.out.println("Start time: " + startTime);
-        String currentPath = Path.of("").toAbsolutePath().toString() + "/";
+        String currentPath = globals.getProperties().getProperty("workingDirectory");
         System.out.println("Save html file to: " + currentPath);
         // Check if startTime is a valid value
         if (!isValidStartTime(startTime)) {

@@ -2,7 +2,6 @@ package com.jannetta.workshopscheduler.controller;
 
 import com.jannetta.workshopscheduler.model.Schedule;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -33,7 +32,7 @@ public class FileUtilities {
                 String line = calcTime + "," + fileScanner.nextLine();
                 String[] tokens = (line).split(",");
                 Vector<String> row = new Vector<>(List.of(tokens));
-                previousData = tokens[1];
+                previousData = (tokens[1].equals(""))?"0":tokens[1];
                 data.add(row);
             }
             Schedule schedule = new Schedule(title, startTime, data);
@@ -55,41 +54,60 @@ public class FileUtilities {
      * @param htmlFile the file to which the HTML should be written to
      */
     public static void createHTML(Vector<Vector> data, String startTime, File htmlFile) {
+        String tableHeader =
+                "<div class=\"row\">\n" +
+                "<div class=\"col-md-6\">\n" +
+                "<h3>Day 1</h3>\n" +
+                "<table class=\"table table-striped\">\n" +
+                "<tr>" +
+                "<th>Start</th>" +
+                "<th>Duration (minutes)</th>" +
+                "<th>End</th>" +
+                "<th>Episode</th>" +
+                "</tr>\n";
         try {
-            StringBuilder htmlOuput = new StringBuilder(
-                    "<table class=\"styled_table\">" +
-                    "    <tr>" +
-                    "        <th>Start</th>" +
-                    "        <th>Duration (minutes)</th>" +
-                    "        <th>End</th>" +
-                    "        <th>Episode</th>" +
-                    "    </tr>");
+            int dayCounter = 0;
+            StringBuilder htmlOutput = new StringBuilder(tableHeader);
             SimpleDateFormat df = new SimpleDateFormat("HH:mm");
             Date d = df.parse(startTime);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(d);
             String previousData = df.format(calendar.getTime());
 
-            boolean hasError = false;
             for (Vector datum : data) {
-                String breakStyle = "";
                 String[] tokens = (String[]) datum.toArray(new String[datum.size()]);
-                if (tokens[2].trim().equals("BREAK") || tokens[2].trim().equals("LUNCH"))
-                    breakStyle = " class=\"break\" ";
-                htmlOuput.append("<tr" + breakStyle + ">");
-                htmlOuput.append("<td class=\"colstart\" >" + previousData + "</td><td class=\"colduration\">" + tokens[1] + "</td>");
-                calendar.add(Calendar.MINUTE, Integer.parseInt(tokens[1]));
-                previousData = df.format(calendar.getTime());
-                htmlOuput.append("<td class=\"colend\">" + previousData + "</td><td class=\"colepisode\"><a href=\"" + tokens[4] + "\">" + tokens[2] + "</a></td>");
-                htmlOuput.append("</tr>" + "\n");
+                if (tokens[2].trim().equals("DAY BREAK")) {
+                    // close table
+                    htmlOutput.append("</table>\n");
+                    htmlOutput.append("</div>\n");
+                    htmlOutput.append("<div class=\"col-md-6\">\n");
+                    dayCounter++;
+                    htmlOutput.append("<h3>Day " + (dayCounter + 1) + "</h3>\n");
+                    htmlOutput.append("<table class=\"table table-striped\">\n" +
+                            "<tr>" +
+                            "<th>Start</th>" +
+                            "<th>Duration (minutes)</th>" +
+                            "<th>End</th>" +
+                            "<th>Episode</th>" +
+                            "</tr>\n");
+                    d = df.parse(startTime);
+                    calendar = Calendar.getInstance();
+                    calendar.setTime(d);
+                    previousData = df.format(calendar.getTime());
+                } else {
+                    System.out.printf("%s %s %s %s %s\n", tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]);
+                    if (Utilities.isNumeric(tokens[1])) {
+                        calendar.add(Calendar.MINUTE, Integer.parseInt(tokens[1]));
+                        previousData = df.format(calendar.getTime());
+                    }
+                    htmlOutput.append("<tr>\n\t<td>" + tokens[0] + "</td><td>" + tokens[1] + "</td><td>" + previousData + "</td><td><a href=\"" + tokens[4] + "\">" + tokens[2] + "</a></td>\n</tr>\n");
+                }
             }
-            htmlOuput.append("<tr><td>" + previousData + "</td><td>Finish</td><td></td><td></td></tr>");
-            if (hasError) {
-                JOptionPane.showMessageDialog(null, "Attention: You have episodes in your lesson without duration. The start time cannot be calculated. Click OK to continue.");
-            }
-            htmlOuput.append("</table>");
+            htmlOutput.append("</table>\n");
+            htmlOutput.append("</div>\n</div>\n");
+
             FileWriter myWriter = new FileWriter(htmlFile);
-            myWriter.write(htmlOuput.toString());
+            myWriter.write(htmlOutput.toString());
             myWriter.close();
             System.out.println("Successfully wrote to file: " + htmlFile);
         } catch (FileNotFoundException e) {

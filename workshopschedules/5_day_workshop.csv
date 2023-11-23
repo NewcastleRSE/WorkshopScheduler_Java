@@ -1,0 +1,59 @@
+title,Python
+time,09:00
+15,Welcome,-,-
+5,Introducing the Shell,-,https://swcarpentry.github.io/shell-novice/instructor/01-intro.html
+40,Navigating Files and Directories,-,https://swcarpentry.github.io/shell-novice/instructor/02-filedir.html
+50,Working With Files and Directories,-,https://swcarpentry.github.io/shell-novice/instructor/03-create.html
+15,BREAK,-,-
+40,Pipes and Filters,-,https://swcarpentry.github.io/shell-novice/instructor/04-pipefilter.html
+15,Loops,-,https://swcarpentry.github.io/shell-novice/instructor/05-loop.html
+5,BREAK,-,-
+35,Loops,-,https://swcarpentry.github.io/shell-novice/instructor/05-loop.html
+20,Shell Scripts,-,https://swcarpentry.github.io/shell-novice/instructor/06-script.html
+0,Finish,-,-
+,DAY BREAK,null,null
+10,Good Morning,-,https://swcarpentry.github.io/shell-novice/instructor/01-intro.html
+25,Shell Scripts,-,https://swcarpentry.github.io/shell-novice/instructor/06-script.html
+50,Finding Things,-,https://swcarpentry.github.io/shell-novice/instructor/07-find.html
+10,BREAK,-,-
+60,Markdown,-, carpentries-incubator.github.io
+5,BREAK,-,-
+10,Automated Version Control,-,nclrse-training.github.io
+10,Setting Up Git,-,nclrse-training.github.io
+20,Creating a Repository,-,https://nclrse-training.github.io/git-ultra-novice/#:~:text=Creating%20a%20Repository
+40,Tracking Changes,-,https://nclrse-training.github.io/git-ultra-novice/04-changes/index.html
+0,Finsh,-,-
+,DAY BREAK,,
+5,Start day,-,-
+45,Remotes in GitHub,-,https://nclrse-training.github.io/git-ultra-novice/04-changes/index.html
+10,Ignoring Things,-,https://nclrse-training.github.io/git-ultra-novice/06-ignore/index.html
+20,Branches,-,https://nclrse-training.github.io/git-ultra-novice/07-branching/index.html
+15,Conflicts,-,https://nclrse-training.github.io/git-ultra-novice/08-conflict/index.html
+25,Exploring History,-,https://nclrse-training.github.io/git-ultra-novice/09-history/index.html
+10,BREAK,-,-
+45,Analyzing Patient Data,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/01-starting-with-data.html
+30,Creating Functions ,-,https:///https://swcarpentry.github.io/r-novice-inflammation/instructor/02-func-R.html/02-pandas/index.html
+30,Analyzing Multiple Data Sets ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/03-loops-R.html
+5,Wrap Up,-,-
+0,Finish,-,-
+,DAY BREAK,,
+5,Start day,-,-
+30,Making Choices ,,https://swcarpentry.github.io/r-novice-inflammation/instructor/04-cond.html
+30,Command-Line Programs ,,https://swcarpentry.github.io/r-novice-inflammation/instructor/05-cmdline.html/python-novice-programming-gapminder/04-lists/index.html
+10,Best Practices for Writing R Code ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/06-best-practices-R.html
+20,Dynamic Reports with knitr ,,https://swcarpentry.github.io/r-novice-inflammation/instructor/07-knitr-R.html
+10,BREAK,-,-
+20,Making Packages in R ,,swcarpentry.github.io
+15,Introduction to RStudio ,-,swcarpentry.github.io
+20,Addressing Data ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/10-supp-addressing-data.html
+30,Reading and Writing CSV Files ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/11-supp-read-write-csv.html
+10,BREAK,-,-
+20,Understanding Factors ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/12-supp-factors.html
+5,Wrap up,-,-
+,DAY BREAK,,
+5,Start day,-,-
+45,Data Types and Structures ,,https://swcarpentry.github.io/r-novice-inflammation/instructor/13-supp-data-structures.html
+15,The Call Stack ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/14-supp-call-stack.html
+30,Loops in R ,-,https://swcarpentry.github.io/r-novice-inflammation/instructor/15-supp-loops-in-depth.html
+15,Post-workshop survey,-,-
+0,Finish,-,-

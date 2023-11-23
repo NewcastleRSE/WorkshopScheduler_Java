@@ -25,6 +25,7 @@ public class Utilities {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm");
         Date d;
         String startTime = gui.getTextFieldPanel().getStartTimeTextField().getText();
+        String dayStart = startTime;
         try {
             d = df.parse(startTime);
 
@@ -32,19 +33,13 @@ public class Utilities {
             calendar.setTime(d);
             String previousData = "0";
             for (int row = 0; row < data.size(); row++) {
-                if (row == 0) {
-                    data.get(0).set(0, startTime);
-                } else {
-                    calendar.add(Calendar.MINUTE, Integer.parseInt(previousData));
-                    data.get(row).set(0, df.format(calendar.getTime()));
+                if (data.get(row).get(2).equals("DAY BREAK")) {
+                    d = df.parse(dayStart);
+                    calendar.setTime(d);
                 }
-                int columns = data.get(row).size();
-                for (int col = 0; col < columns; col++) {
-                    System.out.print(data.get(row).get(col) + "\t");
-                }
-                System.out.println();
-                //calendar.add(Calendar.MINUTE, Integer.parseInt(previousData));
-                startTime = df.format(calendar.getTime());
+                if (!isNumeric(previousData)) previousData = "0";
+                calendar.add(Calendar.MINUTE, Integer.parseInt(previousData));
+                data.get(row).set(0, df.format(calendar.getTime()));
                 previousData = (String) data.get(row).get(1);
             }
             gui.getTablePanel().updateUI();
@@ -109,5 +104,16 @@ public class Utilities {
         }
     }
 
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
 
 }
