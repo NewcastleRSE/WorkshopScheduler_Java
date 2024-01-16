@@ -19,8 +19,8 @@ public class MainMenuBar extends JMenuBar{
         JMenuItem selectDarkMenuItem = new JMenuItem("Dark mode");
         JMenuItem selectLightMenuItem = new JMenuItem("Light mode");
         JMenu fileMenu = new JMenu("File");
-        JMenuItem loadCsvMenuItem = new JMenuItem("Load CSV (creates a new schedule)");
-        JMenuItem newFile = new JMenuItem("New schedule (creates empty schedule");
+        JMenuItem loadCsvMenuItem = new JMenuItem("Load CSV (loads an existing schedule)");
+        JMenuItem newFile = new JMenuItem("New schedule (creates a new empty schedule");
         loadCsvMenuItem.addActionListener(e -> {loadCSV();});
         newFile.addActionListener(e -> {newSchedule();});
         fileMenu.add(loadCsvMenuItem);
