@@ -29,7 +29,8 @@ public class TablePanel extends JPanel {
             if ("DAY BREAK".equals(value)) {
                 c.setBackground(Color.RED);
             } else if ("BREAK".equals(value)) {
-                c.setBackground(Color.green);
+                c.setBackground(new Color(46,49,146));
+                c.setForeground(Color.WHITE);
             } else {
                 c.setBackground(table.getBackground());
             }
