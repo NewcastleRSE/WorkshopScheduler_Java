@@ -33,6 +33,7 @@ public class TablePanel extends JPanel {
                 c.setForeground(Color.WHITE);
             } else {
                 c.setBackground(table.getBackground());
+                c.setForeground(Color.BLACK);
             }
             return c;
         }
@@ -47,12 +48,13 @@ public class TablePanel extends JPanel {
         String[] column_names = {"Start", "Duration(min.)", "Name", "Summary", "URL"};
 
         // Table panel
+        setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(scheduleTable);
         scrollPane.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(700, 400));
+        //scrollPane.setPreferredSize(new Dimension(700, 400));
         JPanel tablePanel = new JPanel();
         tablePanel.add(scrollPane);
         scheduleTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);

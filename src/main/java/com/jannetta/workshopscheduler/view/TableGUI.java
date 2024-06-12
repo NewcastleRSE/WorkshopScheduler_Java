@@ -6,6 +6,7 @@ import com.jannetta.workshopscheduler.model.Schedule;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.Vector;
@@ -26,11 +27,14 @@ public class TableGUI extends JFrame {
     public TableGUI(String filePath, Globals globals) {
         this.globals = globals;
         this.startTime = startTime;
-        MigLayout migLayout = new MigLayout("fillx", "[]rel[]", "[]10[]");
+        MigLayout migLayout = new MigLayout("fillx", "", "[]10[]10[]");
         setLayout(migLayout);
         textFieldPanel = new TextFieldPanel(this);
+        textFieldPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         tablePanel = new TablePanel(filePath, this);
+        tablePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         buttonPanel = new ButtonPanel(this, globals);
+        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         MainMenuBar menuBar = new MainMenuBar(globals);
         setJMenuBar(menuBar);
@@ -38,9 +42,9 @@ public class TableGUI extends JFrame {
         JMenu menu = menuBar.getMenu(0);
         importFile.addActionListener(e -> {importSchedule();});
         menu.add(importFile);
-        add(textFieldPanel, "span, grow");
-        add(tablePanel, "wrap");
-        add(buttonPanel, "span, grow");
+        add(textFieldPanel, "wrap");
+        add(tablePanel, "grow, wrap");
+        add(buttonPanel, "");
         setVisible(true);
         pack();
     }

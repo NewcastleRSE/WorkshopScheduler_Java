@@ -5,8 +5,8 @@ import javax.swing.*;
 import static com.jannetta.workshopscheduler.controller.Utilities.updateTimes;
 
 public class TextFieldPanel extends JPanel {
-    JTextField titleTextField = new JTextField("Python");
-    JTextField startTimeTextField = new JTextField("10:00");
+    JTextField titleTextField = new JTextField("Python", 25);
+    JTextField startTimeTextField = new JTextField("10:00", 25);
 
     public TextFieldPanel(TableGUI gui) {
         titleTextField.setToolTipText("This field should contain the lesson name");
