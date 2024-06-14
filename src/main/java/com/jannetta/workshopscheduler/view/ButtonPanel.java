@@ -179,7 +179,12 @@ public class ButtonPanel extends JPanel {
         }
         JFileChooser fileChooser = new JFileChooser(currentPath);
         fileChooser.setDialogTitle("HTML file to save to.");
-        String filename = gui.getTitle().substring(0,gui.getTitle().lastIndexOf('.'));
+        System.out.println("title: " + gui.getTitle());
+        String filename = gui.getTitle();
+        if (filename.equals("New schedule"))
+            filename = "NewSchedule.html";
+        else
+            filename = filename.substring(0,gui.getTitle().lastIndexOf('.'));
         fileChooser.setSelectedFile(new File(filename));
         int userSelection = fileChooser.showSaveDialog(null);
         if (userSelection == JFileChooser.APPROVE_OPTION) {
