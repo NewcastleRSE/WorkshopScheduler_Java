@@ -12,5 +12,4 @@ time, 09:00
 15,BREAK,-,-
 40,8.Creating Functions,How can I define new functions?What’s the difference between defining and calling a function?What happens when I call a function?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/08-func/index.html
 40,9.Errors and Exceptions,How does Python report errors?How can I handle errors in Python programs?,https://carpentries-incubator.github.io/python-novice-programming-gapminder/09-errors/index.html
-
-
+0,-,-,-

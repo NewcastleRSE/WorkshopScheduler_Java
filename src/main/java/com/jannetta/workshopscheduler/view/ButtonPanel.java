@@ -169,6 +169,7 @@ public class ButtonPanel extends JPanel {
             FileUtilities.saveCsvFile(filename, time, title, data);
             globals.getProperties().setProperty("workingDirectory", (new File(filename).getPath()));
             Utilities.savePropertyFile(globals.getProperties(), globals.getConfigDirectory());
+            gui.setDirtyFlag(false);
         } else {
             logger.debug("File saving cancelled");
         }
