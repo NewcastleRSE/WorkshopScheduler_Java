@@ -78,8 +78,9 @@ public class TablePanel extends JPanel {
             File csv_data = new File(filePath);
             Schedule schedule = FileUtilities.readData(csv_data);
             data = schedule.getSchedule();
-            gui.getTextFieldPanel().startTimeTextField.setText(schedule.getTime());
-            gui.getTextFieldPanel().titleTextField.setText(schedule.getTitle());
+            gui.getTextFieldPanel().getStartTimeTextField().setText(schedule.getTime());
+            gui.getTextFieldPanel().getTitleTextField().setText(schedule.getTitle());
+            gui.getTextFieldPanel().getExtraHeader().setText(schedule.getHeader());
         } else {
             data = new Vector<Vector<String>>();
             String[] row = {"-", "-", "-", "-"};

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -25,7 +26,6 @@ public class TableGUI extends JFrame {
     private final TablePanel tablePanel;
     private final TextFieldPanel textFieldPanel;
     private final ButtonPanel buttonPanel;
-    private String currentCSVFile = "";
     private final Globals globals;
     private boolean dirtyFlag = false;
 
@@ -48,7 +48,8 @@ public class TableGUI extends JFrame {
                     logger.debug("Prompt to save file");
                     buttonPanel.saveChangesButtListener(getTablePanel().getModel().getDataVector(),
                             getTextFieldPanel().getStartTimeTextField().getText(),
-                            getTextFieldPanel().getTitleTextField().getText());
+                            getTextFieldPanel().getTitleTextField().getText(),
+                            getTextFieldPanel().getExtraHeader().getText());
                 }
             }
         });
@@ -69,10 +70,12 @@ public class TableGUI extends JFrame {
     private void importSchedule() {
         String currentPath = globals.getProperties().getProperty("workingDirectory");
         JFileChooser file_upload = new JFileChooser(currentPath);
+        FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Comma Separated Value File", "csv", "CSV");
+        file_upload.addChoosableFileFilter(extFilter);
         int res_2 = file_upload.showOpenDialog(null);
         if (res_2 == JFileChooser.APPROVE_OPTION) {
             File file_to_load = file_upload.getSelectedFile();
-            currentCSVFile = file_to_load.getAbsolutePath();
+            String currentCSVFile = file_to_load.getAbsolutePath();
             globals.getProperties().setProperty("workingDirectory", file_to_load.toPath().getParent().toString());
             Schedule schedule = FileUtilities.readData(new File(currentCSVFile));
             schedule.getSchedule().forEach(s -> {

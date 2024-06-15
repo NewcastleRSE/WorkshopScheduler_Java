@@ -14,29 +14,42 @@ public class FileUtilities {
 
     public static Schedule readData(File csv_data) {
         try {
-            Vector<Vector<String>> data = new Vector<>();
+            Vector data = new Vector<>();
             System.out.println(csv_data);
 
             String previousData = "0";
             Scanner fileScanner = new Scanner(csv_data);
-            String title = fileScanner.nextLine().split(",")[1];
-            String calcTime = fileScanner.nextLine().split(",")[1];
-            String startTime = calcTime;
+            String title = ""; //
+            String calcTime = "09:00"; //
+            String startTime = ""; //
+            String header = "";
             SimpleDateFormat df = new SimpleDateFormat("HH:mm");
             Date d = df.parse(calcTime);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(d);
             while (fileScanner.hasNext()) {
-                calendar.add(Calendar.MINUTE, Integer.parseInt(previousData));
-                calcTime = df.format(calendar.getTime());
-                String line = calcTime + "," + fileScanner.nextLine();
-                String[] tokens = (line).split(",");
-                Vector<String> row = new Vector<>(List.of(tokens));
-                previousData = (tokens[1].equals(""))?"0":tokens[1];
-                data.add(row);
+                String line = fileScanner.nextLine();
+                if (line.startsWith("title")) {
+                    title = line.split(",")[1];
+                } else if (line.startsWith("time")) {
+                    calcTime = line.split(",")[1];
+                    startTime = calcTime;
+                    d = df.parse(calcTime);
+                    calendar = Calendar.getInstance();
+                    calendar.setTime(d);
+                } else if (line.startsWith("header")) {
+                    header = line.split(",")[1];
+                } else {
+                    calendar.add(Calendar.MINUTE, Integer.parseInt(previousData));
+                    calcTime = df.format(calendar.getTime());
+                    line = calcTime + "," + line;
+                    String[] tokens = (line).split(",");
+                    Vector<String> row = new Vector<>(List.of(tokens));
+                    previousData = (tokens[1].isEmpty()) ? "0" : tokens[1];
+                    data.add(row);
+                }
             }
-            Schedule schedule = new Schedule(title, startTime, data);
-            return schedule;
+            return new Schedule(title, startTime, header, data);
         } catch (FileNotFoundException e) {
             System.out.println("File " + csv_data + " not found");
             throw new RuntimeException(e);
@@ -53,18 +66,15 @@ public class FileUtilities {
      * @param startTime the start time of the workshop
      * @param htmlFile the file to which the HTML should be written to
      */
-    public static void createHTML(Vector<Vector> data, String startTime, File htmlFile) {
-        String tableHeader =
-                "<div class=\"row\">\n" +
-                "<div class=\"col-md-6\">\n" +
-                "<h3>Day 1</h3>\n" +
-                "<table class=\"table table-striped\">\n" +
-                "<tr>" +
-                "<th>Start</th>" +
-                "<th>Duration (minutes)</th>" +
-                "<th>End</th>" +
-                "<th>Episode</th>" +
-                "</tr>\n";
+    public static void createHTML(Vector<Vector> data, String startTime, String header, File htmlFile) {
+        String tableHeader = "<div class=\"header\">" + header + "</div>" +
+                """
+                        <div class="row">
+                        <div class="col-md-6">
+                        <h3>Day 1</h3>
+                        <table class="table table-striped">
+                        <tr><th>Start</th><th>Duration (minutes)</th><th>End</th><th>Episode</th></tr>
+                        """;
         try {
             int dayCounter = 0;
             StringBuilder htmlOutput = new StringBuilder(tableHeader);
@@ -82,7 +92,7 @@ public class FileUtilities {
                     htmlOutput.append("</div>\n");
                     htmlOutput.append("<div class=\"col-md-6\">\n");
                     dayCounter++;
-                    htmlOutput.append("<h3>Day " + (dayCounter + 1) + "</h3>\n");
+                    htmlOutput.append("<h3>Day ").append(dayCounter + 1).append("</h3>\n");
                     htmlOutput.append("<table class=\"table table-striped\">\n" +
                             "<tr>" +
                             "<th>Start</th>" +
@@ -122,9 +132,10 @@ public class FileUtilities {
      * @param filename the name of the file to which the data should be written
      * @param startTime the start time of the workshop
      * @param title the title of the workshop
+     * @param header a header that can be printed above the table
      * @param data the data, as a Vector of Vectors, to be written, in CSV format, to the file
      */
-    public static void saveCsvFile(String filename, String startTime, String title, Vector<Vector> data) {
+    public static void saveCsvFile(String filename, String startTime, String title, String header, Vector<Vector> data) {
         try {
             if (!(filename.endsWith(".csv"))) {
                 filename += ".csv";
@@ -132,6 +143,7 @@ public class FileUtilities {
             FileWriter fileWriter = new FileWriter(filename);
             fileWriter.write("title," + title + "\n");
             fileWriter.write("time," + startTime + "\n");
+            fileWriter.write("header," + (header.isEmpty()?"-":header) + "\n");
             for (Vector<String> columns : data) {
                 String line = String.join(",", columns);
                 // remove first column which holds the start time and is calculated on each load

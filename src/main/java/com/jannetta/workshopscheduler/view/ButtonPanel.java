@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.util.Vector;
 
@@ -61,8 +62,11 @@ public class ButtonPanel extends JPanel {
         btn_down.addActionListener(e -> downButtListener());
         btn_saveChanges.addActionListener(e -> saveChangesButtListener(scheduleTableModel.getDataVector(),
                 gui.getTextFieldPanel().getStartTimeTextField().getText(),
-                gui.getTextFieldPanel().getTitleTextField().getText()));
-        btn_createHTML.addActionListener(e -> createHtmlButtListener(gui.getTextFieldPanel().getStartTimeTextField().getText()));
+                gui.getTextFieldPanel().getTitleTextField().getText(),
+                gui.getTextFieldPanel().getExtraHeader().getText()));
+        btn_createHTML.addActionListener(e -> createHtmlButtListener(
+                gui.getTextFieldPanel().getStartTimeTextField().getText(),
+                gui.getTextFieldPanel().getExtraHeader().getText()));
         btn_updateTimes.addActionListener(e -> updateTimes(gui));
         btn_dayBreak.addActionListener(e -> dayBreakListener());
 
@@ -156,9 +160,20 @@ public class ButtonPanel extends JPanel {
         }
     }
 
-    public void saveChangesButtListener(Vector<Vector> data, String time, String title) {
+    /**
+     * Select a file to save the content of the table to and save
+     * @param data the vector containing the data to be saved
+     * @param time the start time of the workshop to be saved
+     * @param title the title of the workshop to be saved
+     * @param header an extra header to be placed above the table
+     * @return the result of the filechooser
+     */
+    public int saveChangesButtListener(Vector<Vector> data, String time, String title, String header) {
         String currentPath = globals.getProperties().getProperty("workingDirectory");
         JFileChooser fileChooser = new JFileChooser(currentPath);
+        FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Comma Separated Value File", "csv", "CSV");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.addChoosableFileFilter(extFilter);
         fileChooser.setDialogTitle("HTML file to save to.");
         fileChooser.setSelectedFile(new File(gui.getTitle()));
         int userSelection = fileChooser.showSaveDialog(null);
@@ -166,26 +181,29 @@ public class ButtonPanel extends JPanel {
             String filename = fileChooser.getSelectedFile().getAbsolutePath();
             if (!(filename.endsWith(".csv")))
                 filename += ".csv";
-            FileUtilities.saveCsvFile(filename, time, title, data);
+            FileUtilities.saveCsvFile(filename, time, title, header, data);
             globals.getProperties().setProperty("workingDirectory", (new File(filename).getPath()));
             Utilities.savePropertyFile(globals.getProperties(), globals.getConfigDirectory());
             gui.setDirtyFlag(false);
         } else {
             logger.debug("File saving cancelled");
         }
+        return userSelection;
     }
 
-    public void createHtmlButtListener(String startTime) {
-        System.out.println("Start time: " + startTime);
+    public void createHtmlButtListener(String startTime, String header) {
         String currentPath = globals.getProperties().getProperty("workingDirectory");
-        System.out.println("Save html file to: " + currentPath);
         // Check if startTime is a valid value
+        startTime = startTime.trim();
         if (!isValidStartTime(startTime)) {
             String time = JOptionPane.showInputDialog("Invalid start time. Please enter a valid value to match the format \"hh:mm\". Example: 10:00");
             startTime = time;
         }
         JFileChooser fileChooser = new JFileChooser(currentPath);
+        fileChooser.setAcceptAllFileFilterUsed(false);
         fileChooser.setDialogTitle("HTML file to save to.");
+        FileNameExtensionFilter extFilter = new FileNameExtensionFilter("HyperText Markup Language File", "html", "htm");
+        fileChooser.addChoosableFileFilter(extFilter);
         String filename = gui.getTitle();
         if (filename.equals("New schedule"))
             filename = "NewSchedule.html";
@@ -197,7 +215,7 @@ public class ButtonPanel extends JPanel {
             String htmlFile = fileChooser.getSelectedFile().getAbsolutePath();
             if (!(htmlFile.endsWith(".html")))
                 htmlFile += ".html";
-            FileUtilities.createHTML(scheduleTableModel.getDataVector(), startTime, new File(htmlFile));
+            FileUtilities.createHTML(scheduleTableModel.getDataVector(), startTime, header, new File(htmlFile));
         }
     }
 

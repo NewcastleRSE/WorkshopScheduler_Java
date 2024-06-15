@@ -1,5 +1,6 @@
 title,Python
 time,09:00
+header,some important stuff
 15,Welcome,-,-
 5,Introducing the Shell,-,https://swcarpentry.github.io/shell-novice/instructor/01-intro.html
 40,Navigating Files and Directories,-,https://swcarpentry.github.io/shell-novice/instructor/02-filedir.html
@@ -11,4 +12,3 @@ time,09:00
 35,Loops,-,https://swcarpentry.github.io/shell-novice/instructor/05-loop.html
 20,Shell Scripts,-,https://swcarpentry.github.io/shell-novice/instructor/06-script.html
 0,Finish,-,-
-,DAY BREAK,null,null

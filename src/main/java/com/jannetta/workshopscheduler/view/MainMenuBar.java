@@ -4,6 +4,7 @@ import com.jannetta.workshopscheduler.controller.Globals;
 import com.jannetta.workshopscheduler.controller.Utilities;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -32,6 +33,9 @@ public class MainMenuBar extends JMenuBar{
     private void loadCSV() {
         currentPath = globals.getProperties().getProperty("workingDirectory");
         JFileChooser file_upload = new JFileChooser(currentPath);
+        FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Comma Separated Value File", "csv", "CSV");
+        file_upload.setAcceptAllFileFilterUsed(false);
+        file_upload.addChoosableFileFilter(extFilter);
         int res_2 = file_upload.showOpenDialog(null);
         if (res_2 == JFileChooser.APPROVE_OPTION) {
             try {
