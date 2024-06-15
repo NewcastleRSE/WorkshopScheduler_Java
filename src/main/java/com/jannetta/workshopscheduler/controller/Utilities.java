@@ -97,7 +97,7 @@ public class Utilities {
         logger.debug(properties.getProperty("workingDirectory"));
         try {
             OutputStream out = new FileOutputStream(f);
-            properties.store(out, "This is an optional header comment string");
+            properties.store(out, "");
             out.close();
         } catch (IOException e1) {
             e1.printStackTrace();

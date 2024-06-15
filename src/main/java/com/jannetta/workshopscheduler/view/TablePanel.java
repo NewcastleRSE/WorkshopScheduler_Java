@@ -4,8 +4,12 @@ import com.jannetta.workshopscheduler.controller.FileUtilities;
 import com.jannetta.workshopscheduler.controller.WrapCellRenderer;
 import com.jannetta.workshopscheduler.model.Schedule;
 import com.jannetta.workshopscheduler.model.ScheduleTableModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
@@ -14,6 +18,8 @@ import java.util.Arrays;
 import java.util.Vector;
 
 public class TablePanel extends JPanel {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private ScheduleTableModel scheduleTableModel;
     final JTable scheduleTable = new JTable();
     private Vector<Vector<String>> data;
@@ -81,10 +87,16 @@ public class TablePanel extends JPanel {
             data.add(vector);
         }
 
-        scheduleTableModel = new ScheduleTableModel(data, new Vector<String>(Arrays.asList(column_names)));
+        scheduleTableModel = new ScheduleTableModel(data, new Vector<String>(Arrays.asList(column_names)), gui.isDirtyFlag());
         scheduleTable.setModel(scheduleTableModel);
         // Set the cell renderer that will display BREAK in green and DAY BREAK in red
         scheduleTable.getColumnModel().getColumn(2).setCellRenderer(renderer);
+        scheduleTable.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                gui.setDirtyFlag(true);
+            }
+        });
         add(scrollPane);
     }
 

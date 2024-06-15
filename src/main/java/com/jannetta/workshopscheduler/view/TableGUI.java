@@ -4,9 +4,13 @@ import com.jannetta.workshopscheduler.controller.FileUtilities;
 import com.jannetta.workshopscheduler.controller.Globals;
 import com.jannetta.workshopscheduler.model.Schedule;
 import net.miginfocom.swing.MigLayout;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.Vector;
@@ -16,17 +20,17 @@ import java.util.Vector;
  */
 public class TableGUI extends JFrame {
 
-    private String startTime;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final String currentPath = Path.of("").toAbsolutePath().toString() + "/";
     private final TablePanel tablePanel;
     private final TextFieldPanel textFieldPanel;
     private final ButtonPanel buttonPanel;
     private String currentCSVFile = "";
     private final Globals globals;
+    private boolean dirtyFlag = false;
 
     public TableGUI(String filePath, Globals globals) {
         this.globals = globals;
-        this.startTime = startTime;
         MigLayout migLayout = new MigLayout("fillx", "", "[]10[]10[]");
         setLayout(migLayout);
         textFieldPanel = new TextFieldPanel(this);
@@ -35,6 +39,19 @@ public class TableGUI extends JFrame {
         tablePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         buttonPanel = new ButtonPanel(this, globals);
         buttonPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent arg0) {
+                if (!dirtyFlag) {
+                    logger.debug("Close window");
+                } else {
+                    logger.debug("Prompt to save file");
+                    buttonPanel.saveChangesButtListener(getTablePanel().getModel().getDataVector(),
+                            getTextFieldPanel().getStartTimeTextField().getText(),
+                            getTextFieldPanel().getTitleTextField().getText());
+                }
+            }
+        });
 
         MainMenuBar menuBar = new MainMenuBar(globals);
         setJMenuBar(menuBar);
@@ -79,6 +96,14 @@ public class TableGUI extends JFrame {
 
     public String getCurrentPath() {
         return currentPath;
+    }
+
+    public boolean isDirtyFlag() {
+        return dirtyFlag;
+    }
+
+    public void setDirtyFlag(boolean dirtyFlag) {
+        this.dirtyFlag = dirtyFlag;
     }
 }
 

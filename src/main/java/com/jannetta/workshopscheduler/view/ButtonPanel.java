@@ -5,6 +5,8 @@ import com.jannetta.workshopscheduler.controller.Globals;
 import com.jannetta.workshopscheduler.controller.Utilities;
 import com.jannetta.workshopscheduler.model.ScheduleTableModel;
 import net.miginfocom.swing.MigLayout;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.io.File;
@@ -13,6 +15,8 @@ import java.util.Vector;
 import static com.jannetta.workshopscheduler.controller.Utilities.updateTimes;
 
 public class ButtonPanel extends JPanel {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     JTable scheduleTable;
     ScheduleTableModel scheduleTableModel;
     TableGUI gui;
@@ -165,6 +169,8 @@ public class ButtonPanel extends JPanel {
             FileUtilities.saveCsvFile(filename, time, title, data);
             globals.getProperties().setProperty("workingDirectory", (new File(filename).getPath()));
             Utilities.savePropertyFile(globals.getProperties(), globals.getConfigDirectory());
+        } else {
+            logger.debug("File saving cancelled");
         }
     }
 
@@ -179,7 +185,6 @@ public class ButtonPanel extends JPanel {
         }
         JFileChooser fileChooser = new JFileChooser(currentPath);
         fileChooser.setDialogTitle("HTML file to save to.");
-        System.out.println("title: " + gui.getTitle());
         String filename = gui.getTitle();
         if (filename.equals("New schedule"))
             filename = "NewSchedule.html";
