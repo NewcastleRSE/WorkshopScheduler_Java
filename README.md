@@ -62,30 +62,6 @@ Deploying to a production style setup but on the local system. Examples of this 
 
 Deploying to the production system. Examples of this would include cloud, HPC or virtual machine. 
 
-## Usage
-
-Any links to production environment, video demos and screenshots.
-
-## Roadmap
-
-- [x] Initial Research  
-- [ ] Minimum viable product <-- You are Here  
-- [ ] Alpha Release  
-- [ ] Feature-Complete Release  
-
-## Contributing
-
-### com.jannetta.workshopscheduler.Main Branch
-Protected and can only be pushed to via pull requests. Should be considered stable and a representation of production code.
-
-### Dev Branch
-Should be considered fragile, code should compile and run but features may be prone to errors.
-
-### Feature Branches
-A branch per feature being worked on.
-
-https://nvie.com/posts/a-successful-git-branching-model/
-
 ## License
 
 ## Citiation
