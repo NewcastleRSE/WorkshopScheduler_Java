@@ -1,5 +1,6 @@
 title,Version Control With Git
-time,09:30
+time, 09:30
+header,-
 60,Markdown,-,https://carpentries-incubator.github.io/markdown-intro/
 10,Automated Version Control,,https://nclrse-training.github.io/git-ultra-novice/01-basics/index.html
 10,Setting Up Git,-,https://nclrse-training.github.io/git-ultra-novice/02-setup/index.html
