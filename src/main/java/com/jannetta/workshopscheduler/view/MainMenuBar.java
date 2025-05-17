@@ -20,7 +20,7 @@ public class MainMenuBar extends JMenuBar{
         JMenuItem selectLightMenuItem = new JMenuItem("Light mode");
         JMenu fileMenu = new JMenu("File");
         JMenuItem loadCsvMenuItem = new JMenuItem("Load CSV (loads an existing schedule)");
-        JMenuItem newFile = new JMenuItem("New schedule (creates a new empty schedule");
+        JMenuItem newFile = new JMenuItem("New schedule (creates a new empty schedule)");
         loadCsvMenuItem.addActionListener(e -> {loadCSV();});
         newFile.addActionListener(e -> {newSchedule();});
         fileMenu.add(loadCsvMenuItem);
