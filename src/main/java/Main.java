@@ -1,5 +1,3 @@
-package com.jannetta.workshopscheduler;
-
 import com.jannetta.workshopscheduler.view.MainGUI;
 
 public class Main {

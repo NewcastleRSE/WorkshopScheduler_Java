@@ -9,7 +9,7 @@ the jws.jar file.
 
 To run the program from the command line:
 - Navigate to the directory where your save jws.jar and type: 
-- `java -cp jws.jar com.jannetta.workshopscheduler.Main`
+- `java -cp jws.jar Main`
 - The first time the program is executed, it will create a sub-directory called `.workshopscheduler` in the user's home directory. A file called `system.properties` will be created in the `.workshopscheduler` directory.
 
 A splash screen should open:

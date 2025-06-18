@@ -46,7 +46,7 @@ Java 17
 
 ### Running Locally
 
-`java -cp <path-to>jws.jar com.jannetta.workshopscheduler.Main`
+`java -cp <path-to>jws.jar Main`
 
 ### Running Tests
 
