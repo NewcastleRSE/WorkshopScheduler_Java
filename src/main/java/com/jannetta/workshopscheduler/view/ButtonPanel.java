@@ -85,7 +85,7 @@ public class ButtonPanel extends JPanel {
     public void dayBreakListener() {
         int rowIndex = scheduleTable.getSelectedRow();
         if (rowIndex != -1) {
-            scheduleTableModel.insertRow(rowIndex, new Object[]{"","15", "DAY BREAK", "-", "-", "-"});
+            scheduleTableModel.insertRow(rowIndex, new Object[]{"","0", "DAY BREAK", "-", "-", "-"});
 
         } else {
             scheduleTableModel.addRow(new Object[]{"","", "DAY BREAK", "", "", ""});
