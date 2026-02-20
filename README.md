@@ -54,13 +54,19 @@ How to run tests on your local system.
 
 ## Deployment
 
-### Local
+Create a directory for the binary and change into it, eg.
+```unix
+mkdir WorkshopAdmin
+cd WorkshopAdmin
+```
+### Suggested
+Create a directory for keeping schedule files. Make sure you are in the `WorkshopAdmin` directory that you created in the previous step.
 
-Deploying to a production style setup but on the local system. Examples of this would include `venv`, `anaconda`, `Docker` or `minikube`. 
-
-### Production
-
-Deploying to the production system. Examples of this would include cloud, HPC or virtual machine. 
+```bash
+mkdir schedules
+cd schedules
+```
+Create your schedules in this directory. There are some example schedules in the repository that can be used and are based on The Carpentries default lessons.
 
 ## License
 
