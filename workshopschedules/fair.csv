@@ -1,0 +1,23 @@
+title,Better Research Software
+time, 09:00
+header,-
+0,Setup Instructions,,https://carpentries-incubator.github.io/better-research-software/instructor/index.html#setup
+0,Survey,,
+60, Software for open and reproducible research,,https://carpentries-incubator.github.io/better-research-software/instructor/01-introduction.html
+30, Better start with a software project,,https://carpentries-incubator.github.io/better-research-software/instructor/02-better-start-version-control.html
+15,BREAK,-,-
+30, Better start with a software project,,https://carpentries-incubator.github.io/better-research-software/instructor/02-better-start-version-control.html
+60,Reproducible software environments,,https://carpentries-incubator.github.io/better-research-software/instructor/03-reproducible-dev-environment.html
+90,Code readability,,https://carpentries-incubator.github.io/better-research-software/instructor/04-code-readability.html
+15,BREAK,-,-
+90,Code structure,,https://carpentries-incubator.github.io/better-research-software/instructor/05-code-structure.html
+30,Code correctness & testing (to be continued),,https://carpentries-incubator.github.io/better-research-software/instructor/06-code-correctness.html
+0,Day end,-,-
+0,DAY BREAK,-,-
+60,Code correctness & testing (continued),,https://carpentries-incubator.github.io/better-research-software/instructor/06-code-correctness.html
+90,Software documentation,,https://carpentries-incubator.github.io/better-research-software/instructor/07-software-documentation.html
+90,Software management & collaboration,,https://carpentries-incubator.github.io/better-research-software/instructor/08-open-collaboration.html
+15,BREAK,-,-
+90,Wrap-up,,https://carpentries-incubator.github.io/better-research-software/instructor/09-wrap-up.html
+45,Survey,null,null
+0,Finish,-,-
